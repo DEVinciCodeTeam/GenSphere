@@ -21,3 +21,20 @@ body {
 .card {
   background-color: #b8c2d5;
 }
+
+html,
+body {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+}
+
+.cardText {
+  font-size: 18px;
+}
+
+.profileImg {
+  border-radius: 50%;
+}
