@@ -14,14 +14,14 @@
 } */
 
 h1 {
-	font-size: 5.25vmin;
-	text-align: center;
-	color:#243049 ;
+	font-size: 2.8vmin;
+	text-align: left;
+	color:#243049;
 }
 p {
-	font-size: max(10pt, 2.5vmin);
+	font-size: max(7pt, 1.8vmin);
 	line-height: 1.4;
-	color: #0e390e;
+	color: #243049;
 	margin-bottom: 1.5rem;
 }
 /* Marco exterior de la tarjeta */
@@ -29,9 +29,9 @@ p {
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: space-between;
-	width: 85vmin;
-	height: 25em;
-	border: 8px solid;
+	width: 22em;
+	height: 22em;
+	border: 5px solid;
 	border-image: linear-gradient(-50deg, #5977b3, #d5dff0,#5977b3, #5977b3, #d5dff0, #5977b3, #5977b3) 1;
 	margin: 2rem auto;
 	transition: .3s ease-in-out;
@@ -48,6 +48,8 @@ p {
 	background: #d5dff0;
 	transition: .4s ease-in-out;
 	z-index: 1;
+  padding-top: 0px;
+  /* padding-bottom: 0px; */
 }
 .overlay-content {
 	display: flex;
@@ -70,11 +72,13 @@ p {
 .image-content {
 	position: absolute;
 	top: 0;
-	right: 0;
-	width: 60vmin;
+  justify-content: center;
+	right: -15px;
+	width: 24vmin;
 	height: 100%;
 	background-image: url("https://media.licdn.com/dms/image/D4D03AQEvXWoRPB8UGA/profile-displayphoto-shrink_800_800/0/1675369011309?e=1689206400&v=beta&t=CXyCGQYxc8ElnDzkNlMNEuGmxzE7OiUKKkW7JQvU2mQ");
 	background-size: cover;
+  background-position: center;
 	transition: .3s ease-in-out;
 	/* border: 1px solid green; */
 }
@@ -96,7 +100,7 @@ p {
 	width: 14px;
 	height: 14px;
 	background: #b8c2d5;
-	border: 1px solid: #212a3e;
+	border: 1px solid #212a3e;
 	border-radius: 50%;
 	transition: .3s ease-in-out .3s;
 }
@@ -105,7 +109,7 @@ p {
 	position: absolute;
 	top: 0;
 	right: 0;
-	width: 60vmin;
+	width: 25vmin;
 	height: 100%;
 	padding: 3vmin 4vmin;
 	background: #fff;
@@ -115,15 +119,15 @@ p {
 
 .wrap:hover .overlay
  {
-	transform: translateX(-60vmin);
+	transform: translateX(-24vmin);
 }
 .wrap:hover .image-content {
-	width: 30vmin;
+	width: 13vmin;
 }
 .wrap:hover .overlay-content {
 	border: none;
 	transition-delay: .2s;
-	transform: translateX(60vmin);
+	transform: translateX(23vmin);
 }
 .wrap:hover .dots {
 	transform: translateX(1rem);
@@ -131,6 +135,10 @@ p {
 .wrap:hover .dots .dot {
 	background: white;
 }
+
+.wrap:hover #aboutP {
+  color: white;
+} 
 
 
 /* Animations and timing delays */
