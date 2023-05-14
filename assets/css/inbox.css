@@ -10,6 +10,7 @@ body {
   background-color: var(--fondo2);
 }
 
+
 /* Navbar */
 
 nav {
@@ -43,37 +44,33 @@ nav {
 
 /* Chat */
 
-
 .btn {
   font-weight: 700;
 }
 
 ul {
-    list-style: none;
-    padding-left: 0;
-    text-decoration: none;
+  list-style: none;
+  padding-left: 0;
+  text-decoration: none;
 }
 
 li {
-    list-style: none;
-    text-decoration: none;
+  list-style: none;
+  text-decoration: none;
 }
 
 li a {
-  text-decoration: none!important;
+  text-decoration: none !important;
 }
-
 
 .text-lg-start {
-    padding-left: 1rem;
+  padding-left: 1rem;
 }
 
-
-
 .time-chat-custom {
-    font-size: 14px;
-    padding-left: 50px;
-    margin: 0;
+  font-size: 14px;
+  padding-left: 50px;
+  margin: 0;
 }
 
 .inbox-time-custom {
@@ -85,9 +82,7 @@ li a {
 /* Chat */
 
 @media (max-width: 767px) {
-    .py-5 {
-      padding-top: 1.8rem!important;
-    }
-
+  .py-5 {
+    padding-top: 1.8rem !important;
   }
-  
+}
