@@ -54,6 +54,7 @@ p {
 /* Mueve nombre de Mario */
 .overlay-content {
 	display: flex;
+  font-size: min(20pt, 30pt);
 	flex-direction: column;
 	justify-content: space-between;
 	width: 60%;
@@ -125,10 +126,10 @@ p {
 	transform: translateX(-40%);  
 	width: 50%;
 }
- .wrap:hover .image-content { 
+ /* .wrap:hover .image-content {  */
 	/*  width: 30%;  */
   /* right: 45%; */
- } 
+ /* }  */
 /* Texto e iconos*/
 .wrap:hover .overlay-content {
 	border: none;
