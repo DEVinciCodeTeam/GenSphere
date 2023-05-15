@@ -150,8 +150,12 @@ p {
 
 .wrap:hover #aboutP {
   color: white;
-  /* font-size: 50px; */
+  font-size: 15pt;
 } 
+
+.wrap:hover h1 {
+  font-size: 15pt;
+}
 
 
 /* Animations and timing delays */
