@@ -73,8 +73,8 @@ p {
 	position: absolute;
 	top: 0;
   justify-content: center;
-	right: -15px;
-	width: 24vmin;
+	right: 0;
+	width: 70%;
 	height: 100%;
 	background-image: url("../../img/integrantes/mayra.jpg");
 	background-size: cover;
@@ -109,21 +109,23 @@ p {
 	position: absolute;
 	top: 0;
 	right: 0;
-	width: 25vmin;
+	width: 80%;
 	height: 100%;
 	padding: 3vmin 4vmin;
 	background: #fff;
 	box-shadow: inset 1px 1px 15px 0 rgba(0 0 0 / .4);
 	overflow-y: scroll;
 }
-
+/*Mueve la imagen */
 .wrap:hover .overlay
  {
 	transform: translateX(-24vmin);
 }
-.wrap:hover .image-content {
-	width: 13vmin;
-}
+/* .wrap:hover .image-content { */
+	/* width: 30%; */
+  /* right: 45%; */
+/* } */
+/* Texto e iconos*/
 .wrap:hover .overlay-content {
 	border: none;
 	transition-delay: .2s;
