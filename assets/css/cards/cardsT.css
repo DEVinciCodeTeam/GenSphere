@@ -51,11 +51,12 @@ p {
   padding-top: 0px;
   /* padding-bottom: 0px; */
 }
+/* Mueve nombre de Mario */
 .overlay-content {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	width: 15vmin;
+	width: 60%;
 	height: 100%;
 	padding: .5rem 0 0 .5rem;
 	border: 3px solid;
@@ -69,6 +70,7 @@ p {
 	transition: .3s ease-in-out .2s;
 	z-index: 1;
 }
+/* Imagen de integrante */
 .image-content {
 	position: absolute;
 	top: 0;
@@ -76,13 +78,13 @@ p {
 	right: 0;
 	width: 70%;
 	height: 100%;
-	background-image: url("../../img/integrantes/mayra.jpg");
+	/* background-image: url("../../img/integrantes/mayra.jpg"); */
 	background-size: cover;
   background-position: center;
 	transition: .3s ease-in-out;
 	/* border: 1px solid green; */
 }
-
+/* iconos */
 .dots {
 	position: absolute;
 	bottom: 1rem;
@@ -109,7 +111,7 @@ p {
 	position: absolute;
 	top: 0;
 	right: 0;
-	width: 80%;
+	width: 70%;
 	height: 100%;
 	padding: 3vmin 4vmin;
 	background: #fff;
@@ -118,24 +120,28 @@ p {
 }
 /*Mueve la imagen */
 .wrap:hover .overlay
- {
-	transform: translateX(-24vmin);
+ { /* Eso ayuda a que no se vea el contenedor azul fuerte de abajo (%) */
+	transform: translateX(-40%);  
+	width: 50%;
 }
-/* .wrap:hover .image-content { */
-	/* width: 30%; */
+ .wrap:hover .image-content { 
+	/*  width: 30%;  */
   /* right: 45%; */
-/* } */
+ } 
 /* Texto e iconos*/
 .wrap:hover .overlay-content {
 	border: none;
 	transition-delay: .2s;
-	transform: translateX(23vmin);
+	transform: translateX(70%);
 }
 .wrap:hover .dots {
 	transform: translateX(1rem);
 }
 .wrap:hover .dots .dot {
 	background: white;
+	width: 0%;
+	height: 0%;
+
 }
 
 .wrap:hover #aboutP {
