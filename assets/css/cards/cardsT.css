@@ -14,12 +14,14 @@
 } */
 
 h1 {
-	font-size: 2.8vmin;
+	font-size: 20pt;
+  /* font-size: 1.8vmax; */
 	text-align: left;
 	color:#243049;
 }
 p {
-	font-size: max(7pt, 1.8vmin);
+	/* font-size: max(7pt, 1.8vmin); */
+  font-size: 18pt;
 	line-height: 1.4;
 	color: #243049;
 	margin-bottom: 1.5rem;
@@ -148,6 +150,7 @@ p {
 
 .wrap:hover #aboutP {
   color: white;
+  /* font-size: 50px; */
 } 
 
 
