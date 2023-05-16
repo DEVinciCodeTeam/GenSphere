@@ -11,43 +11,6 @@ body {
 }
 
 
-/* Navbar */
-
-nav {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-}
-
-.navbar {
-  background-color: var(--headers);
-  --bs-navbar-padding-y: 0;
-}
-
-.bg-light {
-  --bs-bg-opacity: 1;
-  background-color: var(--headers)!important;
-}
-
-.navbar-bg-custom {
-  background-color: var(--headers);
-  display: flex;
-  flex-direction: row;
-}
-
-.navbar-links-custom {
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-.logo-GS {
-  width: 12rem;
-}
-
-.navbar-nav {
-  font-size: 18px;
-}
-
-
 
 /* Chat */
 
@@ -86,21 +49,3 @@ li a {
 
 /* Media Querie */
 
-/* Chat */
-
-@media (max-width: 767px) {
-  .py-5 {
-    padding-top: 1.8rem !important;
-  }
-
-  .navbar-nav {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .navbar-links-custom {
-    display: flex;
-    justify-content: space-around;
-  }
-
-}
