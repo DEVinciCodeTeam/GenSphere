@@ -42,22 +42,3 @@ nav {
 }
 
 /* Media Querie */
-
-/* Chat */
-
-@media (max-width: 767px) {
-  .py-5 {
-    padding-top: 1.8rem !important;
-  }
-
-  .navbar-nav {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .navbar-links-custom {
-    display: flex;
-    justify-content: space-around;
-  }
-
-}
