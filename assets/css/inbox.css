@@ -23,6 +23,11 @@ nav {
   --bs-navbar-padding-y: 0;
 }
 
+.bg-light {
+  --bs-bg-opacity: 1;
+  background-color: var(--headers)!important;
+}
+
 .navbar-bg-custom {
   background-color: var(--headers);
   display: flex;
@@ -41,6 +46,8 @@ nav {
 .navbar-nav {
   font-size: 18px;
 }
+
+
 
 /* Chat */
 
@@ -85,4 +92,15 @@ li a {
   .py-5 {
     padding-top: 1.8rem !important;
   }
+
+  .navbar-nav {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .navbar-links-custom {
+    display: flex;
+    justify-content: space-around;
+  }
+
 }
