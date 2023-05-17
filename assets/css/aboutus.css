@@ -1,9 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Importar la fuente Roboto desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 =======
 >>>>>>> 93897b7 (creación de index, carpetas:sections,assets,js. Movimiento de aboutus.html y aboutus.css)
+=======
+>>>>>>> 73187d7 (editamos navbar)
 .white-logo{
   max-height: 40px;
 }
@@ -23,14 +26,18 @@ nav {
 body {
   background-color: #d5dff0;
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-family: 'Roboto', sans-serif;
 =======
 >>>>>>> 93897b7 (creación de index, carpetas:sections,assets,js. Movimiento de aboutus.html y aboutus.css)
+=======
+>>>>>>> 73187d7 (editamos navbar)
 }
 
 .card {
   background-color: #b8c2d5;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -82,3 +89,5 @@ p , h5{
 =======
 }
 >>>>>>> bf76e43 (ci: about us features)
+=======
+>>>>>>> 73187d7 (editamos navbar)
