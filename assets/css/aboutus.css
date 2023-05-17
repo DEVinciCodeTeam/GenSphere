@@ -32,6 +32,7 @@ body {
   background-color: #b8c2d5;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /* html,
 body {
@@ -46,10 +47,25 @@ body {
   font-size: 10px;
   font-family: 'Roboto', sans-serif;
   text-align: center;
+=======
+
+html,
+body {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+}
+
+.cardText {
+  font-size: 18px;
+>>>>>>> bf76e43 (ci: about us features)
 }
 
 .profileImg {
   border-radius: 50%;
+<<<<<<< HEAD
   
 }
 p , h5{
@@ -60,3 +76,6 @@ p , h5{
 
 =======
 >>>>>>> 93897b7 (creación de index, carpetas:sections,assets,js. Movimiento de aboutus.html y aboutus.css)
+=======
+}
+>>>>>>> bf76e43 (ci: about us features)
