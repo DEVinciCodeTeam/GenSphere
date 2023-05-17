@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* Importar la fuente Roboto desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
@@ -7,6 +8,11 @@
 >>>>>>> 93897b7 (creación de index, carpetas:sections,assets,js. Movimiento de aboutus.html y aboutus.css)
 =======
 >>>>>>> 73187d7 (editamos navbar)
+=======
+/* Importar la fuente Roboto desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+>>>>>>> 154d2d2 (integrando navbar a about-us y perfiles)
 .white-logo{
   max-height: 40px;
 }
@@ -27,11 +33,15 @@ body {
   background-color: #d5dff0;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-family: 'Roboto', sans-serif;
 =======
 >>>>>>> 93897b7 (creación de index, carpetas:sections,assets,js. Movimiento de aboutus.html y aboutus.css)
 =======
 >>>>>>> 73187d7 (editamos navbar)
+=======
+  font-family: 'Roboto', sans-serif;
+>>>>>>> 154d2d2 (integrando navbar a about-us y perfiles)
 }
 
 .card {
@@ -40,6 +50,9 @@ body {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 154d2d2 (integrando navbar a about-us y perfiles)
 
 /* html,
 body {
@@ -54,6 +67,7 @@ body {
   font-size: 10px;
   font-family: 'Roboto', sans-serif;
   text-align: center;
+<<<<<<< HEAD
 =======
 
 html,
@@ -68,14 +82,19 @@ body {
 .cardText {
   font-size: 18px;
 >>>>>>> bf76e43 (ci: about us features)
+=======
+>>>>>>> 154d2d2 (integrando navbar a about-us y perfiles)
 }
 
 .profileImg {
   border-radius: 50%;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 0f2064b (Merging developer and about-us)
+=======
+>>>>>>> 154d2d2 (integrando navbar a about-us y perfiles)
   
 }
 p , h5{
@@ -83,6 +102,7 @@ p , h5{
   font-family: 'Roboto', sans-serif;
 }
 
+<<<<<<< HEAD
 
 =======
 >>>>>>> 93897b7 (creación de index, carpetas:sections,assets,js. Movimiento de aboutus.html y aboutus.css)
@@ -91,3 +111,15 @@ p , h5{
 >>>>>>> bf76e43 (ci: about us features)
 =======
 >>>>>>> 73187d7 (editamos navbar)
+=======
+/* Navbar */
+
+:root {
+  --fondo1: #f1f6f9;
+  --headers: #5977b3;
+  --letra: #212a3e;
+  --botones: #b8c2d5;
+  --fondo2: #d5dff0;
+}
+
+>>>>>>> 154d2d2 (integrando navbar a about-us y perfiles)
