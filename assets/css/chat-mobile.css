@@ -10,8 +10,6 @@ body {
   background-color: var(--fondo2);
 }
 
-
-
 /* Chat */
 
 .btn {
@@ -53,11 +51,9 @@ li a {
   background-color: var(--fondo2);
 }
 
-
 /* Media Querie */
 
 @media (max-width: 767px) {
-  
   .border-inbox-custom {
     border: 0px solid var(--fondo1);
     border-radius: 8px;
@@ -65,16 +61,17 @@ li a {
     background-color: var(--fondo1);
   }
 
-  .border-custom {
-    
+  .row {
+    background-color: var(--fondo1);
+    margin: 10px;
+    border-radius: 14px;
   }
 
   .chat-custom {
-    display: none;
+    padding-bottom: 1rem !important;
   }
 
-
-
-
+  .chat-back {
+    padding-bottom: 12px;
+  }
 }
-
