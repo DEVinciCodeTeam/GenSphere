@@ -53,6 +53,15 @@ li a {
   background-color: var(--fondo2);
 }
 
+.card-body li:hover {
+  background-color: var(--fondo2);
+  border-radius: 14px;
+}
+
+.scrollable {
+  height: 550px;
+  overflow-y: auto; 
+}
 
 /* Media Querie */
 
