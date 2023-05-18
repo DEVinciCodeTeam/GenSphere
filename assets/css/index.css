@@ -6,13 +6,6 @@
   --fondo2: #d5dff0;
 }
 
-.footer {
-  background-color: #5977b3;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-}
-
 body {
   background-color: var(--fondo2);
   margin-bottom: 0;
@@ -24,10 +17,12 @@ nav {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
 }
-
 .navbar {
   background-color: var(--headers);
   --bs-navbar-padding-y: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .navbar-bg-custom {
@@ -57,7 +52,7 @@ nav {
   grid-gap: 20px;
   max-width: 800px;
   width: 100%;
-  margin: 0 auto; /* Center the grid horizontally */
+  margin: 0 auto;
 }
 
 .box-container {
@@ -86,5 +81,91 @@ nav {
 @media (max-width: 600px) {
   .main-section {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Footer */
+.footerLogo {
+  max-width: 100%;
+  max-height: 30px;
+  height: auto;
+  margin-top: 12px;
+  margin-right: 10px;
+}
+
+.footer {
+  background-color: #5977b3;
+  padding: 8px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-section {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+}
+
+.footerLogo {
+  max-width: 100%;
+  height: auto;
+  margin-right: 10px;
+}
+
+h6 {
+  padding-right: 10px;
+  margin-top: 5px;
+  color: white;
+}
+
+.thanks,
+.rights {
+  color: white;
+  margin: 0;
+  padding-top: 10px;
+  line-height: 1;
+}
+.rights {
+  font-size: 10px;
+}
+.thanks {
+  font-size: 15px;
+}
+
+.contact-icons {
+  padding-left: 12px;
+  display: flex;
+  gap: 10px;
+}
+
+.contact-icons a {
+  color: white;
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .left-section {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .right-section {
+    text-align: center;
+  }
+}
+
+@media (max-width: 991px) and (max-height: 930px) {
+  .footer {
+    display: none;
   }
 }
