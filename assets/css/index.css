@@ -47,6 +47,7 @@ nav {
 /* Media Querie */
 
 .main-section {
+  padding: 10px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
@@ -69,7 +70,7 @@ nav {
   width: 100%;
   height: 100%;
   padding-bottom: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(140, 173, 207, 0.7);
 }
 
 .box-name {
@@ -80,7 +81,7 @@ nav {
 
 @media (max-width: 600px) {
   .main-section {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
