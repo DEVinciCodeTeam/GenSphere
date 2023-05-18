@@ -67,24 +67,35 @@ nav {
   justify-content: center;
 }
 
-.box {
-  display: flex;
-  align-items: center;
-  border-radius: 10px;
-  width: 100%;
-  height: 100%;
-  padding-bottom: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-.box-name {
-  margin-top: 0.5rem;
-  font-size: 1rem;
-  text-align: center;
-}
 
 @media (max-width: 600px) {
   .main-section {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* Linea del tiempo por semana */
+
+.box {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  /*padding: 0% 30% 30% 30%;*/
+  padding-bottom: 50%;
+  background-color: #5977B3;
+}
+
+.box-name {
+  font-family: "Droid Sans";
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+
+
+
+
+
