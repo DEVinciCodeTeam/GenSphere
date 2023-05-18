@@ -6,8 +6,16 @@
   --fondo2: #d5dff0;
 }
 
+.footer {
+  background-color: #5977b3;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
 body {
   background-color: var(--fondo2);
+  margin-bottom: 0;
 }
 
 /* Navbar */
@@ -42,3 +50,41 @@ nav {
 }
 
 /* Media Querie */
+
+.main-section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto; /* Center the grid horizontally */
+}
+
+.box-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.box-name {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .main-section {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
