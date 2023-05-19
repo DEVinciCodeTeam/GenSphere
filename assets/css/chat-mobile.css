@@ -51,6 +51,11 @@ li a {
   background-color: var(--fondo2);
 }
 
+.chatContainerScroll {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
 
 
 /* Media Querie */

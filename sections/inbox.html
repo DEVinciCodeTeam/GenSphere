@@ -309,71 +309,55 @@
           </div>
 
           <!-- Chat -->
-
           <div class="col-md-6 col-lg-7 col-xl-8 py-5 chat-custom">
-            <ul>
-              <li class="d-flex justify-content-start mb-4">
-                <div class="card">
-                  <div
-                    class="card-header d-flex justify-content-between align-items-center p-8"
-                  >
-                    <div class="d-flex align-items-center">
-                      <img
-                        src="../assets/img/integrantes/gaby.jpg"
-                        alt="avatar"
-                        class="rounded-circle me-3 shadow-1-strong"
-                        width="30"
-                      />
-                      <p class="fw-bold mb-0">Gaby</p>
+            <div id="chatContainer">
+              <ul class="chatContainerScroll">
+                <li class="d-flex justify-content-start mb-4">
+                  <div class="card">
+                    <div
+                      class="card-header d-flex justify-content-between align-items-center p-8"
+                    >
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="../assets/img/integrantes/gaby.jpg"
+                          alt="avatar"
+                          class="rounded-circle me-3 shadow-1-strong"
+                          width="30"
+                        />
+                        <p class="fw-bold mb-0">Gaby</p>
+                      </div>
+                      <p class="time-chat-custom text-muted">Hace 12 minutos</p>
                     </div>
-                    <p class="time-chat-custom text-muted">Hace 12 minutos</p>
+                    <div class="card-body">
+                      <p class="mb-0">Holaaaaa</p>
+                    </div>
                   </div>
-                  <div class="card-body">
-                    <p class="mb-0">Holaaaaa</p>
+                </li>
+                <li class="d-flex justify-content-start mb-4">
+                  <div class="card">
+                    <div
+                      class="card-header d-flex justify-content-between align-items-center p-8"
+                    >
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="../assets/img/integrantes/gaby.jpg"
+                          alt="avatar"
+                          class="rounded-circle me-3 shadow-1-strong"
+                          width="30"
+                        />
+                        <p class="fw-bold mb-0">Gaby</p>
+                      </div>
+                      <p class="time-chat-custom text-muted">Ahora</p>
+                    </div>
+                    <div class="card-body">
+                      <p class="mb-0">Ya subiste tu parte al repo?</p>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="d-flex justify-content-end mb-4">
-                <div class="card">
-                  <div
-                    class="card-header d-flex justify-content-between align-items-center p-8"
-                  >
-                    <img
-                      src="../assets/img/integrantes/mayra.jpg"
-                      alt="avatar"
-                      class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                      width="30"
-                    />
-                    <p class="fw-bold mb-0">Mayra</p>
-                    <p class="text-muted small mb-0 time-chat-custom">
-                      Hace 13 minutos
-                    </p>
-                  </div>
-                  <div class="card-body">
-                    <p class="mb-0">ke onda</p>
-                  </div>
-                </div>
-              </li>
-              <li class="d-flex justify-content-start mb-4">
-                <div class="card">
-                  <div
-                    class="card-header d-flex justify-content-between align-items-center p-83"
-                  >
-                    <img
-                      src="../assets/img/integrantes/gaby.jpg"
-                      alt="avatar"
-                      class="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
-                      width="30"
-                    />
-                    <p class="fw-bold mb-0">Gaby</p>
-                    <p class="text-muted small mb-0 time-chat-custom">Ahora</p>
-                  </div>
-                  <div class="card-body">
-                    <p class="mb-0">Ya subiste tu parte al repo?</p>
-                  </div>
-                </div>
-              </li>
-              <li class="bg-white mb-3">
+                </li>
+                <!-- Existing chat messages -->
+              </ul>
+
+              <div class="bg-white mb-3">
                 <div class="form-outline">
                   <textarea
                     class="form-control"
@@ -382,19 +366,22 @@
                     placeholder="Escribe tu mensaje:"
                   ></textarea>
                 </div>
-              </li>
-              <button
-                type="button"
-                class="btn btn-rounded float-end"
-                style="background-color: var(--botones)"
-              >
-                Enviar
-              </button>
-            </ul>
+              </div>
+            </div>
+
+            <button
+              id="sendMessageBtn"
+              type="button"
+              class="btn btn-rounded float-end"
+              style="background-color: var(--botones)"
+            >
+              Enviar
+            </button>
           </div>
         </div>
       </div>
     </section>
+
     <!-- Scripts -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
@@ -407,5 +394,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="/assets/js/inbox.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

@@ -109,16 +109,16 @@
     <!-- Chat -->
 
     <div class="container-fluid">
-      <div class="row">
+      <div class="row" id="chatContainer">
         <div class="col-md-6 col-lg-7 col-xl-8 py-5 chat-custom">
-          <ul>
+          <ul class="chatContainerScroll">
             <li class="nav-item mx-3">
-                <a
-                  class="nav-link bi bi-arrow-return-left chat-back"
-                  style="font-size: 1.8rem; color: var(--headers)"
-                  href="./inbox.html"
-                ></a>
-              </li>
+              <a
+                class="nav-link bi bi-arrow-return-left chat-back"
+                style="font-size: 1.8rem; color: var(--headers)"
+                href="./inbox.html"
+              ></a>
+            </li>
             <li class="d-flex justify-content-start mb-4">
               <div class="card">
                 <div
@@ -180,24 +180,26 @@
                 </div>
               </div>
             </li>
-            <li class="bg-white mb-3">
-              <div class="form-outline">
-                <textarea
-                  class="form-control"
-                  id="textAreaExample2"
-                  rows="4"
-                  placeholder="Escribe tu mensaje:"
-                ></textarea>
-              </div>
-            </li>
-            <button
-              type="button"
-              class="btn btn-rounded float-end"
-              style="background-color: var(--botones)"
-            >
-              Enviar
-            </button>
           </ul>
+          <li class="bg-white mb-3">
+            <div class="form-outline">
+              <textarea
+                class="form-control"
+                id="textAreaExample2"
+                rows="4"
+                placeholder="Escribe tu mensaje:"
+              ></textarea>
+            </div>
+          </li>
+          <button
+            type="button"
+            class="btn btn-rounded float-end"
+            style="background-color: var(--botones)"
+            id="sendMessageBtn"
+            ;
+          >
+            Enviar
+          </button>
         </div>
       </div>
     </div>

@@ -10,8 +10,6 @@ body {
   background-color: var(--fondo2);
 }
 
-
-
 /* Chat */
 
 .btn {
@@ -60,13 +58,17 @@ li a {
 
 .scrollable {
   height: 550px;
-  overflow-y: auto; 
+  overflow-y: auto;
+}
+
+.chatContainerScroll {
+  max-height: 370px;
+  overflow-y: auto;
 }
 
 /* Media Querie */
 
 @media (max-width: 767px) {
-  
   .border-inbox-custom {
     border: 0px solid var(--fondo1);
     border-radius: 8px;
@@ -75,15 +77,9 @@ li a {
   }
 
   .border-custom {
-    
   }
 
   .chat-custom {
     display: none;
   }
-
-
-
-
 }
-
