@@ -64,14 +64,28 @@ function createMessageElement(author, text, justification) {
 
 // Function to generate a random response
 function generateRandomResponse() {
-  const responses = [
-    "😀",
-    "🥶",
-    "🤖",
-    "👻",
-    "🧐",
-  ];
+  const responses = ["😀", "🥶", "🤖", "👻", "🧐"];
 
   const randomIndex = Math.floor(Math.random() * responses.length);
   return responses[randomIndex];
 }
+
+const chatLink = document.getElementById("chatLink");
+
+// Función para que solo el link de chat sea clickeable en mobile
+
+function toggleLinkClickability() {
+  const isMobile = window.innerWidth <= 768;
+
+  if (isMobile) {
+    chatLink.setAttribute("href", "./chat-mobile.html");
+  } else {
+    chatLink.removeAttribute("href");
+  }
+}
+
+// Toggle link clickability on page load
+toggleLinkClickability();
+
+// Toggle link clickability on window resize
+window.addEventListener("resize", toggleLinkClickability);
