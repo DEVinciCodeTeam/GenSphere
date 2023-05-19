@@ -47,6 +47,7 @@ nav {
   font-size: 18px;
 }
 
+/*--------------Linea del tiempo-----------------*/
 /* Media Querie */
 
 .main-section {
@@ -58,6 +59,7 @@ nav {
   width: 100%;
   margin: 0 auto;
 }
+
 .box-container:hover .box {
   background-color: rgba(140, 173, 207, 0.5);
 }
@@ -75,7 +77,7 @@ nav {
   width: 100%;
   height: 100%;
   padding-bottom: 100%;
-  background-color: rgba(140, 173, 207, 0.7);
+  background-color: var(--headers);
 }
 
 .box-name {
