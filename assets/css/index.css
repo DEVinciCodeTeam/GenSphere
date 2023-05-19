@@ -60,9 +60,6 @@ nav {
   margin: 0 auto;
 }
 
-.box-container:hover .box {
-  background-color: rgba(140, 173, 207, 0.5);
-}
 .box-container {
   display: flex;
   flex-direction: column;
@@ -85,6 +82,10 @@ nav {
   margin-top: 0.5rem;
   font-size: 1rem;
   text-align: center;
+}
+
+.box-container:hover .box {
+  background-color: rgba(140, 173, 207, 0.5);
 }
 
 @media (max-width: 600px) {
