@@ -12,7 +12,11 @@ sendMessageBtn.addEventListener("click", function () {
   messageInput.value = "";
 
   // Create a new chat message element for the user's message
-  const userMessage = createMessageElement("Mayra", messageText, "justify-content-end");
+  const userMessage = createMessageElement(
+    "Mayra",
+    messageText,
+    "justify-content-end"
+  );
 
   // Append the user's message to the chat container
   container.querySelector("ul").appendChild(userMessage);
@@ -23,13 +27,17 @@ sendMessageBtn.addEventListener("click", function () {
   // Simulate a delay before sending Gaby's response
   setTimeout(() => {
     // Create a new chat message element for Gaby's response
-    const gabyMessage = createMessageElement("Gaby", randomResponse, "justify-content-start");
+    const gabyMessage = createMessageElement(
+      "Gaby",
+      randomResponse,
+      "justify-content-start"
+    );
 
     // Append Gaby's response to the chat container
     container.querySelector("ul").appendChild(gabyMessage);
 
-    // Scroll to the bottom of the chat container
-    container.scrollTop = container.scrollHeight;
+    // Scroll to the last message in the chat container
+    gabyMessage.scrollIntoView({ behavior: "smooth", block: "end" });
   }, 1000); // Change the delay time as needed
 });
 

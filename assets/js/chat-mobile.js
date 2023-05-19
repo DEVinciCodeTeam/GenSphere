@@ -1,6 +1,6 @@
 // Get the necessary elements
 const container = document.getElementById("chatContainer");
-const sendMessageBtn = document.querySelector("#sendMessageBtn");
+const sendMessageBtn = document.getElementById("sendMessageBtn");
 
 // Add event listener to the send message button
 sendMessageBtn.addEventListener("click", function () {
@@ -36,8 +36,8 @@ sendMessageBtn.addEventListener("click", function () {
     // Append Gaby's response to the chat container
     container.querySelector("ul").appendChild(gabyMessage);
 
-    // Scroll to the bottom of the chat container
-    container.scrollTop = container.scrollHeight;
+    // Scroll to the last message in the chat container
+    gabyMessage.scrollIntoView({ behavior: "smooth", block: "end" });
   }, 1000); // Change the delay time as needed
 });
 
@@ -62,7 +62,7 @@ function createMessageElement(author, text, justification) {
   return message;
 }
 
-// Function to generate a random response for Gaby
+// Function to generate a random response
 function generateRandomResponse() {
   const responses = [
     "😀",
