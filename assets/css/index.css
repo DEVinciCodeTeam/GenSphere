@@ -10,7 +10,10 @@ body {
   background-color: var(--fondo2);
   margin-bottom: 0;
 }
-
+a {
+  text-decoration: none;
+  color: black;
+}
 /* Navbar */
 
 nav {
@@ -176,7 +179,3 @@ h6 {
     display: none;
   }
 }
-
-
-
-
