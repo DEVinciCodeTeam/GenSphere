@@ -65,6 +65,7 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: center;  
+  margin-bottom: 15%;
 }
 
 .box {
@@ -77,6 +78,8 @@ nav {
 
 .box-bookmark{
   float: right;
+  height: 40px;
+  margin-right: 5%;
 } 
 .box-folder-badge{
   position: relative;
