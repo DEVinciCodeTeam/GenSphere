@@ -37,6 +37,7 @@ body {
     border-radius: 50%;
     overflow: hidden;
 }
+/* contenedor de la imagen */
 .profile-img img{
     width: 100%;
     height: 100%;
@@ -44,14 +45,26 @@ body {
     object-position: center;
 }
 .profile-img .file {
-    position: relative;
+    position: relative; /* Para que de click en cambiar foto */
     overflow: hidden;
-    margin-top: -20%;
-    width: 70%;
+    /* margin-top: -35%; *//* cambiar posicion de change photo */
+    margin-top: -55%;
+    width: 100%;
     border: none;
-    border-radius: 0;
+    border-radius: 30px;
     font-size: 15px;
     background: #212529b8;
+    display: flex;
+    align-items: center;
+    transition: 0.6s;
+    flex-direction: column;
+    opacity:0;
+}
+.file:hover {
+    opacity: 1;
+    top: -15%;
+    
+
 }
 .profile-img .file input {
     position: absolute;
@@ -64,7 +77,7 @@ body {
     color: #333;
 }
 .profile-head h6{
-    color: #0062cc;
+    color: #212a3e;
 }
 .profile-edit-btn{
     border: none;
@@ -92,10 +105,11 @@ body {
 .profile-head .nav-tabs .nav-link{
     font-weight:600;
     border: none;
+    color: #212a3e; /* color letra de publicaciones y guardados */
 }
 .profile-head .nav-tabs .nav-link.active{
     border: none;
-    border-bottom:4px solid #7F7F7F;
+    border-bottom:4px solid #465b89; /* color de la barrita */
 }
 .profile-tab label{
     font-weight: 600;
@@ -108,3 +122,18 @@ h5{
     text-align: justify;
     font-family: 'Roboto', sans-serif;
   }
+#hseis{
+    font-size: 23px;
+    color: #212a3e; 
+    text-align: justify"
+}
+
+#info{
+    font-size: 18px;
+    color: #465b89; 
+
+}
+#cohorte , #week, #line{
+    font-size: 15px;
+    color: #465b89;
+}
