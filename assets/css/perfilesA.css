@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 body {
-  background-color: #d5dff0;
+  background-color: var(--fondo1);;
   font-family: 'Roboto', sans-serif;
 }
 .emp-profile{
@@ -14,9 +14,20 @@ body {
 }
 .profile-img{
     text-align: center;
+    width: 200px;
+    height: 200px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
 }
+/* .circulo{
+    width: 200px;
+    height: 200px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    text-align: center; */
+
 .profile-img img{
-    width: 70%;
+    width: 100%;
     height: 100%;
 }
 .profile-img .file {
@@ -35,19 +46,22 @@ body {
     right: 0;
     top: 0;
 }
+/* no lo uso */
 .profile-head h5{
-    color: #333;
+    color: #333333;
 }
+/* no lo uso */
 .profile-head h6{
-    color: #0062cc;
+    color: #cc00bb;
 }
+/* Boton de editar perfil */
 .profile-edit-btn{
     border: none;
     border-radius: 1.5rem;
     width: 70%;
     padding: 2%;
     font-weight: 600;
-    color: #6c757d;
+    color: #7d6c7d;
     cursor: pointer;
 }
 .proile-rating{
@@ -75,11 +89,12 @@ body {
     padding: 14%;
     margin-top: -15%;
 }
-.profile-work p{
-    font-size: 12px;
-    color: #818182;
+.profile-work p {
+    font-size: 23px;
+    color: var(--letra);
     font-weight: 600;
     margin-top: 10%;
+    /* text-align: center; */
 }
 .profile-work a{
     text-decoration: none;
@@ -89,15 +104,26 @@ body {
 }
 .profile-work ul{
     list-style: none;
+    text-align: center;
+    color: var(--letra);
 }
 .profile-tab label{
     font-weight: 600;
 }
+/* no lo uso */
 .profile-tab p{
     font-weight: 600;
-    color: #0062cc;
+    color: #0062cc; 
 }
-h5{
-    text-align: justify;
+
+h5 {
+    text-align: center;
     font-family: 'Roboto', sans-serif;
+    font-size: 40px;
+    color: var(--letra);
   }
+h6 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color: var(--letra);
+}
