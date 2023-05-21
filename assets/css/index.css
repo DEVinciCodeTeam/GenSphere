@@ -48,13 +48,11 @@ nav {
 }
 
 /*--------------Linea del tiempo-----------------*/
-/* Media Querie */
-
 .main-section {
   padding: 15px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 40px;
+  grid-gap: 20px;
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
@@ -75,6 +73,10 @@ nav {
   width: 100%;
   height: 100%;
   display: inline-table;
+}
+.intern-box-border{
+  border-radius: 5px;
+	border: 2px solid #f1f6f9;
 }
 
 .box-bookmark{
@@ -97,6 +99,7 @@ nav {
 }
 
 .box-title{
+
   color: #FFFFFF;
   font-size: 1.3rem;
   font-weight: bold;
@@ -107,12 +110,17 @@ nav {
 
 .box-interaction{
   color: #FFFFFF;
+  font-family: "Montserrat";
 }
 
 .box-container:hover .box {
-  background-color: rgba(140, 173, 207, 0.5);
+  transition: 400ms;
+  box-shadow: 0px -10px 20px var(--letra);
+  background-color: var(--letra);
+  
 }
 
+/* Media Querie */
 @media (max-width: 600px) {
   .main-section {
     grid-template-columns: repeat(2, 1fr);
