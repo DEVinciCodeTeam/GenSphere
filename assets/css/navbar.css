@@ -13,6 +13,9 @@ nav {
   .navbar {
     background-color: var(--headers);
     --bs-navbar-padding-y: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
   
   .bg-light {
