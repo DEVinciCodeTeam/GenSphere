@@ -11,6 +11,10 @@ function addPost() {
   const postContainer = document.createElement("div");
   postContainer.classList.add("post-container");
 
+  // Crear un contenedor para el header de la publicacion
+  const postHeaderUser = document.createElement("div");
+  postHeaderUser.classList.add("general-post-info");
+
   // Crear un div para el contenido de la publicación
   const postContentDiv = document.createElement("div");
   postContentDiv.classList.add("post-content");
@@ -40,7 +44,7 @@ function addPost() {
   postContentDiv.appendChild(postDate);
 
   // Agregar el contenido de la publicación al contenedor de la publicación
-  postContainer.appendChild(postContentDiv);
+  postHeaderUser.appendChild(postContentDiv);
 
   // Crear un div para el texto
   const postTextDiv = document.createElement("div");
@@ -53,7 +57,10 @@ function addPost() {
   postTextDiv.appendChild(postTextElement);
 
   // Agregar el posttextdiv al contenedor de la publicación
-  postContainer.appendChild(postTextDiv);
+  postHeaderUser.appendChild(postTextDiv);
+  console.log(postHeaderUser);
+  console.log(typeof postHeaderUser);
+  postContainer.appendChild(postHeaderUser);
 
   // Crear un contenedor para las respuestas de los usuarios
   const listOfAnswer = document.createElement("div");
