@@ -89,12 +89,12 @@
                 <!--Contenedor de foto-->
                 <div class="profile-img">
                   <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                    id="photo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
                     alt="Foto usuario" class="rounded-circle" />
                   <div class="capa">
-                    <div class="file btn btn-lg btn-primary">
+                    <div id="changeIcono" class="file btn btn-lg btn-primary">
                       Change Photo
-                      <input type="file" name="file" />
+                      <input type="file" name="file" id="file" />
                     </div>
                   </div>
                 </div>
@@ -210,6 +210,7 @@
   <!-- Scripts -->
   <script src="../assets/js/forms/jquery.validate.min.js"></script>
   <script src="../assets/js/forms/main.js"></script>
+  <script src="../assets/js/perfiles.js"></script>
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
     integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
