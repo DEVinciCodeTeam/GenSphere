@@ -1,5 +1,67 @@
+/* Fondo principal */
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #d5dff0;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to bottom right,
+    rgba(241, 246, 249, 1),
+    rgba(213, 223, 240, 1)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to bottom right,
+    rgba(241, 246, 249, 1),
+    rgba(213, 223, 240, 1)
+  );
+}
+
+.margenes {
+  margin: 15px;
+}
+
+/*--------------------------- Seccion del lado izquierdo --------------*/
+
+/*Fondo lado izquierdo*/
+.mask-custom-right {
+  background: linear-gradient(
+    to bottom right,
+    rgba(241, 246, 249, 1),
+    rgba(213, 223, 240, 1)
+  );
+  border: none;
+  border-radius: 0%;
+  border-right: 2px solid rgba(0, 0, 0, 0.4);
+}
+
+/* Cajas del lado izquierdo donde se coloca el texto de los eventos*/
+.pt-1 {
+  background: #d5dff0;
+  border-radius: 5%;
+  text-align: center;
+  max-width: 100px;
+  width: 100%;
+}
+/* Cajas del lado izquierdo donde se colocan las imagenes */
+.card-body img {
+  border-radius: 5%;
+  max-height: 100px;
+  height: 100%;
+}
+
+/*--------------------------- Seccion del lado derecho --------------*/
+.mask-custom {
+  background: rgba(213, 223, 240, 1);
+  border-radius: 2em;
+  backdrop-filter: blur(15px);
+  background-clip: padding-box;
+  box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+}
+
+/*-------------------Anidando Elementos------------------------------*/
 .container {
-  max-width: 600px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -18,27 +80,32 @@
 }
 
 .wall__container {
-  border: 5px solid #5977b3;
+  /*  border: 5px solid #5977b3; */
   padding: 10px;
   max-width: 900px;
-  background-color: #5977b3;
+  /* background-color: #5977b3; */
   border-radius: 10px;
 }
 
 .post-container {
   margin-bottom: 20px;
-  border: 2px solid #5977b3;
+  /* border: 2px solid #5977b3; */
   padding: 10px;
-  background-color: #b8c2d5;
-  border-radius: 10px;
+  background-color: #d5dff0;
+  border-radius: 30px;
 }
 
 .post-text {
   font-family: "Roboto", sans-serif;
+  animation: fadeIn 1s ease-in-out;
+  padding: 10px;
   font-size: 20px;
+  color: #212a3e;
 }
 
 .reply__form {
+  position: sticky; /* Quitar */
+  bottom: 0; /* Quitar */
   display: flex;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -70,6 +137,10 @@
   font-size: 16px;
 }
 
+.reply-text {
+  color: #212a3e;
+}
+
 #post-input {
   border-radius: 5px;
   padding: 5px;
@@ -94,9 +165,48 @@
   }
 }
 
-h1 {
-  font-family: "Roboto", sans-serif;
-  animation: fadeIn 1s ease-in-out;
-  padding: 10px;
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 15px;
   text-align: center;
+  font-size: 12px;
+  line-height: 1.42857;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  background-color: #b8c2d5;
+  border-radius: 30px;
+  margin: 8px;
+}
+/*  Estilos para mi header del post*/
+
+.post-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 10px;
+  padding-left: 20px;
+}
+
+.post-name {
+  flex-grow: 1;
+  color: black;
+  font-size: 18px;
+  padding-top: 10px;
+  font-family: "Roboto", sans-serif;
+  padding-left: 8px;
+}
+
+.post-date {
+  margin-left: auto;
+  color: #dfe6f7;
+  font-size: 14px;
+  padding-right: 20px;
+  padding-top: 15px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 425;
 }
