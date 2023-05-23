@@ -92,7 +92,7 @@
   /* border: 2px solid #5977b3; */
   padding: 10px;
   background-color: #d5dff0;
-  border-radius: 10px;
+  border-radius: 30px;
 }
 
 .post-text {
@@ -178,6 +178,9 @@
 .post-header {
   display: flex;
   align-items: center;
+  background-color: #b8c2d5;
+  border-radius: 30px;
+  margin: 8px;
 }
 /*  Estilos para mi header del post*/
 
@@ -186,15 +189,24 @@
   height: 60px;
   border-radius: 50%;
   margin-right: 10px;
+  padding-left: 20px;
 }
 
 .post-name {
   flex-grow: 1;
   color: black;
   font-size: 18px;
+  padding-top: 10px;
+  font-family: "Roboto", sans-serif;
+  padding-left: 8px;
 }
 
 .post-date {
   margin-left: auto;
+  color: #dfe6f7;
   font-size: 14px;
+  padding-right: 20px;
+  padding-top: 15px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 425;
 }
