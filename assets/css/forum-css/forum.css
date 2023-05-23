@@ -95,8 +95,6 @@
   }
   
   .reply__form {
-    position: sticky;/* Quitar */
-    bottom: 0; /* Quitar */
     display: flex;
     margin-top: 10px;
     margin-bottom: 10px;

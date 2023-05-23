@@ -11,6 +11,12 @@ function addPost() {
   const postContainer = document.createElement("div");
   postContainer.classList.add("post-container");
 
+  //Crear un div general para el titulo, la imagen y la hora de la publicacion 
+  const titlePost = document.createElement("div");
+  titlePost.classList.add("d-flex");
+  titlePost.classList.add("justify-content-between");
+  titlePost.classList.add("mb-4");
+
   // Crear un elemento de imagen para la publicacion
   const postImage = document.createElement("img");
   postImage.src = "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp";
@@ -19,13 +25,15 @@ function addPost() {
   postImage.classList.add("align-self-start");
   postImage.classList.add("me-3");
   postImage.classList.add("shadow-1-strong");
-  postContainer.appendChild(postImage); // Agregar la imagen al contenedor de publicaciones
+  titlePost.appendChild(postImage); // Agregar la imagen al contenedor de publicaciones
 
   // Crear un elemento de texto para la publicación
   const postText = document.createElement("h3");
   postText.textContent = postInput;
   postText.classList.add("post-text"); // Agregar clase al elemento de texto de la publicación
-  postContainer.appendChild(postText); //Agregando el h3 al div del post container
+  titlePost.appendChild(postText); //Agregando el h3 al div del post container
+
+  postContainer.appendChild(titlePost);
 
   //Crear un contenedor para las respuestas de los usuarios
   const listOfAnswer = document.createElement("div");
