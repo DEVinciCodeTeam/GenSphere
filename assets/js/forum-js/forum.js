@@ -29,9 +29,7 @@ function addPost() {
 
   //Crear un contenedor para las respuestas de los usuarios
   const listOfAnswer = document.createElement("div");
-  listOfAnswer.classList.add("users_reply__form");
-
-  postContainer.appendChild(listOfAnswer);
+  listOfAnswer.classList.add("users_reply__form");  
 
   // Crear un formulario para las respuestas
   const replyForm = document.createElement("div");
@@ -51,8 +49,9 @@ function addPost() {
   replyForm.appendChild(replyButton);
 
   // Agregar el formulario de respuestas al contenedor de la publicación
+  postContainer.appendChild(listOfAnswer);
   postContainer.appendChild(replyForm);
-
+  
   // Obtener el contenedor de la pared (wall)
   const wallContainer = document.querySelector(".wall__container");
   wallContainer.appendChild(postContainer);
@@ -94,8 +93,8 @@ function addReply(event) {
 
 
 // Obtener el contenedor de la publicación a la cual se está respondiendo
-  const postContainer = event.target.parentNode.parentNode;
-  postContainer.appendChild(replyContainer); 
+const listOfAnswer = event.target.parentNode.parentNode.querySelector(".users_reply__form");
+listOfAnswer.appendChild(replyContainer);
 
   // Limpiar el campo de entrada de respuesta
   replyInput.value = "";
