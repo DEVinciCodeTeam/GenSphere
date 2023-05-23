@@ -121,6 +121,12 @@
     margin-left: 20px;
   }
   
+  .reply-img{
+    width:60px;
+    height: auto; 
+    float: right;
+  }
+
   .reply__text {
     margin-top: 10px;
     font-family: "Roboto", sans-serif;

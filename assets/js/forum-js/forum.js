@@ -91,6 +91,7 @@ function addReply(event) {
   postImage.classList.add("align-self-start");
   postImage.classList.add("me-3");
   postImage.classList.add("shadow-1-strong");
+  postImage.classList.add("reply-img");
   replyContainer.appendChild(postImage); // Agregar la imagen al contenedor de publicaciones
 
   // Crear un elemento de texto para la respuesta
