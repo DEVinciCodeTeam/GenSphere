@@ -99,7 +99,14 @@
   font-family: "Roboto", sans-serif;
   animation: fadeIn 1s ease-in-out;
   padding: 10px;
-  font-size: 20px;
+  font-weight: 450;
+  font-size: 18px;
+  color: #212a3e;
+}
+.reply-text {
+  font-family: "Roboto", sans-serif;
+  padding: 10px;
+  font-size: 15px;
   color: #212a3e;
 }
 
@@ -125,10 +132,6 @@
   cursor: pointer;
   background-color: #5977b3;
   color: #d5dff0;
-}
-
-.reply-container {
-  margin-left: 20px;
 }
 
 .reply__text {
@@ -175,7 +178,14 @@
   line-height: 1.42857;
 }
 
-.post-header {
+.post-content {
+  display: flex;
+  align-items: center;
+  background-color: #b8c2d5;
+  border-radius: 30px;
+  margin: 8px;
+}
+.reply-content {
   display: flex;
   align-items: center;
   background-color: #b8c2d5;
@@ -183,14 +193,6 @@
   margin: 8px;
 }
 /*  Estilos para mi header del post*/
-
-.post-image {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  margin-right: 10px;
-  padding-left: 20px;
-}
 
 .post-name {
   flex-grow: 1;
@@ -202,6 +204,27 @@
 }
 
 .post-date {
+  margin-left: auto;
+  color: #dfe6f7;
+  font-size: 14px;
+  padding-right: 20px;
+  padding-top: 15px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 425;
+}
+
+/* Reply styles */
+
+.reply-name {
+  flex-grow: 1;
+  color: black;
+  font-size: 18px;
+  padding-top: 10px;
+  font-family: "Roboto", sans-serif;
+  padding-left: 8px;
+}
+
+.reply-date {
   margin-left: auto;
   color: #dfe6f7;
   font-size: 14px;
