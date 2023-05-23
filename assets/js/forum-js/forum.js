@@ -11,31 +11,58 @@ function addPost() {
   const postContainer = document.createElement("div");
   postContainer.classList.add("post-container");
 
-  //Crear un div general para el titulo, la imagen y la hora de la publicacion 
-  const titlePost = document.createElement("div");
-  titlePost.classList.add("d-flex");
-  titlePost.classList.add("justify-content-between");
-  titlePost.classList.add("mb-4");
+    // Crear un contenedor para el header de la publicacion
+    const postHeaderUser = document.createElement("div");
+    postHeaderUser.classList.add("general-post-info");
 
-  // Crear un elemento de imagen para la publicacion
+  // Crear un div para el contenido de la publicación
+  const postContentDiv = document.createElement("div");
+  postContentDiv.classList.add("post-content");
+
+  // Crear un elemento de imagen para la publicación
   const postImage = document.createElement("img");
   postImage.src = "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp";
-  postImage.classList.add("rounded-circle"); // Agregar clase al elemento de imagen de la publicación
-  postImage.classList.add("d-flex");
-  postImage.classList.add("align-self-start");
+  postImage.classList.add("rounded-circle");
   postImage.classList.add("me-3");
   postImage.classList.add("shadow-1-strong");
-  titlePost.appendChild(postImage); // Agregar la imagen al contenedor de publicaciones
+  postImage.style.width = "60px";
+  postImage.style.height = "60px";
 
-  // Crear un elemento de texto para la publicación
-  const postText = document.createElement("h3");
-  postText.textContent = postInput;
-  postText.classList.add("post-text"); // Agregar clase al elemento de texto de la publicación
-  titlePost.appendChild(postText); //Agregando el h3 al div del post container
+  // Crear un elemento para el nombre
+  const nameElement = document.createElement("h3");
+  nameElement.textContent = "John Doe";
+  nameElement.classList.add("post-name");
 
-  postContainer.appendChild(titlePost);
+  // Crear un elemento para la fecha
+  const postDate = document.createElement("p");
+  const currentDate = new Date();
+  postDate.textContent = currentDate.toLocaleDateString();
+  postDate.classList.add("post-date");
 
-  //Crear un contenedor para las respuestas de los usuarios
+  postContentDiv.appendChild(postImage);
+  postContentDiv.appendChild(nameElement);
+  postContentDiv.appendChild(postDate);
+
+  // Agregar el contenido de la publicación al contenedor de la publicación
+  postHeaderUser.appendChild(postContentDiv);
+
+  // Crear un div para el texto
+  const postTextDiv = document.createElement("div");
+  postTextDiv.classList.add("posttextdiv");
+
+  // Crear un elemento para el texto de la publicación
+  const postTextElement = document.createElement("p");
+  postTextElement.textContent = postInput;
+  postTextElement.classList.add("post-text");
+  postTextDiv.appendChild(postTextElement);
+
+  // Agregar el posttextdiv al contenedor de la publicación
+  postHeaderUser.appendChild(postTextDiv);
+  console.log(postHeaderUser);
+  console.log(typeof(postHeaderUser));
+  postContainer.appendChild(postHeaderUser);
+
+  // Crear un contenedor para las respuestas de los usuarios
   const listOfAnswer = document.createElement("div");
   listOfAnswer.classList.add("users_reply__form");
 
@@ -67,48 +94,69 @@ function addPost() {
   // Limpiar el campo de entrada de la publicación
   document.getElementById("post-input").value = "";
 }
-
-// Función para manejar el evento de clic en el botón "Responder"
 function addReply(event) {
   const replyInput =
     event.target.parentNode.querySelector("input[type='text']");
   const replyText = replyInput.value.trim();
 
   if (replyText === "") {
-    alert("Favor de contestar algo.");
+    alert("Por favor comenta algo.");
     return;
   }
 
-  // Crear un contenedor para la respuesta
+  // Create a container for the reply
   const replyContainer = document.createElement("div");
   replyContainer.classList.add("reply-container");
 
-  // Crear un elemento de imagen para la respuesta
-  const postImage = document.createElement("img");
-  postImage.src = "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp"; // Reemplaza "ruta_de_la_imagen.jpg" por la ruta de la imagen que deseas mostrar
-  postImage.classList.add("rounded-circle"); // Agregar clase al elemento de imagen de la publicación
-  postImage.classList.add("d-flex");
-  postImage.classList.add("align-self-start");
-  postImage.classList.add("me-3");
-  postImage.classList.add("shadow-1-strong");
-  postImage.classList.add("reply-img");
-  replyContainer.appendChild(postImage); // Agregar la imagen al contenedor de publicaciones
+  // Create a div for the header and text of the reply
+  const replyContentDiv = document.createElement("div");
+  replyContentDiv.classList.add("reply-content");
 
-  // Crear un elemento de texto para la respuesta
+  // Create an element for the image
+  const replyImage = document.createElement("img");
+  replyImage.src = "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp";
+  replyImage.classList.add("rounded-circle");
+  replyImage.classList.add("me-3");
+  replyImage.classList.add("shadow-1-strong");
+  replyImage.style.width = "60px";
+  replyImage.style.height = "60px";
+
+  // Create an element for the name
+  const nameElement = document.createElement("h3");
+  nameElement.textContent = "Jane Doe";
+  nameElement.classList.add("reply-name");
+
+  // Create an element for the date
+  const replyDate = document.createElement("p");
+  const currentDate = new Date();
+  replyDate.textContent = currentDate.toLocaleDateString();
+  replyDate.classList.add("reply-date");
+
+  replyContentDiv.appendChild(replyImage);
+  replyContentDiv.appendChild(nameElement);
+  replyContentDiv.appendChild(replyDate);
+
+  // Create a div for the text of the reply
+  const textReplyDiv = document.createElement("div");
+  textReplyDiv.classList.add("text-reply");
+
+  // Create an element for the reply text
   const replyTextElement = document.createElement("p");
   replyTextElement.textContent = replyText;
-  replyTextElement.classList.add("reply-text"); // Agregar clase al elemento de texto de la respuesta
-  replyContainer.appendChild(replyTextElement);
+  replyTextElement.classList.add("reply-text");
+  textReplyDiv.appendChild(replyTextElement);
 
-  // Obtener el contenedor de la publicación a la cual se está respondiendo
-  const listOfAnswer =
-    event.target.parentNode.parentNode.querySelector(".users_reply__form");
+  replyContainer.appendChild(replyContentDiv);
+  replyContainer.appendChild(textReplyDiv);
+
+  // Get the container of the post to which the reply is being added
+  const postContainer = event.target.parentNode.parentNode;
+  const listOfAnswer = postContainer.querySelector(".users_reply__form");
   listOfAnswer.appendChild(replyContainer);
 
-  // Limpiar el campo de entrada de respuesta
+  // Clear the reply input field
   replyInput.value = "";
 }
-
 // Agregar un event listener al botón "Agregar publicación"
 const addPostButton = document.getElementById("add-post-btn");
 addPostButton.addEventListener("click", addPost);
