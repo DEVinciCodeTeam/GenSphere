@@ -25,7 +25,7 @@
     />
     <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/inbox.css" />
-    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css" />
 
     <title>Gensphere - Inbox</title>
   </head>
@@ -110,26 +110,33 @@
 
     <section>
       <div
-        class="container py-5 mt-4 rounded-4"
+        class="container mt-4 rounded-4"
         style="background-color: var(--fondo1)"
       >
-        <div class="row">
-          <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
+        <div class="row border-custom">
+          <div
+            class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0 border-inbox-custom py-4"
+          >
             <h5 class="font-weight-bold mb-3 text-center text-lg-start">
-              Todos los mensajes
+              <!-- Todos los mensajes -->
             </h5>
 
             <div class="card">
-              <div class="card-body">
+              <div class="card-body scrollable">
                 <ul class="mb-0">
-                  <li class="p-2" style="background-color: var(--fondo1)">
-                    <a href="#!" class="d-flex justify-content-between">
+                  <li class="p-2 chat-hover">
+                    <a
+                      href="./chat-mobile.html"
+                      class="d-flex justify-content-between"
+                      id="chatLink"
+                    >
                       <div class="d-flex flex-row">
                         <img
                           src="../assets/img/integrantes/gaby.jpg"
                           alt="avatar"
                           class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
                           width="60"
+                          height="60"
                         />
                         <div class="pt-1">
                           <p class="fw-bold mb-0">Gaby</p>
@@ -144,7 +151,7 @@
                     </a>
                   </li>
 
-                  <li class="p-2">
+                  <li class="p-2 border-top border-bottom">
                     <a href="#!" class="d-flex justify-content-between">
                       <div class="d-flex flex-row">
                         <img
@@ -152,6 +159,7 @@
                           alt="avatar"
                           class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
                           width="60"
+                          height="60"
                         />
                         <div class="pt-1">
                           <p class="fw-bold mb-0">Nico</p>
@@ -170,13 +178,14 @@
                     <a href="#!" class="d-flex justify-content-between">
                       <div class="d-flex flex-row">
                         <img
-                          src="../assets/img/integrantes/gaby.jpg"
+                          src="../assets/img/integrantes/andrea.jpeg"
                           alt="avatar"
                           class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
                           width="60"
+                          height="60"
                         />
                         <div class="pt-1">
-                          <p class="fw-bold mb-0">Arlene McCoy</p>
+                          <p class="fw-bold mb-0">Andrea</p>
                           <p class="small text-muted">Lorem ipsum dolor sit.</p>
                         </div>
                       </div>
@@ -191,13 +200,14 @@
                     <a href="#!" class="d-flex justify-content-between">
                       <div class="d-flex flex-row">
                         <img
-                          src="../assets/img/integrantes/nicolas.jpeg"
+                          src="../assets/img/integrantes/erick.jpg"
                           alt="avatar"
                           class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
                           width="60"
+                          height="60"
                         />
                         <div class="pt-1">
-                          <p class="fw-bold mb-0">Albert Flores</p>
+                          <p class="fw-bold mb-0">Erick uwu</p>
                           <p class="small text-muted">Lorem ipsum dolor sit.</p>
                         </div>
                       </div>
@@ -210,13 +220,14 @@
                     <a href="#!" class="d-flex justify-content-between">
                       <div class="d-flex flex-row">
                         <img
-                          src="../assets/img/integrantes/gaby.jpg"
+                          src="../assets/img/integrantes/alex.jpg"
                           alt="avatar"
                           class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
                           width="60"
+                          height="60"
                         />
                         <div class="pt-1">
-                          <p class="fw-bold mb-0">Esther Howard</p>
+                          <p class="fw-bold mb-0">Alex</p>
                           <p class="small text-muted">Lorem ipsum dolor sit.</p>
                         </div>
                       </div>
@@ -231,10 +242,54 @@
                     <a href="#!" class="d-flex justify-content-between">
                       <div class="d-flex flex-row">
                         <img
-                          src="../assets/img/integrantes/nicolas.jpeg"
+                          src="../assets/img/integrantes/mariana.jpg"
                           alt="avatar"
                           class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
                           width="60"
+                          height="60"
+                        />
+                        <div class="pt-1">
+                          <p class="fw-bold mb-0">Mariana</p>
+                          <p class="small text-muted">Lorem ipsum dolor sit.</p>
+                        </div>
+                      </div>
+                      <div class="pt-1">
+                        <p class="small text-muted mb-1 inbox-time-custom">
+                          Hace 2 días
+                        </p>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="p-2">
+                    <a href="#!" class="d-flex justify-content-between">
+                      <div class="d-flex flex-row">
+                        <img
+                          src="../assets/img/integrantes/Mario.jpeg"
+                          alt="avatar"
+                          class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
+                          width="60"
+                        />
+                        <div class="pt-1">
+                          <p class="fw-bold mb-0">Mario</p>
+                          <p class="small text-muted">Lorem ipsum dolor sit.</p>
+                        </div>
+                      </div>
+                      <div class="pt-1">
+                        <p class="small text-muted mb-1 inbox-time-custom">
+                          Hace 2 días
+                        </p>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="p-2">
+                    <a href="#!" class="d-flex justify-content-between">
+                      <div class="d-flex flex-row">
+                        <img
+                          src="../assets/img/integrantes/nico.jpg"
+                          alt="avatar"
+                          class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
+                          width="60"
+                          height="60"
                         />
                         <div class="pt-1">
                           <p class="fw-bold mb-0">Henry Court</p>
@@ -254,71 +309,55 @@
           </div>
 
           <!-- Chat -->
-
-          <div class="col-md-6 col-lg-7 col-xl-8">
-            <ul>
-              <li class="d-flex justify-content-start mb-4">
-                <div class="card">
-                  <div
-                    class="card-header d-flex justify-content-between align-items-center p-8"
-                  >
-                    <div class="d-flex align-items-center">
-                      <img
-                        src="../assets/img/integrantes/gaby.jpg"
-                        alt="avatar"
-                        class="rounded-circle me-3 shadow-1-strong"
-                        width="30"
-                      />
-                      <p class="fw-bold mb-0">Gaby</p>
+          <div class="col-md-6 col-lg-7 col-xl-8 py-5 chat-custom">
+            <div id="chatContainer">
+              <ul class="chatContainerScroll">
+                <li class="d-flex justify-content-start mb-4">
+                  <div class="card">
+                    <div
+                      class="card-header d-flex justify-content-between align-items-center p-8"
+                    >
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="../assets/img/integrantes/gaby.jpg"
+                          alt="avatar"
+                          class="rounded-circle me-3 shadow-1-strong"
+                          width="30"
+                        />
+                        <p class="fw-bold mb-0">Gaby</p>
+                      </div>
+                      <p class="time-chat-custom text-muted">Hace 12 minutos</p>
                     </div>
-                    <p class="time-chat-custom text-muted">Hace 12 minutos</p>
+                    <div class="card-body">
+                      <p class="mb-0">Holaaaaa</p>
+                    </div>
                   </div>
-                  <div class="card-body">
-                    <p class="mb-0">Holaaaaa</p>
+                </li>
+                <li class="d-flex justify-content-start mb-4">
+                  <div class="card">
+                    <div
+                      class="card-header d-flex justify-content-between align-items-center p-8"
+                    >
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="../assets/img/integrantes/gaby.jpg"
+                          alt="avatar"
+                          class="rounded-circle me-3 shadow-1-strong"
+                          width="30"
+                        />
+                        <p class="fw-bold mb-0">Gaby</p>
+                      </div>
+                      <p class="time-chat-custom text-muted">Ahora</p>
+                    </div>
+                    <div class="card-body">
+                      <p class="mb-0">Ya subiste tu parte al repo?</p>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li class="d-flex justify-content-end mb-4">
-                <div class="card">
-                  <div
-                    class="card-header d-flex justify-content-between align-items-center p-8"
-                  >
-                    <img
-                      src="../assets/img/integrantes/mayra.jpg"
-                      alt="avatar"
-                      class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-                      width="30"
-                    />
-                    <p class="fw-bold mb-0">Mayra</p>
-                    <p class="text-muted small mb-0 time-chat-custom">
-                      Hace 13 minutos
-                    </p>
-                  </div>
-                  <div class="card-body">
-                    <p class="mb-0">ke onda</p>
-                  </div>
-                </div>
-              </li>
-              <li class="d-flex justify-content-start mb-4">
-                <div class="card">
-                  <div
-                    class="card-header d-flex justify-content-between align-items-center p-83"
-                  >
-                    <img
-                      src="../assets/img/integrantes/gaby.jpg"
-                      alt="avatar"
-                      class="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
-                      width="30"
-                    />
-                    <p class="fw-bold mb-0">Gaby</p>
-                    <p class="text-muted small mb-0 time-chat-custom">Ahora</p>
-                  </div>
-                  <div class="card-body">
-                    <p class="mb-0">Ya subiste tu parte al repo?</p>
-                  </div>
-                </div>
-              </li>
-              <li class="bg-white mb-3">
+                </li>
+               
+              </ul>
+
+              <div class="bg-white mb-3">
                 <div class="form-outline">
                   <textarea
                     class="form-control"
@@ -327,19 +366,22 @@
                     placeholder="Escribe tu mensaje:"
                   ></textarea>
                 </div>
-              </li>
-              <button
-                type="button"
-                class="btn btn-rounded float-end"
-                style="background-color: var(--botones)"
-              >
-                Enviar
-              </button>
-            </ul>
+              </div>
+            </div>
+
+            <button
+              id="sendMessageBtn"
+              type="button"
+              class="btn btn-rounded float-end"
+              style="background-color: var(--botones)"
+            >
+              Enviar
+            </button>
           </div>
         </div>
       </div>
     </section>
+
     <!-- Scripts -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
@@ -352,5 +394,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="/assets/js/inbox.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

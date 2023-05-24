@@ -24,9 +24,8 @@ sendMessageBtn.addEventListener("click", function () {
   // Generate a random response for Gaby
   const randomResponse = generateRandomResponse();
 
-  // Simulate a delay before sending Gaby's response
+  // Delay de la respuesta
   setTimeout(() => {
-    // Create a new chat message element for Gaby's response
     const gabyMessage = createMessageElement(
       "Gaby",
       randomResponse,
@@ -38,10 +37,10 @@ sendMessageBtn.addEventListener("click", function () {
 
     // Scroll to the last message in the chat container
     gabyMessage.scrollIntoView({ behavior: "smooth", block: "end" });
-  }, 1000); // Change the delay time as needed
+  }, 1000);
 });
 
-// Function to create a new chat message element
+// Función de nuevo elemento
 function createMessageElement(author, text, justification) {
   const message = document.createElement("li");
   message.classList.add("d-flex", justification, "mb-4");
@@ -62,30 +61,16 @@ function createMessageElement(author, text, justification) {
   return message;
 }
 
-// Function to generate a random response
+// Función de respuesta random
 function generateRandomResponse() {
-  const responses = ["😀", "🥶", "🤖", "👻", "🧐"];
+  const responses = [
+    "😀",
+    "🥶",
+    "🤖",
+    "👻",
+    "🧐",
+  ];
 
   const randomIndex = Math.floor(Math.random() * responses.length);
   return responses[randomIndex];
 }
-
-const chatLink = document.getElementById("chatLink");
-
-// Función para que solo el link de chat sea clickeable en mobile
-
-function toggleLinkClickability() {
-  const isMobile = window.innerWidth <= 768;
-
-  if (isMobile) {
-    chatLink.setAttribute("href", "./chat-mobile.html");
-  } else {
-    chatLink.removeAttribute("href");
-  }
-}
-
-// Toggle link clickability on page load
-toggleLinkClickability();
-
-// Toggle link clickability on window resize
-window.addEventListener("resize", toggleLinkClickability);
