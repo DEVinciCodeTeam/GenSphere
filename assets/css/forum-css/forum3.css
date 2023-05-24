@@ -89,7 +89,6 @@ html body {
 .container {
   margin: 0 auto;
   padding: 20px;
-
 }
 
 .post__container {
@@ -109,11 +108,16 @@ html body {
 .wall__container {
   /*  border: 5px solid #5977b3; */
   padding: 10px;
-  max-width: 100vh;
+
   /* background-color: #5977b3; */
   border-radius: 10px;
   max-height: 500px;
   overflow: auto;
+  padding-bottom: 0;
+  max-width: 1000px;
+  max-height: 650px;
+  border-radius: 10px;
+ 
 }
 
 .post-container {
