@@ -117,7 +117,7 @@ html body {
   max-width: 1000px;
   max-height: 650px;
   border-radius: 10px;
- 
+  text-align: left;
 }
 
 .post-container {
@@ -171,6 +171,7 @@ html body {
   margin-top: 10px;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
+  
 }
 
 .reply-text {
@@ -180,6 +181,7 @@ html body {
 #post-input {
   border-radius: 5px;
   padding: 5px;
+
   /*  animation: fadeIn 1s ease-in-out; */
 }
 
