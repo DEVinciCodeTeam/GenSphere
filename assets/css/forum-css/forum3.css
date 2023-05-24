@@ -1,3 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow: hidden;
+}
+
 /* Fondo principal */
 .gradient-custom {
   /* fallback for old browsers */
@@ -49,6 +59,21 @@
   border-radius: 5%;
   max-height: 100px;
   height: 100%;
+}
+
+.events-custom {
+  height: 100vh;
+}
+
+.list-animation {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-in {
+  opacity: 1;
+  visibility: visible;
 }
 
 /*--------------------------- Seccion del lado derecho --------------*/
@@ -147,7 +172,7 @@
 #post-input {
   border-radius: 5px;
   padding: 5px;
-  animation: fadeIn 1s ease-in-out;
+  /*  animation: fadeIn 1s ease-in-out; */
 }
 
 #add-post-btn {
@@ -155,7 +180,7 @@
   border: none;
   background-color: #5977b3;
   color: #d5dff0;
-  animation: fadeIn 1s ease-in-out;
+  /* animation: fadeIn 1s ease-in-out; */
 }
 @keyframes fadeIn {
   0% {
