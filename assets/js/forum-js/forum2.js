@@ -93,6 +93,18 @@ function addPost() {
 
   // Limpiar el campo de entrada de la publicación
   document.getElementById("post-input").value = "";
+
+  // Data del post como objeto.
+  const postNameElement = document.querySelector(".post-name");
+  const postDateElement = document.querySelector(".post-date");
+
+  const postData = {
+    "post-name": postNameElement.textContent,
+    "post-date": postDateElement.textContent,
+    "post-text": postInput,
+  };
+  console.log(postData); // to show in console
+  return postData;
 }
 function addReply(event) {
   const replyInput =
@@ -156,6 +168,17 @@ function addReply(event) {
 
   // Clear the reply input field
   replyInput.value = "";
+
+  // reply data
+  const replyNameElement = document.querySelector(".reply-name");
+  const replyDateElement = document.querySelector(".reply-date");
+
+  const replyData = {
+    "reply-name": replyNameElement.textContent,
+    "reply-date": replyDateElement.textContent,
+    "reply-text": replyText,
+  };
+  console.log(replyData);
 }
 // Agregar un event listener al botón "Agregar publicación"
 const addPostButton = document.getElementById("add-post-btn");

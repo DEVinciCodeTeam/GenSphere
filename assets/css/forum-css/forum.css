@@ -64,6 +64,8 @@
 .container {
   margin: 0 auto;
   padding: 20px;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 
 .post__container {
@@ -81,8 +83,9 @@
 
 .wall__container {
   padding: 10px;
-  max-width: 900px;
-  max-height: 500px;
+  padding-bottom: 0;
+  max-width: 1000px;
+  max-height: 700px;
   overflow: auto;
   border-radius: 10px;
 }
