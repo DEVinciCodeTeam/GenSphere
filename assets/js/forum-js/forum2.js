@@ -1,3 +1,8 @@
+// objecto que guarda todos mis objetos creados dentro de mis funciones.
+const allData = { postData: [], replyData: [] };
+let postIdCounter = 1;
+let postId = null;
+
 // Función para manejar el evento de clic en el botón "Publicar"
 function addPost() {
   const postInput = document.getElementById("post-input").value.trim();
@@ -94,17 +99,21 @@ function addPost() {
   // Limpiar el campo de entrada de la publicación
   document.getElementById("post-input").value = "";
 
+  // postId sirve para difernciar cada post
+  let postId = postIdCounter++;
+
   // Data del post como objeto.
   const postNameElement = document.querySelector(".post-name");
   const postDateElement = document.querySelector(".post-date");
 
   const postData = {
+    postId,
     "post-name": postNameElement.textContent,
     "post-date": postDateElement.textContent,
     "post-text": postInput,
   };
-  console.log(postData); // to show in console
-  return postData;
+
+  allData.postData.push(postData);
 }
 function addReply(event) {
   const replyInput =
@@ -169,17 +178,37 @@ function addReply(event) {
   // Clear the reply input field
   replyInput.value = "";
 
+  // replyID
+  const replyId = generateUniqueId();
+
   // reply data
   const replyNameElement = document.querySelector(".reply-name");
   const replyDateElement = document.querySelector(".reply-date");
 
   const replyData = {
+    replyId,
+    postId: postId,
     "reply-name": replyNameElement.textContent,
     "reply-date": replyDateElement.textContent,
     "reply-text": replyText,
   };
-  console.log(replyData);
+
+  allData.replyData.push(replyData);
 }
 // Agregar un event listener al botón "Agregar publicación"
 const addPostButton = document.getElementById("add-post-btn");
 addPostButton.addEventListener("click", addPost);
+
+//funcion para generar uniqueid
+function generateUniqueId() {
+  // generar timestamp
+  const timestamp = Date.now().toString();
+
+  // numero random
+  const randomNumber = Math.floor(Math.random() * 100000).toString();
+
+  // combinar ambos
+  const uniqueId = timestamp + randomNumber;
+
+  return uniqueId;
+}
