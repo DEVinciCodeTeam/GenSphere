@@ -1,13 +1,13 @@
 // Objeto que almacena todos los objetos de datos creados dentro de las funciones
-const allData = {id:"Semana1" ,postData:[]};
+const allData = { id: "Semana1", postData: [] };
 
 let postDataId = null;
 let postDataIdCounter = 1;
-const postHeader={};
+const postHeader = {};
 
 //Iteradores
 let postHeaderId = null;
-let postHeaderIdCounter = 1; 
+let postHeaderIdCounter = 1;
 let postReplyIdCounter = 1;
 
 // Función para manejar el evento de clic en el botón "Agregar publicación"
@@ -100,27 +100,27 @@ function addPost() {
   wallContainer.appendChild(postContainer);
 
   document.getElementById("post-input").value = "";
-      
+
   let postHeaderId = postHeaderIdCounter++;
-        
+
   const postHeader = {
-    postHeaderId, 
-    "post-header-name": nameElement.textContent, 
+    postHeaderId,
+    "post-header-name": nameElement.textContent,
     "post-header-date": postDate.textContent,
     "post-header-text": postInput,
-  };  
+  };
 
   let postDataId = postDataIdCounter++;
-  
+
   const postData = {
-    postDataId, 
-    postHeader:[], 
-    replyData: [] }; //Quitar
-               
+    postDataId,
+    postHeader: [],
+    replyData: [],
+  }; //Quitar
+
   postData.postHeader.push(postHeader);
 
   allData.postData.push(postData);
-  
 }
 
 function addReply(event) {
@@ -189,7 +189,7 @@ function addReply(event) {
   };
 
   let idHeader = postContainer.getAttribute("data-postId");
-  allData.postData[idHeader-1].replyData.push(replyData); 
+  allData.postData[idHeader - 1].replyData.push(replyData);
 }
 
 // Add an event listener to the "Agregar publicación" button
