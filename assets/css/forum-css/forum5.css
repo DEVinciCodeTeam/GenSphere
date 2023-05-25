@@ -1,3 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html body {
+  height: 100%;
+  overflow: hidden;
+}
+
+
+
 /* Fondo principal */
 .gradient-custom {
   /* fallback for old browsers */
@@ -51,6 +63,21 @@
   height: 100%;
 }
 
+.events-custom {
+  height: 100vh;
+}
+
+.list-animation {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-in {
+  opacity: 1;
+  visibility: visible;
+}
+
 /*--------------------------- Seccion del lado derecho --------------*/
 .mask-custom {
   background: rgba(213, 223, 240, 1);
@@ -72,6 +99,7 @@
 
 .post__card {
   display: flex;
+  padding-top: 30px;
 }
 
 .post__card input[type="text"] {
@@ -82,9 +110,16 @@
 .wall__container {
   /*  border: 5px solid #5977b3; */
   padding: 10px;
-  max-width: 900px;
+
   /* background-color: #5977b3; */
   border-radius: 10px;
+  max-height: 500px;
+  overflow: auto;
+  padding-bottom: 0;
+  max-width: 1000px;
+  max-height: 650px;
+  border-radius: 10px;
+  text-align: left;
 }
 
 .post-container {
@@ -147,7 +182,8 @@
 #post-input {
   border-radius: 5px;
   padding: 5px;
-  animation: fadeIn 1s ease-in-out;
+
+  /*  animation: fadeIn 1s ease-in-out; */
 }
 
 #add-post-btn {
@@ -155,7 +191,7 @@
   border: none;
   background-color: #5977b3;
   color: #d5dff0;
-  animation: fadeIn 1s ease-in-out;
+  /* animation: fadeIn 1s ease-in-out; */
 }
 @keyframes fadeIn {
   0% {

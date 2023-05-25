@@ -186,3 +186,17 @@ function generateUniqueId() {
   return uniqueId;
 }
 console.log(allData);
+
+// Lista aparece en orden con a animación
+const listItems = document.querySelectorAll('.list-animation');
+
+function showItems() {
+  listItems.forEach((item, index) => {
+    setTimeout(() => {
+      item.classList.add('fade-in');
+    }, index * 350);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', showItems);
+
