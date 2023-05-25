@@ -185,3 +185,4 @@ function generateUniqueId() {
   const uniqueId = timestamp + randomNumber;
   return uniqueId;
 }
+console.log(allData);
