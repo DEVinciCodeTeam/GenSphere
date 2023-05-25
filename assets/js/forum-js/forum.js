@@ -1,7 +1,14 @@
 // Objeto que almacena todos los objetos de datos creados dentro de las funciones
-const allData = { postData: [], replyData: [] };
-let postIdCounter = 1;
-let postId = null;
+const allData = {id:"Semana1" ,postData:[]};
+
+let postDataId = null;
+let postDataIdCounter = 1;
+const postHeader={};
+
+//Iteradores
+let postHeaderId = null;
+let postHeaderIdCounter = 1; 
+let postReplyIdCounter = 1;
 
 // Función para manejar el evento de clic en el botón "Agregar publicación"
 function addPost() {
@@ -15,7 +22,7 @@ function addPost() {
   // Crear un contenedor para la publicación
   const postContainer = document.createElement("div");
   postContainer.classList.add("post-container");
-  postContainer.setAttribute("data-postId", postIdCounter);
+  postContainer.setAttribute("data-postId", postHeaderIdCounter);
 
   // Crear un contenedor para el encabezado de la publicación
   const postHeaderUser = document.createElement("div");
@@ -93,17 +100,27 @@ function addPost() {
   wallContainer.appendChild(postContainer);
 
   document.getElementById("post-input").value = "";
+      
+  let postHeaderId = postHeaderIdCounter++;
+        
+  const postHeader = {
+    postHeaderId, 
+    "post-header-name": nameElement.textContent, 
+    "post-header-date": postDate.textContent,
+    "post-header-text": postInput,
+  };  
 
-  let postId = postIdCounter++;
-
+  let postDataId = postDataIdCounter++;
+  
   const postData = {
-    postId,
-    "post-name": nameElement.textContent,
-    "post-date": postDate.textContent,
-    "post-text": postInput,
-  };
+    postDataId, 
+    postHeader:[], 
+    replyData: [] }; //Quitar
+               
+  postData.postHeader.push(postHeader);
 
   allData.postData.push(postData);
+  
 }
 
 function addReply(event) {
@@ -161,28 +178,20 @@ function addReply(event) {
 
   replyInput.value = "";
 
-  const replyId = generateUniqueId();
+  const replyId = postReplyIdCounter++;
 
   const replyData = {
     replyId,
-    postId: postContainer.getAttribute("data-postId"),
+    postHeaderId: postContainer.getAttribute("data-postId"),
     "reply-name": nameElement.textContent,
     "reply-date": replyDate.textContent,
     "reply-text": replyText,
   };
 
-  allData.replyData.push(replyData);
+  let idHeader = postContainer.getAttribute("data-postId");
+  allData.postData[idHeader-1].replyData.push(replyData); 
 }
 
 // Add an event listener to the "Agregar publicación" button
 const addPostButton = document.getElementById("add-post-btn");
 addPostButton.addEventListener("click", addPost);
-
-// Function to generate a unique ID
-function generateUniqueId() {
-  const timestamp = Date.now().toString();
-  const randomNumber = Math.floor(Math.random() * 100000).toString();
-  const uniqueId = timestamp + randomNumber;
-  return uniqueId;
-}
-console.log(allData);
