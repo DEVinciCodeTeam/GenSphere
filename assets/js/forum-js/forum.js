@@ -120,6 +120,12 @@ function addPost() {
   postData.postHeader.push(postHeader);
 
   allData.postData.push(postData);
+
+  console.clear();
+
+  //Guardar en Local Storage
+  appendObjectToLocalStorage(allData);
+
   
 }
 
@@ -190,8 +196,20 @@ function addReply(event) {
 
   let idHeader = postContainer.getAttribute("data-postId");
   allData.postData[idHeader-1].replyData.push(replyData); 
+
+  //Guardar en Local Storage
+  appendObjectToLocalStorage(allData);
+  
+
 }
 
 // Add an event listener to the "Agregar publicación" button
 const addPostButton = document.getElementById("add-post-btn");
 addPostButton.addEventListener("click", addPost);
+
+//Funcion para guardar la informacion en Local Storage.
+function appendObjectToLocalStorage(allData){
+  const element = allData;
+  localStorage.setItem('forum1Posts', JSON.stringify(element));
+};
+
