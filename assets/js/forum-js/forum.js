@@ -121,16 +121,6 @@ function addPost() {
   postData.postHeader.push(postHeader);
 
   allData.postData.push(postData);
-<<<<<<< HEAD
-
-  console.clear();
-
-  //Guardar en Local Storage
-  appendObjectToLocalStorage(allData);
-
-  
-=======
->>>>>>> 1cd71827e41013a8f3adb910b250d912a41a5e87
 }
 
 function addReply(event) {
@@ -199,43 +189,22 @@ function addReply(event) {
   };
 
   let idHeader = postContainer.getAttribute("data-postId");
-<<<<<<< HEAD
-  allData.postData[idHeader-1].replyData.push(replyData); 
-
-  //Guardar en Local Storage
-  appendObjectToLocalStorage(allData);
-  
-
-=======
   allData.postData[idHeader - 1].replyData.push(replyData);
->>>>>>> 1cd71827e41013a8f3adb910b250d912a41a5e87
 }
 
 // Add an event listener to the "Agregar publicación" button
 const addPostButton = document.getElementById("add-post-btn");
 addPostButton.addEventListener("click", addPost);
 
-<<<<<<< HEAD
-//Funcion para guardar la informacion en Local Storage.
-function appendObjectToLocalStorage(allData){
-  const element = allData;
-  localStorage.setItem('forum1Posts', JSON.stringify(element));
-};
-=======
 // Lista aparece en orden con a animación
-const listItems = document.querySelectorAll('.list-animation');
+const listItems = document.querySelectorAll(".list-animation");
 
 function showItems() {
   listItems.forEach((item, index) => {
     setTimeout(() => {
-      item.classList.add('fade-in');
+      item.classList.add("fade-in");
     }, index * 350);
   });
 }
 
-document.addEventListener('DOMContentLoaded', showItems);
-
-
-
->>>>>>> 1cd71827e41013a8f3adb910b250d912a41a5e87
-
+document.addEventListener("DOMContentLoaded", showItems);
