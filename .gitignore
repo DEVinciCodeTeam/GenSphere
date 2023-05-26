@@ -1,3 +1,6 @@
+node_modules
+.json
+
 # Compiled class file
 *.class
 
@@ -23,3 +26,10 @@
 hs_err_pid*
 replay_pid*
 .DS_Store
+
+## Server and packages
+server.js
+package.json
+package-lock.json
+
+node_modules/

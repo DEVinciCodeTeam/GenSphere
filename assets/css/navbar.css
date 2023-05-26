@@ -1,0 +1,70 @@
+:root {
+  --fondo1: #f1f6f9;
+  --headers: #5977b3;
+  --letra: #212a3e;
+  --botones: #b8c2d5;
+  --fondo2: #d5dff0;
+}
+nav {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+  }
+  
+  .navbar {
+    background-color: var(--headers);
+    --bs-navbar-padding-y: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .bg-light {
+    --bs-bg-opacity: 1;
+    background-color: var(--headers)!important;
+  }
+  
+  .navbar-bg-custom {
+    background-color: var(--headers);
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .navbar-links-custom {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  
+  .logo-GS {
+    width: 12rem;
+  }
+  
+  .navbar-nav {
+    font-size: 18px;
+  }
+  :root {
+    --fondo1: #f1f6f9;
+    --headers: #5977b3;
+    --letra: #212a3e;
+    --botones: #b8c2d5;
+    --fondo2: #d5dff0;
+  }
+
+
+@media (max-width: 767px) {
+    .py-5 {
+      padding-top: 1.8rem !important;
+    }
+  
+    .navbar-nav {
+      display: flex;
+      flex-direction: row;
+    }
+  
+    .navbar-links-custom {
+      display: flex;
+      justify-content: space-around;
+    }
+  
+  }
+  
+  

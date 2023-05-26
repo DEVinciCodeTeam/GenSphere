@@ -1,0 +1,241 @@
+/* * {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+} */
+/* body {
+	min-height: 100vh;
+	display: grid;
+	place-items: center;
+	margin: 0;
+	padding: 0;
+	background: linear-gradient(to right, #008000, #00e600, #b3ffb3, #00e600, #008000);
+	font-family: 'Martel Sans', sans-serif;
+} */
+
+h1 {
+	font-size: 20pt;
+  /* font-size: 1.8vmax; */
+	text-align: left;
+	color:#243049;
+}
+p {
+	/* font-size: max(7pt, 1.8vmin); */
+  font-size: 18pt;
+	line-height: 1.4;
+	color: #243049;
+	margin-bottom: 1.5rem;
+}
+/* Marco exterior de la tarjeta */
+.wrap {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	width: 22em;
+	height: 22em;
+	border: 5px solid;
+	border-image: linear-gradient(-50deg, #5977b3, #d5dff0,#5977b3, #5977b3, #d5dff0, #5977b3, #5977b3) 1;
+	margin: 2rem auto;
+	transition: .3s ease-in-out;
+	position: relative;
+	overflow: hidden;
+}
+/* Fondo interior */
+.overlay {
+	position: relative;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	padding: 1rem .75rem;
+	background: #d5dff0;
+	transition: .4s ease-in-out;
+	z-index: 1;
+  padding-top: 0px;
+  /* padding-bottom: 0px; */
+}
+/* Mueve nombre de Mario */
+.overlay-content {
+	display: flex;
+  font-size: min(20pt, 30pt);
+	flex-direction: column;
+	justify-content: space-between;
+	width: 60%;
+	height: 100%;
+	padding: .5rem 0 0 .5rem;
+	border: 3px solid;
+	 border-image: 
+    	linear-gradient(
+      	to bottom, 
+      	#d5dff0 5%,
+        #396cda 35% 65%,
+      	#d5dff0 95%
+    	) 0 0 0 100%; 
+	transition: .3s ease-in-out .2s;
+	z-index: 1;
+}
+/* Imagen de integrante */
+.image-content {
+	position: absolute;
+	top: 0;
+  justify-content: center;
+	right: 0;
+	width: 60%;
+	height: 100%;
+	/* background-image: url("../../img/integrantes/mayra.jpg"); */
+	background-size: cover;
+  background-position: center;
+	transition: .3s ease-in-out;
+	/* border: 1px solid green; */
+}
+/* iconos */
+.dots {
+	position: absolute;
+	bottom: 1rem;
+	right: 2rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	width: 55px;
+	height: 4vmin;
+	transition: .3s ease-in-out .3s;
+}
+/* Puntitos de imagen */
+.dot {
+	width: 14px;
+	height: 14px;
+	background: #b8c2d5;
+	border: 1px solid #212a3e;
+	border-radius: 50%;
+	transition: .3s ease-in-out .3s;
+}
+
+.text {
+  font-size: 12pt;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 70%;
+	height: 100%;
+	padding: 3vmin 4vmin;
+	background: #fff;
+	box-shadow: inset 1px 1px 15px 0 rgba(0 0 0 / .4);
+	overflow-y: scroll;
+}
+/*Mueve la imagen */
+.wrap:hover .overlay
+ { /* Eso ayuda a que no se vea el contenedor azul fuerte de abajo (%) */
+	transform: translateX(-40%);  
+	width: 50%;
+}
+ /* .wrap:hover .image-content {  */
+	/*  width: 30%;  */
+  /* right: 45%; */
+ /* }  */
+/* Texto e iconos*/
+.wrap:hover .overlay-content {
+	border: none;
+	transition-delay: .2s;
+	transform: translateX(70%);
+}
+.wrap:hover .dots {
+	transform: translateX(1rem);
+}
+.wrap:hover .dots .dot {
+	background: white;
+	width: 0%;
+	height: 0%;
+
+}
+
+.wrap:hover #aboutP {
+  color: white;
+  font-size: 15pt;
+} 
+
+.wrap:hover h1 {
+  font-size: 15pt;
+}
+
+
+/* Animations and timing delays */
+.animate {
+  animation-duration: 0.7s;
+  animation-timing-function: cubic-bezier(.26, .53, .74, 1.48);
+  animation-fill-mode: backwards;
+}
+/* Pop In */
+.pop { animation-name: pop; }
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+
+/* Slide In */
+.slide { animation-name: slide; }
+@keyframes slide {
+  0% {
+    opacity: 0;
+    transform: translate(4em, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+/* Slide Left */
+.slide-left { animation-name: slide-left; }
+@keyframes slide-left {
+  0% {
+    opacity: 0;
+    transform: translate(-40px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.slide-up {animation-name: slide-up;}
+@keyframes slide-up {
+	0% {
+		opacity: 0;
+		transform: translateY(3em);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.delay-1 {
+  animation-delay: 0.3s;
+}
+.delay-2 {
+  animation-delay: 0.6s;
+}
+.delay-3 {
+  animation-delay: 0.9s;
+}
+.delay-4 {
+  animation-delay: 1.2s;
+}
+.delay-5 {
+  animation-delay: 1.5s;
+}
+.delay-6 {
+  animation-delay: 1.8s;
+}
+.delay-7 {
+  animation-delay: 2.1s;
+}
+.delay-8 {
+  animation-delay: 2.4s;
+}
