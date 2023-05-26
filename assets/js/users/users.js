@@ -7,7 +7,8 @@ function saveUsers() {
     const getUserCohorte = document.getElementById("userCohorte").value.trim();
     const getUserPassword = document.getElementById("userPassword").value.trim();
     console.log(getUserName, getUserEmail, getUserCohorte, getUserPassword);
-    allUsers.users[usersCount++]= {userName:getUserName,                    userEmail:getUserEmail, userCohorte:getUserCohorte, userPassword:getUserPassword} 
+    allUsers.users[usersCount++]= {userName:getUserName,                    
+                                   userEmail:getUserEmail, userCohorte:getUserCohorte, userPassword:getUserPassword} 
   
     if (getUserName === "") {
       alert("Favor de publicar algo.");
