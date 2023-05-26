@@ -11,20 +11,21 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form action="">
+            <form action="#">
                 <h1>Crea tu cuenta</h1>
-                <input type="text" placeholder="Nombre" required="required"/>
-                <input type="email" placeholder="Correo electronico" required="required"/>
-                <input type="text" placeholder="Cohorte" required="required"/>
-                <input type="password" placeholder="Contraseña" required="required"/>
-                <button>Regístrate</button>
+                <input type="text" id="userName" placeholder="Nombre" required="required"/>
+                <input type="email" id="userEmail" placeholder="Correo electronico" required="required"/>
+                <input type="text" id="userCohorte" placeholder="Cohorte" required="required"/>
+                <input type="password" id="userPassword" placeholder="Contraseña" required="required"/>
+                <button onclick="saveUsers()">Regístrate</button>
             </form>
         </div>
         <div class="form-container sign-in-container">
             <form action="#">
                 <h1>Inicia sesión</h1>
-                <input type="text" placeholder="Nombre de usuario"  required="required"/>
-                <input type="password" placeholder="Contraseña" required="required"/>
+                <input type="text" id="userNameLogin" placeholder="Nombre de usuario"  required="required"/>
+                <input type="text" id="userCohorteLogin" placeholder="Cohorte" required="required"/>
+                <input type="password" id="userPasswordLogin" placeholder="Contraseña" required="required"/>
                 <a href="./contraseña/contraseña.html">Olvidé mi contraseña</a>
                <button><a href="../index.html"> Iniciar</a></button>
             </form>
@@ -47,5 +48,7 @@
     </div>
 
     <script src="../assets/js/login.js"></script>
+    <script src="../assets/js/users/users.js"></script>
+    
 </body>
 </html>
