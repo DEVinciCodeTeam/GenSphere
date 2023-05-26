@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenSphere</title>
+    <link rel="stylesheet" href="../assets/css/login.css">
+    <link rel="icon" href="../img/logonegro.ico">
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="">
+                <h1>Crea tu cuenta</h1>
+                <input type="text" placeholder="Nombre" required="required"/>
+                <input type="email" placeholder="Correo electronico" required="required"/>
+                <input type="text" placeholder="Cohorte" required="required"/>
+                <input type="password" placeholder="Contraseña" required="required"/>
+                <button>Regístrate</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Inicia sesión</h1>
+                <input type="text" placeholder="Nombre de usuario"  required="required"/>
+                <input type="password" placeholder="Contraseña" required="required"/>
+                <a href="./contraseña/contraseña.html">Olvidé mi contraseña</a>
+               <button><a href="../index.html"> Iniciar</a></button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1><img src="../assets/img/logo/logo-negro-horizontal.png" alt="logo"><br>¡Hola de nuevo!</h1>
+                    <p>Por favor, inicia sesión para acceder a tu cuenta</p>
+                    <button class="ghost" id="iniciar">Iniciar</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1><img src="../assets/img/logo/logo-negro-horizontal.png" alt="logo"><br>¡Hola!</h1>
+                    <p>¿No tienes cuenta aún? <br>
+                        Regístrate ahora para poder acceder a nuestra comunidad.</p>
+                    <button class="ghost" id="registrar">Regístrarse</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/login.js"></script>
+</body>
+</html>
