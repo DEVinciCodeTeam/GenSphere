@@ -209,7 +209,7 @@ addPostButton.addEventListener("click", addPost);
 //Funcion para guardar la informacion en Local Storage.
 function appendObjectToLocalStorage(allData) {
   const element = allData;
-  localStorage.setItem("forum2Posts", JSON.stringify(element));
+  localStorage.setItem("forum1Posts", JSON.stringify(element));
 }
 // Lista aparece en orden con a animación
 const listItems = document.querySelectorAll(".list-animation");
@@ -353,5 +353,3 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(error);
     });
 });
-
-// Attempt 2
