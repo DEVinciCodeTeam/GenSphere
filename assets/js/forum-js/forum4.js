@@ -26,8 +26,9 @@ function addPost() {
   // Crear un contenedor para la publicación
   const postContainer = document.createElement("div");
   postContainer.classList.add("post-container");
-  const postHeaderId = postHeaderIdCounter++;
-  postContainer.setAttribute("data-postId", postHeaderId);
+  // Generar un nuevo postDataId único
+  const postDataId = allData.postData.length + 1;
+  postContainer.setAttribute("data-postId", postDataId);
 
   // Crear un contenedor para el encabezado de la publicación
   const postHeaderUser = document.createElement("div");
@@ -107,19 +108,18 @@ function addPost() {
   document.getElementById("post-input").value = "";
 
   const postHeader = {
-    postHeaderId,
-    "post-header-name": nameElement.textContent,
-    "post-header-date": postDate.textContent,
+    postHeaderId: 1,
+    "post-header-name": "John Doe",
+    "post-header-date": "26/5/2023",
     "post-header-text": postInput,
   };
-
-  let postDataId = postDataIdCounter++;
 
   const postData = {
     postDataId,
     postHeader: [postHeader],
     replyData: [],
   };
+
 
   allData.postData.push(postData);
 
@@ -345,7 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
     populateWallContainer(storedData);
   }
 
-  // Axios request to post the data to the local storage
+ /*  // Axios request to post the data to the local storage
   axios
     .get("/getforum4")
     .then((response) => {
@@ -355,5 +355,5 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((error) => {
       console.log(error);
-    });
+    }); */
 });
