@@ -11,10 +11,11 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form action="#">
+            <form id="registerForm" action="#">
                 <h1>Crea tu cuenta</h1>
-                <input type="text" id="userName" placeholder="Nombre" required="required"/>
-                <input type="email" id="userEmail" placeholder="Correo electronico" required="required"/>
+                <label for="userName"></label>
+                <input name="userName" type="text" id="userName" placeholder="Nombre" />
+                <input type="email" id="userEmail" placeholder="Correo electronico"  />
                 <input type="text" id="userCohorte" placeholder="Cohorte" required="required"/>
                 <input type="password" id="userPassword" placeholder="Contraseña" required="required"/>
                 <button onclick="saveUsers()">Regístrate</button>
@@ -27,7 +28,7 @@
                 <input type="text" id="userCohorteLogin" placeholder="Cohorte" required="required"/>
                 <input type="password" id="userPasswordLogin" placeholder="Contraseña" required="required"/>
                 <a href="./contraseña/contraseña.html">Olvidé mi contraseña</a>
-               <button><a href="../index.html"> Iniciar</a></button>
+               <button onclick="requestUser()">Iniciar</button>
             </form>
         </div>
         <div class="overlay-container">

@@ -6,18 +6,26 @@ function saveUsers() {
     const getUserEmail = document.getElementById("userEmail").value.trim();
     const getUserCohorte = document.getElementById("userCohorte").value.trim();
     const getUserPassword = document.getElementById("userPassword").value.trim();
-    console.log(getUserName, getUserEmail, getUserCohorte, getUserPassword);
-    allUsers.users[usersCount++]= {userName:getUserName,                    
-                                   userEmail:getUserEmail, userCohorte:getUserCohorte, userPassword:getUserPassword} 
+    console.log(getUserName, getUserEmail, getUserCohorte, getUserPassword); 
   
-    if (getUserName === "") {
-      alert("Favor de publicar algo.");
-      return;
-    }
+    if (getUserName == "" || getUserEmail == "" || getUserCohorte == "" || getUserPassword == "") {alert ("Porfavor, completa todos los campos")    
+    } else { allUsers.users[usersCount++]= {userName:getUserName,                    
+      userEmail:getUserEmail, userCohorte:getUserCohorte, userPassword:getUserPassword} }     
+    
 }
+
+function requestUser() {
+  const getUserName = document.getElementById("userNameLogin").value.trim();
+  const getUserCohorte = document.getElementById("userCohorteLogin").value.trim();
+  const getUserPassword = document.getElementById("userPasswordLogin").value.trim();
+  console.log(getUserName, getUserCohorte, getUserPassword);
+  
+}
+
+
   
 
-let postDataId = null;
+/* let postDataId = null;
 let postDataIdCounter = 1;
 const postHeader = {};
 
@@ -238,4 +246,4 @@ function showItems() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", showItems);
+document.addEventListener("DOMContentLoaded", showItems); */
