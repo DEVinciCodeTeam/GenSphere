@@ -1,4 +1,5 @@
 // Objeto que almacena todos los objetos de datos creados dentro de las funciones
+console.log("script users esta funcionando");
 const allUsers = { users: {} };
 let usersCount = 0;
 
@@ -32,7 +33,7 @@ signUpForm.onsubmit = function(e) {
 
 
 const signInForm = document.getElementById("signInForm");
-
+let identifiedUser;
 signInForm.onsubmit = function(e) {
   e.preventDefault()
   const getUserEmail = document.getElementById("userEmailLogin").value.trim();
@@ -55,7 +56,7 @@ signInForm.onsubmit = function(e) {
   }
 
 
-  const identifiedUser = allUsers.users[index];
+  identifiedUser = allUsers.users[index];
   if (getUserCohorte == identifiedUser.userCohorte && getUserPassword == identifiedUser.userPassword) {
     console.log("Entraste!")
   } else {
@@ -68,7 +69,32 @@ signInForm.onsubmit = function(e) {
 
 }
 
+// Obtener el perfil editable
+const getUserName = document.getElementById("editUserName");
+const getUserCohorte = document.getElementById("editUserCohorte");
+const getUserEmail = document.getElementById("editUserEmail");
 
+
+getUserName.innerHTML = identifiedUser;
+
+// Obtener los datos del usuario registrado desde allUsers
+const name = allUsers.users[editUserName];
+const cohorte = allUsers.users[editUserCohorte];
+const email = allUsers.users[editUserEmail];
+
+// Actualizar los campos del perfil editable con los datos del usuario
+profileForm.userName.value = name.userName;
+profileForm.userEmail.value = usuario.userEmail;
+profileForm.userCohorte.value = usuario.userCohorte;
+
+
+
+/* const editAllUsers = allUsers.users[index];
+const getUserName = document.getElementById ("editUserName").value.trim();
+const getUserCohorte = document.getElementById ("editUserCohorte").value.trim();
+const getUserEmail = document.getElementById ("editUserEmail").value.trim();
+console.log(getUserName, getUserCohorte, getUserEmail);
+ */
 
 
   // let postDataId = null;
