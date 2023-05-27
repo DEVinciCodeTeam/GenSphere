@@ -1,14 +1,16 @@
 // Objeto que almacena todos los objetos de datos creados dentro de las funciones
-const allData = { id: "Semana2", postData: [] };
+let allData = { id: "Semana2", postData: [] };
 
-let postDataId = null;
+// Counter variables
 let postDataIdCounter = 1;
-const postHeader = {};
-
-//Iteradores
-let postHeaderId = null;
 let postHeaderIdCounter = 1;
 let postReplyIdCounter = 1;
+
+//Funcion para guardar la informacion en Local Storage.
+function appendObjectToLocalStorage(allData) {
+  const element = allData;
+  localStorage.setItem("forum2Posts", JSON.stringify(element));
+}
 
 // Función para manejar el evento de clic en el botón "Agregar publicación"
 function addPost() {
@@ -22,7 +24,9 @@ function addPost() {
   // Crear un contenedor para la publicación
   const postContainer = document.createElement("div");
   postContainer.classList.add("post-container");
-  postContainer.setAttribute("data-postId", postHeaderIdCounter);
+  // Generar un nuevo postDataId único
+  const postDataId = allData.postData.length + 1;
+  postContainer.setAttribute("data-postId", postDataId);
 
   // Crear un contenedor para el encabezado de la publicación
   const postHeaderUser = document.createElement("div");
@@ -101,24 +105,18 @@ function addPost() {
 
   document.getElementById("post-input").value = "";
 
-  let postHeaderId = postHeaderIdCounter++;
-
   const postHeader = {
-    postHeaderId,
-    "post-header-name": nameElement.textContent,
-    "post-header-date": postDate.textContent,
+    postHeaderId: 1,
+    "post-header-name": "John Doe",
+    "post-header-date": "26/5/2023",
     "post-header-text": postInput,
   };
 
-  let postDataId = postDataIdCounter++;
-
   const postData = {
     postDataId,
-    postHeader: [],
+    postHeader: [postHeader],
     replyData: [],
-  }; //Quitar
-
-  postData.postHeader.push(postHeader);
+  };
 
   allData.postData.push(postData);
 
@@ -177,7 +175,7 @@ function addReply(event) {
   replyContainer.appendChild(replyContentDiv);
   replyContainer.appendChild(textReplyDiv);
 
-  const postContainer = event.target.parentNode.parentNode;
+  const postContainer = event.target.closest(".post-container");
   const listOfAnswer = postContainer.querySelector(".users_reply__form");
   listOfAnswer.appendChild(replyContainer);
 
@@ -187,19 +185,18 @@ function addReply(event) {
 
   const replyData = {
     replyId,
-    postHeaderId: postContainer.getAttribute("data-postId"),
+    postHeaderId: parseInt(postContainer.getAttribute("data-postId")),
     "reply-name": nameElement.textContent,
     "reply-date": replyDate.textContent,
     "reply-text": replyText,
   };
 
-  let idHeader = postContainer.getAttribute("data-postId");
-  allData.postData[idHeader - 1].replyData.push(replyData);
+  const postId = parseInt(postContainer.getAttribute("data-postId"));
+  const postData = allData.postData.find((post) => post.postDataId === postId);
+  postData.replyData.push(replyData);
 
-  //Guardar en Local Storage
+  // Guardar en Local Storage
   appendObjectToLocalStorage(allData);
-
-  allData.postData[idHeader - 1].replyData.push(replyData);
 }
 
 // Add an event listener to the "Agregar publicación" button
@@ -338,18 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Fetch data from local storage and populate the wall__container
   const storedData = getDataFromLocalStorage();
   if (storedData) {
+    allData = storedData;
     populateWallContainer(storedData);
   }
-
-  // Axios request to post the data to the local storage
-  axios
-    .get("/forum2")
-    .then((response) => {
-      const data = response.data;
-      saveDataToLocalStorage(data);
-      populateWallContainer(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
 });

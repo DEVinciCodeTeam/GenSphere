@@ -1,5 +1,5 @@
 // Objeto que almacena todos los objetos de datos creados dentro de las funciones
-const allData = { id: "Semana10", postData: [] };
+const allData = { id: "Semana2", postData: [] };
 
 let postDataId = null;
 let postDataIdCounter = 1;
@@ -209,7 +209,7 @@ addPostButton.addEventListener("click", addPost);
 //Funcion para guardar la informacion en Local Storage.
 function appendObjectToLocalStorage(allData) {
   const element = allData;
-  localStorage.setItem("forum10Posts", JSON.stringify(element));
+  localStorage.setItem("forum2Posts", JSON.stringify(element));
 }
 // Lista aparece en orden con a animación
 const listItems = document.querySelectorAll(".list-animation");
@@ -223,3 +223,61 @@ function showItems() {
 }
 
 document.addEventListener("DOMContentLoaded", showItems);
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Function to store the information in local storage
+  function saveDataToLocalStorage(data) {
+    localStorage.setItem("forum2Posts", JSON.stringify(data));
+  }
+
+  // Function to retrieve the information from local storage
+  function getDataFromLocalStorage() {
+    const storedData = localStorage.getItem("forum2Posts");
+    return JSON.parse(storedData);
+  }
+
+  // Function to populate the wall__container with the retrieved data
+  function populateWallContainer(data) {
+    const wallContainer = document.querySelector(".wall__container");
+
+    data.postData.forEach((postData) => {
+      const postContainer = document.createElement("div");
+      postContainer.classList.add("post-container");
+      postContainer.setAttribute("data-postId", postData.postDataId);
+
+      postData.postHeader.forEach((postHeader) => {
+        // Code for creating and appending post header elements
+        // ...
+
+        postContainer.appendChild(postHeaderUser);
+      });
+
+      postData.replyData.forEach((replyData) => {
+        // Code for creating and appending reply elements
+        // ...
+
+        postContainer.appendChild(replyContainer);
+      });
+
+      wallContainer.appendChild(postContainer);
+    });
+  }
+
+  // Fetch data from local storage and populate the wall__container
+  const storedData = getDataFromLocalStorage();
+  if (storedData) {
+    populateWallContainer(storedData);
+  }
+
+  // Axios request to post the data to the local storage
+  axios
+    .get("/forum2")
+    .then((response) => {
+      const data = response.data;
+      saveDataToLocalStorage(data);
+      populateWallContainer(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
