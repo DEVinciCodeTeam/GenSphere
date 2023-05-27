@@ -209,7 +209,7 @@ addPostButton.addEventListener("click", addPost);
 //Funcion para guardar la informacion en Local Storage.
 function appendObjectToLocalStorage(allData) {
   const element = allData;
-  localStorage.setItem("forum1Posts", JSON.stringify(element));
+  localStorage.setItem("forum2Posts", JSON.stringify(element));
 }
 // Lista aparece en orden con a animación
 const listItems = document.querySelectorAll(".list-animation");
@@ -227,12 +227,12 @@ document.addEventListener("DOMContentLoaded", showItems);
 document.addEventListener("DOMContentLoaded", () => {
   // Function to store the information in local storage
   function saveDataToLocalStorage(data) {
-    localStorage.setItem("forum1Posts", JSON.stringify(data));
+    localStorage.setItem("forum2Posts", JSON.stringify(data));
   }
 
   // Function to retrieve the information from local storage
   function getDataFromLocalStorage() {
-    const storedData = localStorage.getItem("forum1Posts");
+    const storedData = localStorage.getItem("forum2Posts");
     return JSON.parse(storedData);
   }
 
@@ -343,7 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Axios request to post the data to the local storage
   axios
-    .get("/getforum1")
+    .get("/getforum2")
     .then((response) => {
       const data = response.data;
       saveDataToLocalStorage(data);
