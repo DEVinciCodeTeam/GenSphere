@@ -1,0 +1,28 @@
+miCallback([
+
+    {
+      "name":"",
+      "cohorte":"",
+      "email": ""
+    },
+    {
+      "name": "Mariana",
+      "cohorte": 28,
+      "email": "mariana@correo.com"
+    },
+    {
+      "name": "Gabriela",
+      "cohorte": 25,
+      "email": "gabriela@correo.com"
+    },
+    {
+      "name": "Andrea",
+      "cohorte": 26,
+      "email": "andrea@correo.com"
+    },
+    {
+      "name": "Mario",
+      "cohorte": 27,
+      "email": "mario@correo.com"
+    }
+  ]);
