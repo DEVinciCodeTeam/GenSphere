@@ -12,8 +12,6 @@ function appendObjectToLocalStorage(allData) {
   localStorage.setItem("forum4Posts", JSON.stringify(element));
 }
 
-
-
 // Función para manejar el evento de clic en el botón "Agregar publicación"
 function addPost() {
   const postInput = document.getElementById("post-input").value.trim();
@@ -120,7 +118,6 @@ function addPost() {
     replyData: [],
   };
 
-
   allData.postData.push(postData);
 
   console.clear();
@@ -133,16 +130,16 @@ function addReply(event) {
   const replyInput =
     event.target.parentNode.querySelector("input[type='text']");
   const replyText = replyInput.value.trim();
-
   if (replyText === "") {
     alert("Por favor comenta algo.");
     return;
   }
 
-  // Crear un contenedor para la respuesta
+  // Create a containter for the reply
   const replyContainer = document.createElement("div");
   replyContainer.classList.add("reply-container");
 
+  // Create the reply content
   const replyContentDiv = document.createElement("div");
   replyContentDiv.classList.add("reply-content");
 
@@ -198,9 +195,9 @@ function addReply(event) {
   const postData = allData.postData.find((post) => post.postDataId === postId);
   postData.replyData.push(replyData);
 
-  // Guardar en Local Storage
-  appendObjectToLocalStorage(allData);
-}
+   // Save the updated data to local storage
+   appendObjectToLocalStorage(allData);
+  }
 
 /*   allData.postData[idHeader - 1].replyData.push(replyData);
 } */
@@ -233,11 +230,12 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("forum4Posts", JSON.stringify(data));
   }
 
-  // Function to retrieve the information from local storage
-  function getDataFromLocalStorage() {
+   // Function to retrieve the information from local storage
+   function getDataFromLocalStorage() {
     const storedData = localStorage.getItem("forum4Posts");
     return JSON.parse(storedData);
   }
+
 
   // Function to populate the wall__container with the retrieved data
   function populateWallContainer(data) {
@@ -334,6 +332,22 @@ document.addEventListener("DOMContentLoaded", () => {
         postContainer.appendChild(replyContainer);
       });
 
+      const replyForm = document.createElement("div");
+      replyForm.classList.add("reply__form");
+
+      const replyInput = document.createElement("input");
+      replyInput.type = "text";
+      replyInput.placeholder = "¡Comenta algo!";
+      replyForm.appendChild(replyInput);
+
+      const replyButton = document.createElement("button");
+      replyButton.classList.add("reply-btn");
+      replyButton.textContent = "Comenta";
+      replyButton.addEventListener("click", addReply);
+      replyForm.appendChild(replyButton);
+
+      postContainer.appendChild(replyForm);
+
       wallContainer.appendChild(postContainer);
     });
   }
@@ -345,7 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
     populateWallContainer(storedData);
   }
 
- /*  // Axios request to post the data to the local storage
+  /*  // Axios request to post the data to the local storage
   axios
     .get("/getforum4")
     .then((response) => {
