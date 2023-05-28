@@ -1,6 +1,6 @@
 /* console.log("Hola consola");
 var app = {}; //organizar los datos, objeto donde se colocan nuestros datos
-var miCallback = function (datos) {
+var myCallbackLogin = function (datos) {
   console.log(datos);
   app.users = datos; //se guarda en nuestra variable general para poder llamarla en cualquier lugar
 
@@ -35,15 +35,15 @@ var miCallback = function (datos) {
   document.getElementById("editUserCohorteInput").value = cohortePlaceholder;
 };//es la variable que llamo cuando tenga los datos  */
 /* -------------------------------------------------------------------------- */
-console.log("Hola consola");
-var app = {}; //organizar los datos, objeto donde se colocan nuestros datos
-var miCallback = function (datos, index) {
+/* console.log("Hola consola"); */
+/* var app = {}; //organizar los datos, objeto donde se colocan nuestros datos
+var myCallbackLogin = function (datos, index) {
   console.log(datos);
   app.users = datos; //se guarda en nuestra variable general para poder llamarla en cualquier lugar
 
-  var user = app.users[4];
+  /* var user = app.users[1]; */
 
-  document.getElementById("editUser").innerHTML = user.name;
+ /*  document.getElementById("editUser").innerHTML = user.name;
   document.getElementById("editUserName").innerHTML = user.name;
   document.getElementById("editUserNameInput").placeholder = user.name;
   document.getElementById("editUserNameInput").value = user.name;
@@ -53,6 +53,24 @@ var miCallback = function (datos, index) {
   document.getElementById("cohorte").innerHTML = user.cohorte;
   document.getElementById("editUserCohorteInput").placeholder = user.cohorte;
   document.getElementById("editUserCohorteInput").value = user.cohorte;
+};  */
+
+var app = JSON.parse(localStorage.getItem("allUsers")); //organizar los datos, objeto donde se colocan nuestros datos
+var myCallbackLogin = function () {
+var user;  
+  user = app ["mariana@correo.com"]; //se guarda en nuestra variable general para poder llamarla en cualquier lugar
+  
+  /* var user = app.users[1]; */
+
+  document.getElementById("editUser").innerHTML = user.userName;
+  document.getElementById("editUserName").innerHTML = user.userName;
+  document.getElementById("editUserNameInput").placeholder = user.userName;
+  document.getElementById("editUserNameInput").value = user.userName;
+  document.getElementById("emailLink").href = "mailto:" + user.userEmail;
+  document.getElementById("editUserEmailInput").placeholder = user.userEmail;
+  document.getElementById("editUserEmailInput").value = user.userEmail;
+  document.getElementById("cohorte").innerHTML = user.userCohorte;
+  document.getElementById("editUserCohorteInput").placeholder = user.userCohorte;
+  document.getElementById("editUserCohorteInput").value = user.userCohorte;
 };
-
-
+console.log(app);
