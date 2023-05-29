@@ -301,18 +301,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         postContainer.appendChild(postHeaderUser);
 
-        /*--Inicio Borrar--*/
-        const usersReplyForm = document.createElement("div");
-        usersReplyForm.classList.add("users_reply__form");
-        postContainer.appendChild(usersReplyForm);
-        /*--Fin Borrar--*/
-
       });
-    const usersReplyForm = document.querySelector(".users_reply__form");
+      /*--Inicio Borrar--*/
+      const usersReplyForm = document.createElement("div");
+      usersReplyForm.classList.add("users_reply__form");
+      postContainer.appendChild(usersReplyForm);
+      /*--Fin Borrar--*/
     postData.replyData.forEach((replyData) => {
-
-        const usersReplyForm = document.createElement("div");
-        usersReplyForm.classList.add("users_reply__form");
 
         const replyContainer = document.createElement("div");
         replyContainer.classList.add("reply-container");
@@ -352,8 +347,6 @@ document.addEventListener("DOMContentLoaded", () => {
         replyContainer.appendChild(replyContentDiv);
         replyContainer.appendChild(textReplyDiv);
         usersReplyForm.appendChild(replyContainer);
-        postContainer.appendChild(usersReplyForm);
-
       });
 
       const replyForm = document.createElement("div");
