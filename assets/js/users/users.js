@@ -53,8 +53,8 @@ signInForm.onsubmit = function(e) {
   const allUsers = JSON.parse(localStorage.getItem("allUsers"));
 
   if (!allUsers[getUserEmail]) {
-    // alert("El correo no esta registrado, por favor crea una cuenta en GenSphere.");
-    restablecerBoton("");
+    alert("El correo no esta registrado, por favor crea una cuenta en GenSphere.");
+    // restablecerBoton("");
   } else {
 
     if (getUserPassword == allUsers[getUserEmail].userPassword) {
