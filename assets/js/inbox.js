@@ -90,7 +90,7 @@ toggleLinkClickability();
 // Toggle link clickability on window resize
 window.addEventListener("resize", toggleLinkClickability);
 
-// add users button
+// BUTTON
 
 function addUser() {
   // Create a new li element
@@ -102,7 +102,7 @@ function addUser() {
     <a href="#!" class="d-flex justify-content-between">
       <div class="d-flex flex-row">
         <img
-          src="../assets/img/logo/gaby.jpg"
+          src="../assets/img/integrantes/gaby.jpg"
           alt="avatar"
           class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
           width="60"

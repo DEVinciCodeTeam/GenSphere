@@ -358,7 +358,11 @@ document.addEventListener("DOMContentLoaded", () => {
     populateWallContainer(storedData);
   }
 
+<<<<<<< HEAD
   /*  // Axios request to post the data to the local storage
+=======
+  // Axios request to post the data to the local storage
+>>>>>>> d0b74825c667e1d0a0f026de3ed87918880c3fab
   axios
     .get("/getforum2")
     .then((response) => {
@@ -368,5 +372,9 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((error) => {
       console.log(error);
+<<<<<<< HEAD
     }); */
+=======
+    });
+>>>>>>> d0b74825c667e1d0a0f026de3ed87918880c3fab
 });
