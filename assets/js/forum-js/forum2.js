@@ -130,16 +130,16 @@ function addReply(event) {
   const replyInput =
     event.target.parentNode.querySelector("input[type='text']");
   const replyText = replyInput.value.trim();
-
   if (replyText === "") {
     alert("Por favor comenta algo.");
     return;
   }
 
-  // Crear un contenedor para la respuesta
+  // Create a containter for the reply
   const replyContainer = document.createElement("div");
   replyContainer.classList.add("reply-container");
 
+  // Create the reply content
   const replyContentDiv = document.createElement("div");
   replyContentDiv.classList.add("reply-content");
 
@@ -195,9 +195,12 @@ function addReply(event) {
   const postData = allData.postData.find((post) => post.postDataId === postId);
   postData.replyData.push(replyData);
 
-  // Guardar en Local Storage
+  // Save the updated data to local storage
   appendObjectToLocalStorage(allData);
 }
+
+/*   allData.postData[idHeader - 1].replyData.push(replyData);
+} */
 
 // Add an event listener to the "Agregar publicación" button
 const addPostButton = document.getElementById("add-post-btn");
@@ -328,6 +331,22 @@ document.addEventListener("DOMContentLoaded", () => {
         postContainer.appendChild(replyContainer);
       });
 
+      const replyForm = document.createElement("div");
+      replyForm.classList.add("reply__form");
+
+      const replyInput = document.createElement("input");
+      replyInput.type = "text";
+      replyInput.placeholder = "¡Comenta algo!";
+      replyForm.appendChild(replyInput);
+
+      const replyButton = document.createElement("button");
+      replyButton.classList.add("reply-btn");
+      replyButton.textContent = "Comenta";
+      replyButton.addEventListener("click", addReply);
+      replyForm.appendChild(replyButton);
+
+      postContainer.appendChild(replyForm);
+
       wallContainer.appendChild(postContainer);
     });
   }
@@ -338,4 +357,16 @@ document.addEventListener("DOMContentLoaded", () => {
     allData = storedData;
     populateWallContainer(storedData);
   }
+
+  /*  // Axios request to post the data to the local storage
+  axios
+    .get("/getforum2")
+    .then((response) => {
+      const data = response.data;
+      saveDataToLocalStorage(data);
+      populateWallContainer(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    }); */
 });

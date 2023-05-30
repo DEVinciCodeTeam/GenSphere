@@ -118,11 +118,23 @@
             class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0 border-inbox-custom py-4"
           >
             <h5 class="font-weight-bold mb-3 text-center text-lg-start">
-              <!-- Todos los mensajes -->
+              <!-- Button -->
+              <button
+                id="sendMessageBtn"
+                class="btn btn-primary"
+                style="margin-top: 10px"
+                onclick="addUser()"
+              >
+                Add User
+              </button>
             </h5>
 
             <div class="card">
               <div class="card-body scrollable">
+                <ul class="mb-0" id="chatList">
+                  <!-- Add users -->
+                </ul>
+
                 <ul class="mb-0">
                   <li class="p-2 chat-hover">
                     <a
@@ -354,7 +366,6 @@
                     </div>
                   </div>
                 </li>
-               
               </ul>
 
               <div class="bg-white mb-3">

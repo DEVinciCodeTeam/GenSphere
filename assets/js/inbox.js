@@ -89,3 +89,42 @@ toggleLinkClickability();
 
 // Toggle link clickability on window resize
 window.addEventListener("resize", toggleLinkClickability);
+
+// add users button
+
+function addUser() {
+  // Create a new li element
+  const newListItem = document.createElement("li");
+  newListItem.className = "p-2 border-bottom";
+
+  // Create the HTML structure for the new user
+  const newUserHTML = `
+    <a href="#!" class="d-flex justify-content-between">
+      <div class="d-flex flex-row">
+        <img
+          src="../assets/img/logo/gaby.jpg"
+          alt="avatar"
+          class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
+          width="60"
+          height="60"
+        />
+        <div class="pt-1">
+          <p class="fw-bold mb-0">Nuevo Usuario</p>
+          <p class="small text-muted">Lorem ipsum dolor sit.</p>
+        </div>
+      </div>
+      <div class="pt-1">
+        <p class="small text-muted mb-0 inbox-time-custom">
+          Ahora
+        </p>
+      </div>
+    </a>
+  `;
+
+  // Set the HTML content of the new li element
+  newListItem.innerHTML = newUserHTML;
+
+  // Get the chat list element and append the new li element
+  const chatList = document.getElementById("chatList");
+  chatList.appendChild(newListItem);
+}
