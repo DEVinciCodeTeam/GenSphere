@@ -73,6 +73,8 @@ signInForm.onsubmit = function(e) {
       localStorage.setItem("loggedInUsers", JSON.stringify(loggedInUsers)); */
 
       console.log("Entraste!")
+      window.location.href = "../../../index.html";
+      // document.getElementById("signInButton").innerHTML = '<a href="../index.html">Iniciar</a>';
     } else {
       alert("La contraseña no coincide con el correo que proporcionaste");
     }

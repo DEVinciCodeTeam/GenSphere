@@ -43,23 +43,23 @@ var myCallbackLogin = function (datos, index) {
 
   /* var user = app.users[1]; */
 
- /*  document.getElementById("editUser").innerHTML = user.name;
-  document.getElementById("editUserName").innerHTML = user.name;
-  document.getElementById("editUserNameInput").placeholder = user.name;
-  document.getElementById("editUserNameInput").value = user.name;
-  document.getElementById("emailLink").href = "mailto:" + user.email;
-  document.getElementById("editUserEmailInput").placeholder = user.email;
-  document.getElementById("editUserEmailInput").value = user.email;
-  document.getElementById("cohorte").innerHTML = user.cohorte;
-  document.getElementById("editUserCohorteInput").placeholder = user.cohorte;
-  document.getElementById("editUserCohorteInput").value = user.cohorte;
+/*  document.getElementById("editUser").innerHTML = user.name;
+ document.getElementById("editUserName").innerHTML = user.name;
+ document.getElementById("editUserNameInput").placeholder = user.name;
+ document.getElementById("editUserNameInput").value = user.name;
+ document.getElementById("emailLink").href = "mailto:" + user.email;
+ document.getElementById("editUserEmailInput").placeholder = user.email;
+ document.getElementById("editUserEmailInput").value = user.email;
+ document.getElementById("cohorte").innerHTML = user.cohorte;
+ document.getElementById("editUserCohorteInput").placeholder = user.cohorte;
+ document.getElementById("editUserCohorteInput").value = user.cohorte;
 };  */
 
 var app = JSON.parse(localStorage.getItem("allUsers")); //organizar los datos, objeto donde se colocan nuestros datos
-var myCallbackLogin = function () {
-var user;  
-  user = app ["mariana@correo.com"]; //se guarda en nuestra variable general para poder llamarla en cualquier lugar
-  
+var myCallbackLogin = function() {
+  var user;
+  user = app["mario@correo.com"]; //se guarda en nuestra variable general para poder llamarla en cualquier lugar
+
   /* var user = app.users[1]; */
 
   document.getElementById("editUser").innerHTML = user.userName;
