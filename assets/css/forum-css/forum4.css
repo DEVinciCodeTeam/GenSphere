@@ -87,6 +87,7 @@ html body {
   box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
 }
 
+
 /*-------------------Anidando Elementos------------------------------*/
 .container {
   margin: 0 auto;
@@ -146,12 +147,12 @@ html body {
 }
 
 .reply__form {
-  position: sticky; /* Quitar */
-  bottom: 0; /* Quitar */
+  position: sticky;
+  bottom: 0; 
   display: flex;
   margin-top: 10px;
   margin-bottom: 10px;
-}
+} 
 
 .reply__form input[type="text"] {
   flex-grow: 1;
