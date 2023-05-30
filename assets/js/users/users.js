@@ -58,6 +58,20 @@ signInForm.onsubmit = function(e) {
   } else {
 
     if (getUserPassword == allUsers[getUserEmail].userPassword) {
+      // ------------------Agregado por mi:----------------------------------
+      // Guarda el ultimo usuario que inicio sesión
+      const currentUser = allUsers[getUserEmail];
+      const currentUserJSON = JSON.stringify(currentUser);
+      sessionStorage.setItem("currentUser", currentUserJSON);
+      const storedCurrentUserJSON = sessionStorage.getItem("currentUser");
+      const storedCurrentUser = JSON.parse(storedCurrentUserJSON);
+
+      // Guarda todos los usuarios que inician sesión
+      /* const currentUser = allUsers[getUserEmail];
+      let loggedInUsers = JSON.parse(localStorage.getItem("loggedInUsers")) || [];
+      loggedInUsers.push(currentUser);
+      localStorage.setItem("loggedInUsers", JSON.stringify(loggedInUsers)); */
+
       console.log("Entraste!")
     } else {
       alert("La contraseña no coincide con el correo que proporcionaste");
