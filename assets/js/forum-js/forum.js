@@ -185,15 +185,11 @@ function addReply(event) {
   
   let replyId = 0;
 
-
-/*------------------------Borrar desde aquí-------------------------*/
-if(Object.entries(allData.postData[postId-1].replyData) === 0){
+  if(Object.entries(allData.postData[postId-1].replyData) === 0){
     replyId = 1;
   }else{
     replyId = allData.postData[postId-1].replyData.length + 1;
   }   
-
-  /*------------------------Borrar hasta aquí-------------------------*/
 
   const replyData = {
     replyId,
@@ -302,11 +298,11 @@ document.addEventListener("DOMContentLoaded", () => {
         postContainer.appendChild(postHeaderUser);
 
       });
-      /*--Inicio Borrar--*/
+      //----------------Se debe crear el users_reply_form dentro del post container aunque no existan replyData----
       const usersReplyForm = document.createElement("div");
       usersReplyForm.classList.add("users_reply__form");
       postContainer.appendChild(usersReplyForm);
-      /*--Fin Borrar--*/
+      
     postData.replyData.forEach((replyData) => {
 
         const replyContainer = document.createElement("div");
