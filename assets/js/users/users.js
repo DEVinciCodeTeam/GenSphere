@@ -16,7 +16,11 @@ removeMessage("wrongPassword");
 removeMessage("repeatedEmail");
 removeMessage("singUpSuccesful");
 const allUsers = JSON.parse(localStorage.getItem("allUsers"));
-/* const allUsers = {}; */
+
+if (allUsers == null) {
+  const allUsers = {};
+}
+
 const signUpForm = document.getElementById("signUpForm");
 
 
