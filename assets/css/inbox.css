@@ -51,10 +51,10 @@ li a {
   background-color: var(--fondo2);
 }
 
-.card-body li:hover {
+/* .card-body li:hover {
   background-color: var(--fondo2);
   border-radius: 14px;
-}
+} */
 
 .scrollable {
   height: 550px;
@@ -64,6 +64,11 @@ li a {
 .chatContainerScroll {
   max-height: 370px;
   overflow-y: auto;
+}
+
+.list-group-item.active {
+  background-color: var(--fondo2);
+  border-radius: 5px;
 }
 
 /* Media Querie */
@@ -76,7 +81,7 @@ li a {
     background-color: var(--fondo1);
   }
 
-  .chat-custom {
+ /*  .chat-custom {
     display: none;
-  }
+  } */
 }
