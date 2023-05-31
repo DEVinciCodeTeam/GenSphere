@@ -72,28 +72,7 @@ function createChatMessageHTML(message, isUserMessage) {
 }
 
 // Example chat initialization
-const chatItems = [
-  {
-    name: "Erick uwu",
-    imageSrc: "../assets/img/integrantes/erick.jpg",
-    messages: [],
-  },
-  {
-    name: "Nico",
-    imageSrc: "../assets/img/integrantes/nico.jpg",
-    messages: [],
-  },
-  {
-    name: "Gaby",
-    imageSrc: "../assets/img/integrantes/gaby.jpg",
-    messages: [],
-  },
-  {
-    name: "Mariana",
-    imageSrc: "../assets/img/integrantes/mariana.jpg",
-    messages: [],
-  },
-];
+const chatItems = [];
 
 // Initialize an object to store the chat messages for each chat item
 const chatMessages = {};
