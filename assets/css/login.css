@@ -230,10 +230,10 @@ input {
 }
 
 /* Password Rules */
-#userName_info {bottom: 42%; }
-#userEmail_info {bottom: 30%; }
-#userCohorte_info {bottom: 32%; }
-#pswd_info {bottom: 20%;}
+/* #userName_info {bottom: 42%; } */
+#userEmail_info {/*bottom: 30%;*/ top: 51%; }
+#userCohorte_info {/*bottom: 32%;*/ top: 57%; }
+#pswd_info {/*bottom: 20%;*/ top: 62%;}
 
 #pswd_info, #userName_info, #userEmail_info, #userCohorte_info {
  position:absolute;
