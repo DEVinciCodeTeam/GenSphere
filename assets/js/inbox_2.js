@@ -164,58 +164,56 @@ function createChatItemHTML(item) {
 }
 
 function addUser() {
-  // Funcion para buscar allUsers con email
+  // Function to get the user's email from the input field
   function getUserEmail() {
     const inputEmail = document.getElementById("findUserWithEmail").value;
-    console.log(inputEmail);
     return inputEmail;
   }
 
-  // Buscar Email + Nombre
+  // Get the user's email and retrieve the user object from local storage
   const userEmail = getUserEmail();
   const allUsers = JSON.parse(localStorage.getItem("allUsers"));
   const user = allUsers[userEmail];
 
-  // Guardar valor del nombre
-  const userName = user.userName;
-  console.log(userName);
+  // If the user object exists
+  if (user) {
+    // Get the user's name
+    const userName = user.userName;
 
-  // Checa si ya existe el chat
-  const existingListItem = document.querySelector(
-    `#chatList [data-username="${userName}"]`
-  );
-  if (existingListItem) {
-    console.log(`Su chat con "${userName}" ya existe.`);
-    return;
+    // Check if the chat already exists in the local storage
+    const existingChat = JSON.parse(localStorage.getItem(userName));
+
+    if (existingChat) {
+      console.log(`Chat with "${userName}" already exists.`);
+      return;
+    }
+
+    // Create a new chat item for the user
+    const newChatItem = {
+      name: userName,
+      imageSrc: "../assets/img/integrantes/user.jpg", // You can set an appropriate image source for the user
+      messages: [],
+    };
+
+    // Add the new chat item to the chatItems array
+    chatItems.push(newChatItem);
+
+    // Store the updated chatItems array in the local storage
+    localStorage.setItem("chatItems", JSON.stringify(chatItems));
+
+    // Store the empty messages array for the new chat item in the local storage
+    localStorage.setItem(userName, JSON.stringify([]));
+
+    // Create a new chat item element for the user
+    const newChatItemElement = createChatItemHTML(newChatItem);
+
+    // Prepend the new chat item element to the chat list
+    chatList.insertBefore(newChatItemElement, chatList.firstChild);
+
+    console.log(`New chat with "${userName}" added successfully.`);
+  } else {
+    console.log(`User with email "${userEmail}" not found.`);
   }
-
-  // Generar LI
-  const newListItem = document.createElement("li");
-  newListItem.className = "p-2 border-bottom";
-
-  // Crear nuevo LI
-  const newChatUser = `
-<div class="d-flex justify-content-between" onclick="getUserChat()">
-  <div class="d-flex flex-row">
-    <img
-      src="../assets/img/integrantes/gaby.jpg"
-      alt="avatar"
-      class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
-      width="60"
-      height="60"
-    />
-    <div class="pt-1" style="margin-top: .9rem; margin-bottom: 0.5rem;">
-      <p class="fw-bold mb-0" data-username="${userName}">${userName}</p>
-    </div>
-  </div>
-</div>
-
-  `;
-
-  newListItem.innerHTML = newChatUser;
-
-  const chatList = document.getElementById("chatList");
-
-  // Prepend the new list item
-  chatList.insertBefore(newListItem, chatList.firstChild);
+  // Store the updated chatItems array in the local storage
+  localStorage.setItem("chatItems", JSON.stringify(chatItems));
 }
