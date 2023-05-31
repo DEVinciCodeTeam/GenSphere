@@ -162,7 +162,7 @@ function initializeChatItems() {
   // Loop through the stored chat items and render them
   storedChatItems.forEach(function (item) {
     const chatItem = createChatItemHTML(item);
-    chatList.appendChild(chatItem);
+    chatList.prepend(chatItem);
 
     // Add event listener to each chat item
     chatItem.addEventListener("click", function () {
