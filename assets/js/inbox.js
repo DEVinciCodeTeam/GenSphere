@@ -102,7 +102,7 @@ function addUser() {
     return inputEmail;
   }
 
-  // Get Email + Name
+  // Buscar Email + Nombre
   const userEmail = getUserEmail();
   const allUsers = JSON.parse(localStorage.getItem("allUsers"));
   const user = allUsers[userEmail];
@@ -152,5 +152,6 @@ function addUser() {
 
   const chatList = document.getElementById("chatList");
 
-  chatList.appendChild(newListItem);
+  // Prepend the new list item
+  chatList.insertBefore(newListItem, chatList.firstChild);
 }
