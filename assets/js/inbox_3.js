@@ -71,7 +71,6 @@ function createChatMessageHTML(message, isUserMessage) {
   return li;
 }
 
-
 // Example chat initialization
 const chatItems = [
   {
@@ -162,4 +161,59 @@ function createChatItemHTML(item) {
     <p class="fw-bold mb-0">${item.name}</p>
   `;
   return li;
+}
+
+function addUser() {
+  // Function to get the user's email from the input field
+  function getUserEmail() {
+    const inputEmail = document.getElementById("findUserWithEmail").value;
+    return inputEmail;
+  }
+
+  // Get the user's email and retrieve the user object from local storage
+  const userEmail = getUserEmail();
+  const allUsers = JSON.parse(localStorage.getItem("allUsers"));
+  const user = allUsers[userEmail];
+
+  // If the user object exists
+  if (user) {
+    // Get the user's name
+    const userName = user.userName;
+
+    // Check if the chat already exists in the local storage
+    const existingChat = JSON.parse(localStorage.getItem(userName));
+
+    if (existingChat) {
+      console.log(`Chat with "${userName}" already exists.`);
+      return;
+    }
+
+    // Create a new chat item for the user
+    const newChatItem = {
+      name: userName,
+      imageSrc: "../assets/img/integrantes/user.jpg", // You can set an appropriate image source for the user
+      messages: [],
+    };
+
+    // Add the new chat item to the chatItems array
+    chatItems.push(newChatItem);
+
+    // Store the updated chatItems array in the local storage
+    localStorage.setItem("chatItems", JSON.stringify(chatItems));
+
+    // Store the empty messages array for the new chat item in the local storage
+    localStorage.setItem(userName, JSON.stringify([]));
+
+    // Create a new chat item element for the user
+    const newChatItemElement = createChatItemHTML(newChatItem);
+
+    // Prepend the new chat item element to the chat list
+    chatList.insertBefore(newChatItemElement, chatList.firstChild);
+
+    console.log(`New chat with "${userName}" added successfully.`);
+  } else {
+    console.log(`User with email "${userEmail}" not found.`);
+  }
+  // Store the updated chatItems array in the local storage
+  localStorage.setItem("chatItems", JSON.stringify(chatItems));
 }
