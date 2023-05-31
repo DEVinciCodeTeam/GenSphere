@@ -134,9 +134,10 @@ function createChatItemHTML(item) {
   const li = document.createElement("li");
   li.className =
     "list-group-item d-flex justify-content-start align-items-center";
+  const imageName = item.name.toLowerCase();
   li.innerHTML = `
     <img
-      src="${item.imageSrc}"
+      src="../assets/img/integrantes/${imageName}.jpg"
       alt="avatar"
       class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
       width="70"
