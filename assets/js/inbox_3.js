@@ -12,151 +12,124 @@ sendMessageBtn.addEventListener("click", function () {
   // Clear the message input
   messageInput.value = "";
 
-  // Create a new chat message element for the user's message
-  const userMessage = createMessageElement(
-    "Mayra",
-    messageText,
-    "justify-content-end"
-  );
+  // Find the active chat item
+  const activeChatItem = document.querySelector(".list-group-item.active");
 
-  // Append the user's message to the chat container
-  container.querySelector("ul").appendChild(userMessage);
+  if (activeChatItem) {
+    // Find the active chat item in the chatItems array
+    const activeChat = chatItems.find(function (item) {
+      return item.name === activeChatItem.querySelector("p").textContent;
+    });
 
-  // Generate a random response for Gaby
-  const randomResponse = generateRandomResponse();
+    // Create a new message object
+    const newMessage = {
+      content: messageText,
+      time: new Date().toLocaleTimeString(),
+    };
 
-  // Simulate a delay before sending Gaby's response
-  setTimeout(() => {
-    // Create a new chat message element for Gaby's response
-    const chatMessage = createMessageElement(
-      "Gaby",
-      randomResponse,
-      "justify-content-start"
+    // Add the message to the active chat item's messages array
+    activeChat.messages.push(newMessage);
+
+    // Store the updated messages in local storage
+    localStorage.setItem(activeChat.name, JSON.stringify(activeChat.messages));
+
+    // Create a new chat message element for the user's message
+    const userMessage = createChatMessageHTML(
+      newMessage,
+      activeChat.name,
+      true
     );
 
-    // Append Gaby's response to the chat container
-    container.querySelector("ul").appendChild(gabyMessage);
+    // Append the user's message to the chat container
+    container.querySelector("ul").appendChild(userMessage);
 
     // Scroll to the last message in the chat container
-    gabyMessage.scrollIntoView({ behavior: "smooth", block: "end" });
-  }, 1000); // Change the delay time as needed
+    userMessage.scrollIntoView({ behavior: "smooth", block: "end" });
+  }
 });
 
 // Function to create a new chat message element
-function createMessageElement(author, text, justification) {
-  const message = document.createElement("li");
-  message.classList.add(
-    "list-group-item",
-    "d-flex",
-    "justify-content-between",
-    "align-items-start",
-    "mb-2",
-    "bg-light"
-  );
-
-  // Create a div for the message content
-  const messageContent = document.createElement("div");
-  messageContent.classList.add("ms-2", justification);
-
-  // Create a paragraph for the message author
-  const messageAuthor = document.createElement("p");
-  messageAuthor.classList.add("fw-bold", "mb-1");
-  messageAuthor.textContent = author;
-
-  // Create a paragraph for the message text
-  const messageText = document.createElement("p");
-  messageText.classList.add("mb-1");
-  messageText.textContent = text;
-
-  // Append the author and text paragraphs to the message content div
-  messageContent.appendChild(messageAuthor);
-  messageContent.appendChild(messageText);
-
-  // Append the message content to the message element
-  message.appendChild(messageContent);
-
-  return message;
-}
-
-// Function to generate a random response for Gaby
-function generateRandomResponse() {
-  const responses = ["😀", "🥶", "🤖", "👻", "🧐"];
-
-  const randomIndex = Math.floor(Math.random() * responses.length);
-  return responses[randomIndex];
+function createChatMessageHTML(message, sender, isActive) {
+  const li = document.createElement("li");
+  li.className = `list-group-item d-flex justify-content-between align-items-start mb-2 ${isActive ? "active" : ""}`;
+  li.innerHTML = `
+    <div class="ms-2 ${isActive ? "justify-content-end" : "justify-content-start"}">
+      <p class="fw-bold mb-1">${sender}</p>
+      <p class="mb-1">${message.content}</p>
+    </div>
+    <span class="badge bg-primary rounded-pill">${message.time}</span>
+  `;
+  return li;
 }
 
 // Example chat initialization
-const chatMessages = [
-  {
-    sender: "Mayra",
-    content: "Hola",
-    imageSrc: "../assets/img/integrantes/Mario.jpeg",
-    time: "Hace 2 días",
-  },
-  // Add more message objects as needed
+const chatItems = [
+  { name: "Erick uwu", imageSrc: "../assets/img/integrantes/erick.jpg", messages: [] },
+  { name: "Nico", imageSrc: "../assets/img/integrantes/nico.jpg", messages: [] },
+  { name: "Gaby", imageSrc: "../assets/img/integrantes/gaby.jpg", messages: [] },
+  { name: "Mariana", imageSrc: "../assets/img/integrantes/mariana.jpg", messages: [] },
 ];
 
-chatMessages.forEach((message) => {
-  const messageHTML = createChatMessageHTML(message);
-  chatList.appendChild(messageHTML);
+// Create a chat item for each member
+chatItems.forEach(function (item) {
+  const chatItem = createChatItemHTML(item);
+  chatList.appendChild(chatItem);
+
+  // Add event listener to each chat item
+  chatItem.addEventListener("click", function () {
+    // Remove the "active" class from all chat items
+    const activeItems = document.querySelectorAll(".list-group-item.active");
+    activeItems.forEach(function (item) {
+      item.classList.remove("active");
+    });
+
+    // Add the "active" class to the clicked chat item
+    chatItem.classList.add("active");
+
+    // Retrieve the chat messages for the clicked chat item from the local storage
+    const messages = localStorage.getItem(item.name);
+
+    if (messages) {
+      // Parse the stored messages if they exist
+      item.messages = JSON.parse(messages);
+    } else {
+      // If no messages are stored, initialize the messages array
+      item.messages = [];
+    }
+
+    // Clear the chat messages container
+    const chatMessagesContainer = container.querySelector("ul");
+    chatMessagesContainer.innerHTML = "";
+
+    // Render the chat messages in the chat messages container
+    item.messages.forEach(function (message, index) {
+      const isActive = index === 0; // Assume the first message is active by default
+      const messageElement = createChatMessageHTML(
+        message,
+        item.name,
+        isActive
+      );
+      chatMessagesContainer.appendChild(messageElement);
+    });
+
+    // Scroll to the bottom of the chat messages container
+    container.scrollTo(0, container.scrollHeight);
+  });
 });
 
-function createChatMessageHTML(message) {
+// Function to create a chat item element
+function createChatItemHTML(item) {
   const li = document.createElement("li");
-  li.className = "p-2";
-
-  const a = document.createElement("a");
-  a.href = "#!";
-  a.className = "d-flex justify-content-between";
-
-  const userContainer = document.createElement("div");
-  userContainer.className = "d-flex flex-row";
-
-  const userImage = document.createElement("img");
-  userImage.src = message.imageSrc;
-  userImage.alt = "avatar";
-  userImage.className =
-    "rounded-circle d-flex align-self-center me-3 shadow-1-strong";
-  userImage.width = "60";
-
-  const userInfo = document.createElement("div");
-  userInfo.className = "pt-1";
-
-  const userName = document.createElement("p");
-  userName.className = "fw-bold mb-0";
-  userName.textContent = message.sender;
-
-  const userMessage = document.createElement("p");
-  userMessage.className = "small text-muted";
-  userMessage.textContent = message.content;
-
-  const timeInfo = document.createElement("div");
-  timeInfo.className = "pt-1";
-
-  const timeText = document.createElement("p");
-  timeText.className = "small text-muted mb-1 inbox-time-custom";
-  timeText.textContent = message.time;
-
-  userInfo.appendChild(userName);
-  userInfo.appendChild(userMessage);
-
-  userContainer.appendChild(userImage);
-  userContainer.appendChild(userInfo);
-
-  timeInfo.appendChild(timeText);
-
-  a.appendChild(userContainer);
-  a.appendChild(timeInfo);
-
-  li.appendChild(a);
-
-  // Add a click event listener to the message element
-  li.addEventListener("click", function () {
-    // Handle click event for the message
-    // You can perform any desired action here, such as displaying a reply form
-    console.log(`Clicked on message: ${message.content}`);
-  });
-
+  li.className = "list-group-item d-flex justify-content-start align-items-center";
+  li.innerHTML = `
+    <img
+      src="${item.imageSrc}"
+      alt="avatar"
+      class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
+      width="70"
+      height="70"
+    />
+    <p class="fw-bold mb-0">${item.name}</p>
+  `;
   return li;
 }
