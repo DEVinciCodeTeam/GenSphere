@@ -13,6 +13,11 @@ sendMessageBtn.addEventListener("click", function () {
   // Get the message text from the textarea
   const messageText = messageInput.value.trim();
 
+  // Check if the message is empty
+  if (messageText === "") {
+    return; // Exit the function without sending the message
+  }
+
   // Clear the message input
   messageInput.value = "";
 
