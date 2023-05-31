@@ -1,3 +1,5 @@
+// Refresh DOM
+
 // Get the necessary elements
 const container = document.getElementById("chatContainer");
 const sendMessageBtn = document.getElementById("sendMessageBtn");
@@ -90,16 +92,41 @@ toggleLinkClickability();
 // Toggle link clickability on window resize
 window.addEventListener("resize", toggleLinkClickability);
 
-// BUTTON
+// Funcion onClick
 
 function addUser() {
-  // Create a new li element
+  // Funcion para buscar allUsers con email
+  function getUserEmail() {
+    const inputEmail = document.getElementById("findUserWithEmail").value;
+    console.log(inputEmail);
+    return inputEmail;
+  }
+
+  // Get Email + Name
+  const userEmail = getUserEmail();
+  const allUsers = JSON.parse(localStorage.getItem("allUsers"));
+  const user = allUsers[userEmail];
+
+  // Guardar valor del nombre
+  const userName = user.userName;
+  console.log(userName);
+
+  // Checa si ya existe el chat
+  const existingListItem = document.querySelector(
+    `#chatList [data-username="${userName}"]`
+  );
+  if (existingListItem) {
+    console.log(`User with userName "${userName}" already exists.`);
+    return;
+  }
+
+  // Generar LI
   const newListItem = document.createElement("li");
   newListItem.className = "p-2 border-bottom";
 
-  // Create the HTML structure for the new user
+  // Crear nuevo LI
   const newUserHTML = `
-    <a href="#!" class="d-flex justify-content-between">
+    <a href="#!" class="d-flex justify-content-between" onclick="getUserChat()">
       <div class="d-flex flex-row">
         <img
           src="../assets/img/integrantes/gaby.jpg"
@@ -109,7 +136,7 @@ function addUser() {
           height="60"
         />
         <div class="pt-1">
-          <p class="fw-bold mb-0">Nuevo Usuario</p>
+          <p class="fw-bold mb-0" data-username="${userName}">${userName}</p>
           <p class="small text-muted">Lorem ipsum dolor sit.</p>
         </div>
       </div>
@@ -121,10 +148,9 @@ function addUser() {
     </a>
   `;
 
-  // Set the HTML content of the new li element
   newListItem.innerHTML = newUserHTML;
 
-  // Get the chat list element and append the new li element
   const chatList = document.getElementById("chatList");
+
   chatList.appendChild(newListItem);
 }
