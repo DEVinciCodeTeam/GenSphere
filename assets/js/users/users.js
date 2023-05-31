@@ -2,7 +2,21 @@
 let generalUsersCount = 0;
 let usersCountByCohorte = {};
 
-const allUsers = {};
+const quitarBoton = (elementId) => {
+  const buttonRef = document.getElementById(elementId);
+  buttonRef.style.display = "none";
+}
+const restablecerBoton = (elementId) => {
+  const buttonRef = document.getElementById(elementId);
+  buttonRef.style.display = "inline";
+}
+quitarBoton("unregisteredEmail");
+quitarBoton("incomplitedFields");
+quitarBoton("wrongPassword");
+quitarBoton("repeatedEmail");
+quitarBoton("singUpSuccesful");
+const allUsers = JSON.parse(localStorage.getItem("allUsers"));
+ /* const allUsers = {}; */ 
 const signUpForm = document.getElementById("signUpForm");
 
 
@@ -13,9 +27,9 @@ signUpForm.onsubmit = function(e) {
   const getUserEmail = document.getElementById("userEmail").value.trim();
   const getUserCohorte = document.getElementById("userCohorte").value.trim();
   const getUserPassword = document.getElementById("userPassword").value.trim();
-
+ 
   if (getUserName == "" || getUserEmail == "" || getUserCohorte == "" || getUserPassword == "") {
-    alert("Porfavor, completa todos los campos")
+    restablecerBoton("incomplitedFields");
   } else {
     if (!allUsers[getUserEmail]) {
       console.log(getUserName, getUserEmail, getUserCohorte, getUserPassword);
@@ -33,13 +47,14 @@ signUpForm.onsubmit = function(e) {
         userPassword: getUserPassword
       }
       localStorage.setItem("allUsers", JSON.stringify(allUsers))
+      restablecerBoton("singUpSuccesful");
+      quitarBoton("incomplitedFields");
+      quitarBoton("repeatedEmail");
     } else {
       const signUpFormContainer = document.getElementById("signUpFormContainer");
-      alert("Esta cuenta de correo ya ha sido registrada previamente\nIngresa un correo distinto, por favor.")
-
+     restablecerBoton("repeatedEmail");
     }
   }
-
 }
 
 
@@ -53,8 +68,7 @@ signInForm.onsubmit = function(e) {
   const allUsers = JSON.parse(localStorage.getItem("allUsers"));
 
   if (!allUsers[getUserEmail]) {
-    alert("El correo no esta registrado, por favor crea una cuenta en GenSphere.");
-    // restablecerBoton("");
+    restablecerBoton("unregisteredEmail");
   } else {
 
     if (getUserPassword == allUsers[getUserEmail].userPassword) {
@@ -74,27 +88,16 @@ signInForm.onsubmit = function(e) {
 
       console.log("Entraste!")
       window.location.href = "../../../index.html";
-      // document.getElementById("signInButton").innerHTML = '<a href="../index.html">Iniciar</a>';
     } else {
-      alert("La contraseña no coincide con el correo que proporcionaste");
+   
+      restablecerBoton("wrongPassword");
     }
   }
 
 }
 
 
-const quitarBoton = (elementId) => {
-  const buttonRef = document.getElementById(elementId);
-  buttonRef.style.display = "none";
-}
 
-const ocultarBoton = (elementId) => {
-  const buttonRef = document.getElementById(elementId);
-  buttonRef.style.visibility = "hidden";
-}
 
-const restablecerBoton = (elementId) => {
-  const buttonRef = document.getElementById(elementId);
-  buttonRef.style.display = "inline";
-  buttonRef.style.visibility = "visible";
-}
+
+
