@@ -50,6 +50,53 @@ sendMessageBtn.addEventListener("click", function () {
   userMessage.scrollIntoView({ behavior: "smooth", block: "end" });
 });
 
+// Add event listener for the Enter key press in the message input field
+messageInput.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+
+    // Get the message text from the textarea
+    const messageText = messageInput.value.trim();
+
+    // Check if the message is empty
+    if (messageText === "") {
+      return; // Exit the function without sending the message
+    }
+
+    // Clear the message input
+    messageInput.value = "";
+
+    // Create a new message object
+    const newMessage = {
+      content: messageText,
+      time: new Date().toLocaleTimeString(),
+      sender: "Sender Name",
+    };
+
+    // Add the message to the active chat item's messages array
+    const activeChat = getActiveChatItem();
+    // Retrieve the chat messages for the active chat item from local storage
+    const storedMessages =
+      JSON.parse(localStorage.getItem(activeChat.name)) || [];
+
+    // Append the new message to the existing messages array
+    storedMessages.push(newMessage);
+
+    // Store the updated messages in local storage
+    localStorage.setItem(activeChat.name, JSON.stringify(storedMessages));
+
+    // Create a new chat message element for the user's message
+    const userMessage = createChatMessageHTML(newMessage, true);
+
+    // Append the user's message to the chat container
+    container.querySelector("ul").appendChild(userMessage);
+
+    // Scroll to the last message in the chat container
+    userMessage.scrollIntoView({ behavior: "smooth", block: "end" });
+  }
+});
+
 // Function to get the active chat item
 function getActiveChatItem() {
   // Find the active chat item
@@ -236,7 +283,7 @@ function addUser() {
     // Create a new chat item for the user
     const newChatItem = {
       name: userName,
-      imageSrc: "../assets/img/integrantes/mayra.jpg", // You can set an appropriate image source for the user
+      imageSrc: `../assets/img/integrantes/${userName.toLowerCase()}.jpg`, // Generate the image source based on the username
       messages: [],
     };
 
@@ -296,8 +343,11 @@ function addUser() {
       container.scrollTo(0, container.scrollHeight);
     });
 
-    console.log(`New chat with "${userName}" added successfully.`);
+    console.log(`Chat with "${userName}" created successfully.`);
   } else {
     console.log(`User with email "${userEmail}" not found.`);
   }
 }
+
+// Example usage
+addUser();
