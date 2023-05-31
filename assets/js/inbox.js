@@ -116,7 +116,7 @@ function addUser() {
     `#chatList [data-username="${userName}"]`
   );
   if (existingListItem) {
-    console.log(`User with userName "${userName}" already exists.`);
+    console.log(`Su chat con "${userName}" ya existe.`);
     return;
   }
 
