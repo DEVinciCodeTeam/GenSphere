@@ -208,12 +208,51 @@ function addUser() {
     const newChatItemElement = createChatItemHTML(newChatItem);
 
     // Prepend the new chat item element to the chat list
-    chatList.insertBefore(newChatItemElement, chatList.firstChild);
+    chatList.appendChild(newChatItemElement);
+
+    // Add event listener to the new chat item
+    newChatItemElement.addEventListener("click", function () {
+      // Remove the "active" class from all chat items
+      const activeItems = document.querySelectorAll(".list-group-item.active");
+      activeItems.forEach(function (item) {
+        item.classList.remove("active");
+      });
+
+      // Add the "active" class to the clicked chat item
+      newChatItemElement.classList.add("active");
+
+      // Show the message input and send button
+      messageInput.style.display = "block";
+      sendMessageBtn.style.display = "block";
+
+      // Retrieve the chat messages for the clicked chat item from the local storage
+      const messages = localStorage.getItem(userName);
+
+      if (messages) {
+        // Parse the stored messages if they exist
+        chatMessages[userName] = JSON.parse(messages);
+      } else {
+        // If no messages are stored, initialize an empty array
+        chatMessages[userName] = [];
+      }
+
+      // Clear the chat messages container
+      const chatMessagesContainer = container.querySelector("ul");
+      chatMessagesContainer.innerHTML = "";
+
+      // Render the chat messages in the chat messages container
+      chatMessages[userName].forEach(function (message) {
+        const isUserMessage = message.sender === "Mayra"; // Check if the message is sent by "Mayra"
+        const messageElement = createChatMessageHTML(message, isUserMessage);
+        chatMessagesContainer.appendChild(messageElement);
+      });
+
+      // Scroll to the bottom of the chat messages container
+      container.scrollTo(0, container.scrollHeight);
+    });
 
     console.log(`New chat with "${userName}" added successfully.`);
   } else {
     console.log(`User with email "${userEmail}" not found.`);
   }
-  // Store the updated chatItems array in the local storage
-  localStorage.setItem("chatItems", JSON.stringify(chatItems));
 }
