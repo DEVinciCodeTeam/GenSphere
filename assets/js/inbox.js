@@ -248,7 +248,7 @@ function addUser() {
     const newChatItemElement = createChatItemHTML(newChatItem);
 
     // Prepend the new chat item element to the chat list
-    chatList.appendChild(newChatItemElement);
+    chatList.prepend(newChatItemElement);
 
     // Add event listener to the new chat item
     newChatItemElement.addEventListener("click", function () {
