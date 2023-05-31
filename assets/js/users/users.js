@@ -2,21 +2,21 @@
 let generalUsersCount = 0;
 let usersCountByCohorte = {};
 
-const quitarBoton = (elementId) => {
+const removeMessage = (elementId) => {
   const buttonRef = document.getElementById(elementId);
   buttonRef.style.display = "none";
 }
-const restablecerBoton = (elementId) => {
+const restoreMessage = (elementId) => {
   const buttonRef = document.getElementById(elementId);
   buttonRef.style.display = "inline";
 }
-quitarBoton("unregisteredEmail");
-quitarBoton("incomplitedFields");
-quitarBoton("wrongPassword");
-quitarBoton("repeatedEmail");
-quitarBoton("singUpSuccesful");
+removeMessage("unregisteredEmail");
+removeMessage("incomplitedFields");
+removeMessage("wrongPassword");
+removeMessage("repeatedEmail");
+removeMessage("singUpSuccesful");
 const allUsers = JSON.parse(localStorage.getItem("allUsers"));
- /* const allUsers = {}; */ 
+/* const allUsers = {}; */
 const signUpForm = document.getElementById("signUpForm");
 
 
@@ -27,9 +27,11 @@ signUpForm.onsubmit = function(e) {
   const getUserEmail = document.getElementById("userEmail").value.trim();
   const getUserCohorte = document.getElementById("userCohorte").value.trim();
   const getUserPassword = document.getElementById("userPassword").value.trim();
- 
+
   if (getUserName == "" || getUserEmail == "" || getUserCohorte == "" || getUserPassword == "") {
-    restablecerBoton("incomplitedFields");
+    restoreMessage("incomplitedFields");
+    removeMessage("repeatedEmail");
+    removeMessage("singUpSuccesful");
   } else {
     if (!allUsers[getUserEmail]) {
       console.log(getUserName, getUserEmail, getUserCohorte, getUserPassword);
@@ -47,12 +49,14 @@ signUpForm.onsubmit = function(e) {
         userPassword: getUserPassword
       }
       localStorage.setItem("allUsers", JSON.stringify(allUsers))
-      restablecerBoton("singUpSuccesful");
-      quitarBoton("incomplitedFields");
-      quitarBoton("repeatedEmail");
+      restoreMessage("singUpSuccesful");
+      removeMessage("incomplitedFields");
+      removeMessage("repeatedEmail");
     } else {
       const signUpFormContainer = document.getElementById("signUpFormContainer");
-     restablecerBoton("repeatedEmail");
+      restoreMessage("repeatedEmail");
+      removeMessage("incomplitedFields");
+      removeMessage("singUpSuccesful");
     }
   }
 }
@@ -68,7 +72,8 @@ signInForm.onsubmit = function(e) {
   const allUsers = JSON.parse(localStorage.getItem("allUsers"));
 
   if (!allUsers[getUserEmail]) {
-    restablecerBoton("unregisteredEmail");
+    restoreMessage("unregisteredEmail");
+    removeMessage("wrongPassword");
   } else {
 
     if (getUserPassword == allUsers[getUserEmail].userPassword) {
@@ -89,8 +94,8 @@ signInForm.onsubmit = function(e) {
       console.log("Entraste!")
       window.location.href = "../../../index.html";
     } else {
-   
-      restablecerBoton("wrongPassword");
+      restoreMessage("wrongPassword");
+      removeMessage("unregisteredEmail");
     }
   }
 
