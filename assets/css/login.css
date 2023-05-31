@@ -230,10 +230,15 @@ input {
 }
 
 /* Password Rules */
-/* #userName_info {bottom: 42%; } */
-#userEmail_info {/*bottom: 30%;*/ top: 51%; }
-#userCohorte_info {/*bottom: 32%;*/ top: 57%; }
-#pswd_info {/*bottom: 20%;*/ top: 62%;}
+
+.userPasswordContainer, .userCohorteContainer, .userEmailContainer, .userNameContainer {
+  width: 100%;
+}
+
+#userName_info {transform: translate(60%, 0%) }
+#userEmail_info {transform: translate(60%, 0%) }
+#userCohorte_info {transform: translate(60%, 0%) }
+#pswd_info {transform: translate(60%, 0%) }
 
 #pswd_info, #userName_info, #userEmail_info, #userCohorte_info {
  position:absolute;
