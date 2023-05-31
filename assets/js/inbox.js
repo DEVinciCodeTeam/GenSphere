@@ -25,10 +25,15 @@ sendMessageBtn.addEventListener("click", function () {
 
   // Add the message to the active chat item's messages array
   const activeChat = getActiveChatItem();
-  activeChat.messages.push(newMessage);
+  // Retrieve the chat messages for the active chat item from local storage
+  const storedMessages =
+    JSON.parse(localStorage.getItem(activeChat.name)) || [];
+
+  // Append the new message to the existing messages array
+  storedMessages.push(newMessage);
 
   // Store the updated messages in local storage
-  localStorage.setItem(activeChat.name, JSON.stringify(activeChat.messages));
+  localStorage.setItem(activeChat.name, JSON.stringify(storedMessages));
 
   // Create a new chat message element for the user's message
   const userMessage = createChatMessageHTML(newMessage, true);
@@ -72,7 +77,7 @@ function createChatMessageHTML(message, isUserMessage) {
 }
 
 // Example chat initialization
-const chatItems = [];
+let chatItems = [];
 
 // Initialize an object to store the chat messages for each chat item
 const chatMessages = {};
@@ -146,6 +151,9 @@ function initializeChatItems() {
   // Retrieve the chat items from local storage
   const storedChatItems = JSON.parse(localStorage.getItem("chatItems")) || [];
 
+  // Assign the retrieved chat items to the chatItems variable
+  chatItems = storedChatItems;
+
   // Loop through the stored chat items and render them
   storedChatItems.forEach(function (item) {
     const chatItem = createChatItemHTML(item);
@@ -193,6 +201,7 @@ function initializeChatItems() {
     });
   });
 }
+initializeChatItems();
 
 function addUser() {
   // Function to get the user's email from the input field
@@ -287,7 +296,3 @@ function addUser() {
     console.log(`User with email "${userEmail}" not found.`);
   }
 }
-
-window.addEventListener("load", function () {
-  initializeChatItems();
-});
