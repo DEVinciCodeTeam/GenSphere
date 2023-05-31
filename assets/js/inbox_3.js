@@ -9,9 +9,15 @@ messageInput.style.display = "none";
 sendMessageBtn.style.display = "none";
 
 // Add event listener to the send message button
+
 sendMessageBtn.addEventListener("click", function () {
   // Get the message text from the textarea
   const messageText = messageInput.value.trim();
+
+  // Check if the message is empty
+  if (messageText === "") {
+    return; // Exit the function without sending the message
+  }
 
   // Clear the message input
   messageInput.value = "";
@@ -134,10 +140,9 @@ function createChatItemHTML(item) {
   const li = document.createElement("li");
   li.className =
     "list-group-item d-flex justify-content-start align-items-center";
-  const imageName = item.name.toLowerCase();
   li.innerHTML = `
     <img
-      src="../assets/img/integrantes/${imageName}.jpg"
+      src="${item.imageSrc}"
       alt="avatar"
       class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
       width="70"
@@ -158,7 +163,7 @@ function initializeChatItems() {
   // Loop through the stored chat items and render them
   storedChatItems.forEach(function (item) {
     const chatItem = createChatItemHTML(item);
-    chatList.appendChild(chatItem);
+    chatList.prepend(chatItem);
 
     // Add event listener to each chat item
     chatItem.addEventListener("click", function () {
@@ -229,12 +234,13 @@ function addUser() {
       return;
     }
 
-    // Create a new chat item for the user
-    const newChatItem = {
-      name: userName,
-      imageSrc: "../assets/img/integrantes/mayra.jpg", // You can set an appropriate image source for the user
-      messages: [],
-    };
+   // Create a new chat item for the user
+// Create a new chat item for the user
+const newChatItem = {
+  name: userName,
+  imageSrc: `../assets/img/integrantes/${userName.toLowerCase()}.jpg`, // Generate the image source based on the username
+  messages: [],
+};
 
     // Add the new chat item to the chatItems array
     chatItems.push(newChatItem);
@@ -249,7 +255,7 @@ function addUser() {
     const newChatItemElement = createChatItemHTML(newChatItem);
 
     // Prepend the new chat item element to the chat list
-    chatList.appendChild(newChatItemElement);
+    chatList.prepend(newChatItemElement);
 
     // Add event listener to the new chat item
     newChatItemElement.addEventListener("click", function () {
