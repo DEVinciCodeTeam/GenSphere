@@ -18,7 +18,7 @@ removeMessage("singUpSuccesful");
 const allUsers = JSON.parse(localStorage.getItem("allUsers"));
 
 if (allUsers == null) {
-  const allUsers = {};
+  allUsers = {};
 }
 
 const signUpForm = document.getElementById("signUpForm");
