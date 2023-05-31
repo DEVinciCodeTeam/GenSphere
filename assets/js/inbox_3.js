@@ -21,12 +21,15 @@ sendMessageBtn.addEventListener("click", function () {
   // Clear the message input
   messageInput.value = "";
 
-  // Create a new message object
+  /*   // Create a new message object
+  const currentTime = new Date();
+  const hours = currentTime.getHours().toString().padStart(2, "0");
+  const minutes = currentTime.getMinutes().toString().padStart(2, "0");
   const newMessage = {
     content: messageText,
-    time: new Date().toLocaleTimeString(),
+    time: `${hours}:${minutes}`, // Format the time as "HH:MM"
     sender: "Sender Name",
-  };
+  }; */
 
   // Add the message to the active chat item's messages array
   const activeChat = getActiveChatItem();
@@ -70,7 +73,11 @@ messageInput.addEventListener("keypress", function (event) {
     // Create a new message object
     const newMessage = {
       content: messageText,
-      time: new Date().toLocaleTimeString(),
+      time: new Date().toLocaleTimeString([], {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      }), // Set the options for 12-hour format with AM/PM
       sender: "Sender Name",
     };
 
@@ -280,10 +287,13 @@ function addUser() {
       return;
     }
 
+    // Get the first name from the user's name
+    const firstName = userName.trim().split(" ")[0].toLowerCase();
+
     // Create a new chat item for the user
     const newChatItem = {
       name: userName,
-      imageSrc: `../assets/img/integrantes/${userName.toLowerCase()}.jpg`, // Generate the image source based on the username
+      imageSrc: `../assets/img/integrantes/${firstName}.jpg`, // Generate the image source based on the first name
       messages: [],
     };
 
