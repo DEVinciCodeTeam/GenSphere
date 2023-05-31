@@ -20,7 +20,7 @@ sendMessageBtn.addEventListener("click", function () {
   const newMessage = {
     content: messageText,
     time: new Date().toLocaleTimeString(),
-    sender: "Mayra", // Set the sender as "Mayra"
+    sender: "Sender Name",
   };
 
   // Add the message to the active chat item's messages array
@@ -170,7 +170,7 @@ function addUser() {
     // Create a new chat item for the user
     const newChatItem = {
       name: userName,
-      imageSrc: "../assets/img/integrantes/user.jpg", // You can set an appropriate image source for the user
+      imageSrc: "../assets/img/integrantes/mayra.jpg", // You can set an appropriate image source for the user
       messages: [],
     };
 
