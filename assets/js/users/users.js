@@ -15,7 +15,7 @@ removeMessage("incomplitedFields");
 removeMessage("wrongPassword");
 removeMessage("repeatedEmail");
 removeMessage("singUpSuccesful");
-const allUsers = JSON.parse(localStorage.getItem("allUsers"));
+let allUsers = JSON.parse(localStorage.getItem("allUsers"));
 
 if (allUsers == null) {
   allUsers = {};
