@@ -142,6 +142,58 @@ function createChatItemHTML(item) {
   return li;
 }
 
+function initializeChatItems() {
+  // Retrieve the chat items from local storage
+  const storedChatItems = JSON.parse(localStorage.getItem("chatItems")) || [];
+
+  // Loop through the stored chat items and render them
+  storedChatItems.forEach(function (item) {
+    const chatItem = createChatItemHTML(item);
+    chatList.appendChild(chatItem);
+
+    // Add event listener to each chat item
+    chatItem.addEventListener("click", function () {
+      // Remove the "active" class from all chat items
+      const activeItems = document.querySelectorAll(".list-group-item.active");
+      activeItems.forEach(function (item) {
+        item.classList.remove("active");
+      });
+
+      // Add the "active" class to the clicked chat item
+      chatItem.classList.add("active");
+
+      // Show the message input and send button
+      messageInput.style.display = "block";
+      sendMessageBtn.style.display = "block";
+
+      // Retrieve the chat messages for the clicked chat item from the local storage
+      const messages = localStorage.getItem(item.name);
+
+      if (messages) {
+        // Parse the stored messages if they exist
+        chatMessages[item.name] = JSON.parse(messages);
+      } else {
+        // If no messages are stored, initialize an empty array
+        chatMessages[item.name] = [];
+      }
+
+      // Clear the chat messages container
+      const chatMessagesContainer = container.querySelector("ul");
+      chatMessagesContainer.innerHTML = "";
+
+      // Render the chat messages in the chat messages container
+      chatMessages[item.name].forEach(function (message) {
+        const isUserMessage = message.sender === "Mayra"; // Check if the message is sent by "Mayra"
+        const messageElement = createChatMessageHTML(message, isUserMessage);
+        chatMessagesContainer.appendChild(messageElement);
+      });
+
+      // Scroll to the bottom of the chat messages container
+      container.scrollTo(0, container.scrollHeight);
+    });
+  });
+}
+
 function addUser() {
   // Function to get the user's email from the input field
   function getUserEmail() {
@@ -235,3 +287,7 @@ function addUser() {
     console.log(`User with email "${userEmail}" not found.`);
   }
 }
+
+window.addEventListener("load", function () {
+  initializeChatItems();
+});
