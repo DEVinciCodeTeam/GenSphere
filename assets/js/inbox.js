@@ -21,10 +21,19 @@ sendMessageBtn.addEventListener("click", function () {
   // Clear the message input
   messageInput.value = "";
 
+  // Get the sender's name from sessionStorage
+  const senderName = sessionStorage.getItem("currentUser")
+    ? JSON.parse(sessionStorage.getItem("currentUser")).userName
+    : "Unknown Sender";
+
   // Create a new message object
   const newMessage = {
     content: messageText,
-    time: new Date().toLocaleTimeString(),
+    time: new Date().toLocaleTimeString([], {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    }), // Set the options for 12-hour format with AM/PM
     sender: "Sender Name",
   };
 
