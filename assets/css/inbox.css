@@ -14,6 +14,7 @@ body {
 
 .btn {
   font-weight: 700;
+  background-color: var(--headers);
 }
 
 ul {
@@ -62,7 +63,7 @@ li a {
 }
 
 .chatContainerScroll {
-  max-height: 370px;
+  max-height: 500px;
   overflow-y: auto;
 }
 
@@ -78,8 +79,37 @@ li a {
     border: 0px solid var(--fondo1);
     border-radius: 8px;
     border-bottom-left-radius: 0px;
+  }
+
+  body {
     background-color: var(--fondo1);
   }
+
+  .scrollable {
+    height: 180px;
+    overflow-y: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .chat-custom {
+    background-color: var(--fondo2);
+  }
+
+  #chatContainer {
+    background-color: var(--fondo1);
+    padding: 10px;
+    padding-bottom: 5px;
+  }
+
+  #sendMessageBtn {
+    background-color: var(--headers)!important;
+    color: var(--fondo1);
+    
+  }
+
+  
+  
 
  /*  .chat-custom {
     display: none;
