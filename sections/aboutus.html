@@ -33,40 +33,81 @@
   <link rel="icon" href="../assets/img/logo/logonegro.png">
 </head>
 
-<!--Barra de Navegacion-->
-<nav class="navbar navbar-expand-lg navbar-light navbar-bckground-color">
-  <a class="navbar-brand" href="./aboutus.html"></a>
-  <img class="logo-GenSphere" src="../assets/img/logo/logo-blanco-horizontal-menu.png" alt="portal icono" />
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="../index.html">Home<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <button type="submit" class="btn navbar-button-logout-color my-2 my-sm-0">
-        LogOut
-      </button>
-    </form>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <!-- Logo desktop -->
+    <a class="navbar-brand d-none d-lg-block logo-GS" href="../index.html">
+      <img
+        src="../assets/img/logo/logo-blanco-horizontal.png"
+        width="180"
+        alt="Logo GenSphere"
+      />
+    </a>
+    <!-- Logo mobile -->
+    <a class="navbar-brand d-block d-lg-none" href="../index.html">
+      <img
+        src="../assets/img/logo/logoblanco.png"
+        width="40"
+        alt="Logo GenSphere"
+      />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse navbar-links-custom"
+      id="navbarNav"
+    >
+      <ul class="navbar-nav">
+        <li class="nav-item mx-3">
+          <a
+            class="nav-link bi bi-house"
+            style="font-size: 1.8rem; color: var(--fondo1)"
+            href="../index.html"
+          ></a>
+        </li>
+        <li class="nav-item mx-3">
+          <a
+            class="nav-link bi bi-person-square"
+            style="font-size: 1.8rem; color: var(--fondo1)"
+            href="./perfiles.html"
+          ></a>
+        </li>
+        <li class="nav-item mx-3">
+          <a
+            class="nav-link bi bi-chat-text active"
+            style="font-size: 1.8rem; color: var(--fondo1)"
+            href="./inbox.html"
+          ></a>
+        </li>
+        <li class="nav-item mx-3">
+          <a
+            class="nav-link bi bi-question-square active"
+            style="font-size: 1.8rem; color: var(--fondo1)"
+            href="./aboutusT.html"
+          ></a>
+        </li>
+        <li class="nav-item mx-3">
+          <a
+            class="nav-link bi bi-box-arrow-left"
+            style="font-size: 1.8rem; color: var(--fondo1)"
+            href="./login.html"
+          ></a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
+
 <!-- Contenedores -->
 
 <body>
