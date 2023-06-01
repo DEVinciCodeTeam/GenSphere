@@ -33,8 +33,8 @@ sendMessageBtn.addEventListener("click", function () {
       hour: "numeric",
       minute: "2-digit",
       hour12: true,
-    }), // Set the options for 12-hour format with AM/PM
-    sender: "Sender Name",
+    }),
+    sender: senderName,
   };
 
   // Add the message to the active chat item's messages array
@@ -76,13 +76,21 @@ messageInput.addEventListener("keypress", function (event) {
     // Clear the message input
     messageInput.value = "";
 
+    // Get the sender's name from sessionStorage
+    const senderName = sessionStorage.getItem("currentUser")
+      ? JSON.parse(sessionStorage.getItem("currentUser")).userName
+      : "Unknown Sender";
+
     // Create a new message object
     const newMessage = {
       content: messageText,
-      time: new Date().toLocaleTimeString(),
-      sender: "Sender Name",
+      time: new Date().toLocaleTimeString([], {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      }),
+      sender: senderName,
     };
-
     // Add the message to the active chat item's messages array
     const activeChat = getActiveChatItem();
     // Retrieve the chat messages for the active chat item from local storage
