@@ -1,3 +1,4 @@
+
 // Get the necessary elements
 const container = document.getElementById("chatContainer");
 const sendMessageBtn = document.getElementById("sendMessageBtn");
@@ -290,7 +291,7 @@ function addUser() {
     const userName = user.userName;
 
     // Check if the chat already exists in the local storage
-    const existingChat = JSON.parse(localStorage.getItem(userName));
+    const existingChat = chatItems.find(item => item.name === userName);
 
     if (existingChat) {
       console.log(`Chat with "${userName}" already exists.`);
@@ -309,12 +310,6 @@ function addUser() {
 
     // Add the new chat item to the chatItems array
     chatItems.push(newChatItem);
-
-    // Store the updated chatItems array in the local storage
-    localStorage.setItem("chatItems", JSON.stringify(chatItems));
-
-    // Store the empty messages array for the new chat item in the local storage
-    localStorage.setItem(userName, JSON.stringify([]));
 
     // Create a new chat item element for the user
     const newChatItemElement = createChatItemHTML(newChatItem);
@@ -368,6 +363,7 @@ function addUser() {
     console.log(`User with email "${userEmail}" not found.`);
   }
 }
+
 
 // Example usage
 addUser();
