@@ -6,6 +6,38 @@
   --fondo2: #d5dff0;
 }
 
+/* Botones de navbar */
+.bi-house:hover:before {
+  content: "Inicio";
+  text-align: center;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 500 !important;
+}
+.bi-person-square:hover:before {
+  content: "Perfil";
+  text-align: center;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 500 !important;
+}
+.bi-chat-text:hover:before {
+  content: "Chat";
+  text-align: center;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 500 !important;
+}
+.bi-question-square:hover:before {
+  content: "Nosotrxs";
+  text-align: center;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 500 !important;
+}
+.bi-box-arrow-left:hover:before {
+  content: "Cerrar sesión";
+  text-align: center;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 500 !important;
+}
+
 body {
   background-color: var(--fondo2);
 }
@@ -103,15 +135,11 @@ li a {
   }
 
   #sendMessageBtn {
-    background-color: var(--headers)!important;
+    background-color: var(--headers) !important;
     color: var(--fondo1);
-    
   }
 
-  
-  
-
- /*  .chat-custom {
+  /*  .chat-custom {
     display: none;
   } */
 }
