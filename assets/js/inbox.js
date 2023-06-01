@@ -310,8 +310,13 @@ function addUser() {
     // Add the new chat item to the chatItems array
     chatItems.push(newChatItem);
 
+    const chatItemsUserSessionStorage = `chatItems${senderName}`;
+
     // Store the updated chatItems array in the local storage
-    localStorage.setItem("chatItems", JSON.stringify(chatItems));
+    localStorage.setItem(
+      chatItemsUserSessionStorage,
+      JSON.stringify(chatItems)
+    );
 
     // Store the empty messages array for the new chat item in the local storage
     localStorage.setItem(userName, JSON.stringify([]));

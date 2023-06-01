@@ -281,8 +281,20 @@ function addUser() {
 
   // Get the user's email and retrieve the user object from local storage
   const userEmail = getUserEmail();
+
   const allUsers = JSON.parse(localStorage.getItem("allUsers"));
   const user = allUsers[userEmail];
+
+  // Retrieve the current user's email from sessionStorage
+  const currentUserEmail = sessionStorage.getItem("currentUser")
+    ? JSON.parse(sessionStorage.getItem("currentUser")).userEmail
+    : "";
+
+  // Check if the user is the same as the current user
+  if (user && user.userEmail === currentUserEmail) {
+    console.log("You cannot add yourself as a user.");
+    return;
+  }
 
   // If the user object exists
   if (user) {
@@ -297,7 +309,7 @@ function addUser() {
       return;
     }
 
-    //Get the first name from the user's name
+    // Get the first name from the user's name
     const firstName = userName.trim().split(" ")[0].toLowerCase();
 
     // Create a new chat item for the user
@@ -352,24 +364,16 @@ function addUser() {
       const chatMessagesContainer = container.querySelector("ul");
       chatMessagesContainer.innerHTML = "";
 
-      // Render the chat messages in the chat messages container
+      // Render the chat messages for the clicked chat item
       chatMessages[userName].forEach(function (message) {
-        const isUserMessage = message.sender === "Mayra"; // Check if the message is sent by "Mayra"
-        const messageElement = createChatMessageHTML(message, isUserMessage);
+        const messageElement = createMessageHTML(message);
         chatMessagesContainer.appendChild(messageElement);
       });
-
-      // Scroll to the bottom of the chat messages container
-      container.scrollTo(0, container.scrollHeight);
     });
 
-    console.log(`Chat with "${userName}" created successfully.`);
-  } else {
-    console.log(`User with email "${userEmail}" not found.`);
+    console.log(`User "${userName}" added successfully.`);
   }
 }
 
 // Example usage
 addUser();
-
-//comentario
