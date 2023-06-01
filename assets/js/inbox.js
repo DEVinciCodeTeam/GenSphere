@@ -297,10 +297,13 @@ function addUser() {
       return;
     }
 
+    //Get the first name from the user's name
+    const firstName = userName.trim().split(" ")[0].toLowerCase();
+
     // Create a new chat item for the user
     const newChatItem = {
       name: userName,
-      imageSrc: `../assets/img/integrantes/${userName.toLowerCase()}.jpg`, // Generate the image source based on the username
+      imageSrc: `../assets/img/integrantes/${firstName}.jpg`, // Generate the image source based on the first name
       messages: [],
     };
 
