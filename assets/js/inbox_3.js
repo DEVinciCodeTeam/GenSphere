@@ -1,4 +1,3 @@
-
 // Get the necessary elements
 const container = document.getElementById("chatContainer");
 const sendMessageBtn = document.getElementById("sendMessageBtn");
@@ -47,8 +46,8 @@ sendMessageBtn.addEventListener("click", function () {
   // Append the new message to the existing messages array
   storedMessages.push(newMessage);
 
-  // Store the updated messages in local storage
-  localStorage.setItem(activeChat.name, JSON.stringify(storedMessages));
+/*   // Store the updated messages in local storage
+  localStorage.setItem(activeChat.name, JSON.stringify(storedMessages)); */
 
   // Create a new chat message element for the user's message
   const userMessage = createChatMessageHTML(newMessage, true);
@@ -100,9 +99,9 @@ messageInput.addEventListener("keypress", function (event) {
 
     // Append the new message to the existing messages array
     storedMessages.push(newMessage);
-
+/* 
     // Store the updated messages in local storage
-    localStorage.setItem(activeChat.name, JSON.stringify(storedMessages));
+    localStorage.setItem(activeChat.name, JSON.stringify(storedMessages)); */
 
     // Create a new chat message element for the user's message
     const userMessage = createChatMessageHTML(newMessage, true);
@@ -282,8 +281,20 @@ function addUser() {
 
   // Get the user's email and retrieve the user object from local storage
   const userEmail = getUserEmail();
+
   const allUsers = JSON.parse(localStorage.getItem("allUsers"));
   const user = allUsers[userEmail];
+
+  // Retrieve the current user's email from sessionStorage
+  const currentUserEmail = sessionStorage.getItem("currentUser")
+    ? JSON.parse(sessionStorage.getItem("currentUser")).userEmail
+    : "";
+
+  // Check if the user is the same as the current user
+  if (user && user.userEmail === currentUserEmail) {
+    console.log("You cannot add yourself as a user.");
+    return;
+  }
 
   // If the user object exists
   if (user) {
@@ -291,14 +302,14 @@ function addUser() {
     const userName = user.userName;
 
     // Check if the chat already exists in the local storage
-    const existingChat = chatItems.find(item => item.name === userName);
+    const existingChat = JSON.parse(localStorage.getItem(userName));
 
     if (existingChat) {
       console.log(`Chat with "${userName}" already exists.`);
       return;
     }
 
-    //Get the first name from the user's name
+    // Get the first name from the user's name
     const firstName = userName.trim().split(" ")[0].toLowerCase();
 
     // Create a new chat item for the user
@@ -310,6 +321,12 @@ function addUser() {
 
     // Add the new chat item to the chatItems array
     chatItems.push(newChatItem);
+
+    // Store the updated chatItems array in the local storage
+    localStorage.setItem("chatItems", JSON.stringify(chatItems));
+/* 
+    // Store the empty messages array for the new chat item in the local storage
+    localStorage.setItem(userName, JSON.stringify([])); */
 
     // Create a new chat item element for the user
     const newChatItemElement = createChatItemHTML(newChatItem);
@@ -347,25 +364,16 @@ function addUser() {
       const chatMessagesContainer = container.querySelector("ul");
       chatMessagesContainer.innerHTML = "";
 
-      // Render the chat messages in the chat messages container
+      // Render the chat messages for the clicked chat item
       chatMessages[userName].forEach(function (message) {
-        const isUserMessage = message.sender === "Mayra"; // Check if the message is sent by "Mayra"
-        const messageElement = createChatMessageHTML(message, isUserMessage);
+        const messageElement = createMessageHTML(message);
         chatMessagesContainer.appendChild(messageElement);
       });
-
-      // Scroll to the bottom of the chat messages container
-      container.scrollTo(0, container.scrollHeight);
     });
 
-    console.log(`Chat with "${userName}" created successfully.`);
-  } else {
-    console.log(`User with email "${userEmail}" not found.`);
+    console.log(`User "${userName}" added successfully.`);
   }
 }
 
-
 // Example usage
 addUser();
-
-//comentario
