@@ -193,7 +193,7 @@ function addUser() {
     };
 
     // Add the new chat item to the chatItems array
-    chatItems.push(newChatItem);
+    chatItems.unshift(newChatItem);
 
     // Store the updated chatItems array in the local storage
     localStorage.setItem("chatItems", JSON.stringify(chatItems));
