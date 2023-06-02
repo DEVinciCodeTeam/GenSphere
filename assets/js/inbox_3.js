@@ -8,132 +8,17 @@ const messageInput = document.getElementById("textAreaExample2");
 messageInput.style.display = "none";
 sendMessageBtn.style.display = "none";
 
-// Add event listener to the send message button
-sendMessageBtn.addEventListener("click", function () {
-  // Get the message text from the textarea
-  const messageText = messageInput.value.trim();
+let chatItems = JSON.parse(localStorage.getItem("chatItems")) || [];
 
-  // Check if the message is empty
-  if (messageText === "") {
-    return; // Exit the function without sending the message
-  }
-
-  // Clear the message input
-  messageInput.value = "";
-
-  // Get the sender's name from sessionStorage
-  const senderName = sessionStorage.getItem("currentUser")
-    ? JSON.parse(sessionStorage.getItem("currentUser")).userName
-    : "Unknown Sender";
-
-  // Create a new message object
-  const newMessage = {
-    content: messageText,
-    time: new Date().toLocaleTimeString([], {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    }),
-    sender: senderName,
-  };
-
-  // Add the message to the active chat item's messages array
-  const activeChat = getActiveChatItem();
-  // Retrieve the chat messages for the active chat item from local storage
-  const chatItems = JSON.parse(localStorage.getItem("chatItems")) || [];
-  const chatItem = chatItems.find((item) => item.name === activeChat.name);
-
-  const storedMessages = chatItem.messages;
-
-  // Append the new message to the existing messages array
-  storedMessages.push(newMessage);
-
-  // Store the updated messages in local storage
-  localStorage.setItem("chatItems", JSON.stringify(chatItems));
-
-  // Create a new chat message element for the user's message
-  const userMessage = createChatMessageHTML(newMessage, true);
-
-  // Append the user's message to the chat container
-  container.querySelector("ul").appendChild(userMessage);
-
-  // Scroll to the last message in the chat container
-  userMessage.scrollIntoView({ behavior: "smooth", block: "end" });
-});
-
-// Add event listener for the Enter key press in the message input field
-messageInput.addEventListener("keypress", function (event) {
-  if (event.key === "Enter") {
-    // Prevent the default form submission behavior
-    event.preventDefault();
-
-    // Get the message text from the textarea
-    const messageText = messageInput.value.trim();
-
-    // Check if the message is empty
-    if (messageText === "") {
-      return; // Exit the function without sending the message
-    }
-
-    // Clear the message input
-    messageInput.value = "";
-
-    // Get the sender's name from sessionStorage
-    const senderName = sessionStorage.getItem("currentUser")
-      ? JSON.parse(sessionStorage.getItem("currentUser")).userName
-      : "Unknown Sender";
-
-    // Create a new message object
-    const newMessage = {
-      content: messageText,
-      time: new Date().toLocaleTimeString([], {
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true,
-      }),
-      sender: senderName,
-    };
-    // Add the message to the active chat item's messages array
-    const activeChat = getActiveChatItem();
-
-    const chatItems = JSON.parse(localStorage.getItem("chatItems")) || [];
-    const chatItem = chatItems.find((item) => item.name === activeChat.name);
-
-    const storedMessages = chatItem.messages;
-
-    // Append the new message to the existing messages array
-    storedMessages.push(newMessage);
-
-    // Store the updated messages in local storage
-    localStorage.setItem("chatItems", JSON.stringify(chatItems));
-
-    // Create a new chat message element for the user's message
-    const userMessage = createChatMessageHTML(newMessage, true);
-
-    // Append the user's message to the chat container
-    container.querySelector("ul").appendChild(userMessage);
-
-    // Scroll to the last message in the chat container
-    userMessage.scrollIntoView({ behavior: "smooth", block: "end" });
-  }
-});
-
-// Function to get the active chat item
 function getActiveChatItem() {
-  // Find the active chat item
   const activeChatItem = document.querySelector(".list-group-item.active");
-
   if (activeChatItem) {
-    // Find the active chat item in the chatItems array
-    return chatItems.find(function (item) {
-      return item.name === activeChatItem.querySelector("p").textContent;
-    });
+    const activeUserName = activeChatItem.querySelector("p").textContent;
+    return chatItems.find((chatItem) => chatItem.name === activeUserName);
   }
-
   return null;
 }
 
-// Function to create a new chat message element
 function createChatMessageHTML(message, isUserMessage) {
   const li = document.createElement("li");
   li.className = `list-group-item d-flex justify-content-between align-items-start mb-2 ${
@@ -149,59 +34,83 @@ function createChatMessageHTML(message, isUserMessage) {
   return li;
 }
 
-// Example chat initialization
-let chatItems = [];
+function createChatItemHTML(item) {
+  const li = document.createElement("li");
+  li.className =
+    "list-group-item d-flex justify-content-start align-items-center";
+  li.innerHTML = `
+    <img
+      src="${item.imageSrc}"
+      alt="avatar"
+      class="rounded-circle d-flex align-self-center me-3 shadow-1-strong"
+      width="70"
+      height="70"
+    />
+    <p class="fw-bold mb-0">${item.name}</p>
+  `;
+  return li;
+}
 
-// Initialize an object to store the chat messages for each chat item
-const chatMessages = {};
+function handleSendMessage() {
+  const messageText = messageInput.value.trim();
+  if (messageText === "") {
+    return;
+  }
+  messageInput.value = "";
+  const senderName = sessionStorage.getItem("currentUser")
+    ? JSON.parse(sessionStorage.getItem("currentUser")).userName
+    : "Unknown Sender";
+  const newMessage = {
+    content: messageText,
+    time: new Date().toLocaleTimeString([], {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    }),
+    sender: senderName,
+  };
+  const activeChat = getActiveChatItem();
+  if (activeChat) {
+    activeChat.messages.push(newMessage);
+  }
+  localStorage.setItem("chatItems", JSON.stringify(chatItems));
+  const userMessage = createChatMessageHTML(newMessage, true);
+  container.querySelector("ul").appendChild(userMessage);
+  userMessage.scrollIntoView({ behavior: "smooth", block: "end" });
+}
 
-// Create a chat item for each member
-chatItems.forEach(function (item) {
-  const chatItem = createChatItemHTML(item);
-  chatList.appendChild(chatItem);
-
-  // Add event listener to each chat item
-  chatItem.addEventListener("click", function () {
-    // Remove the "active" class from all chat items
-    const activeItems = document.querySelectorAll(".list-group-item.active");
-    activeItems.forEach(function (item) {
-      item.classList.remove("active");
-    });
-
-    // Add the "active" class to the clicked chat item
-    chatItem.classList.add("active");
-
-    // Show the message input and send button
-    messageInput.style.display = "block";
-    sendMessageBtn.style.display = "block";
-
-    // Retrieve the chat messages for the clicked chat item from the local storage
-    const messages = localStorage.getItem(item.name);
-
-    if (messages) {
-      // Parse the stored messages if they exist
-      chatMessages[item.name] = JSON.parse(messages);
-    } else {
-      // If no messages are stored, initialize an empty array
-      chatMessages[item.name] = [];
-    }
-
-    // Clear the chat messages container
-    const chatMessagesContainer = container.querySelector("ul");
-    chatMessagesContainer.innerHTML = "";
-
-    // Render the chat messages in the chat messages container
-    chatMessages[item.name].forEach(function (message) {
-      const isUserMessage = message.sender === "Mayra"; // Check if the message is sent by "Mayra"
-      const messageElement = createChatMessageHTML(message, isUserMessage);
-      chatMessagesContainer.appendChild(messageElement);
-    });
-
-    // Scroll to the bottom of the chat messages container
-    container.scrollTo(0, container.scrollHeight);
-  });
+sendMessageBtn.addEventListener("click", handleSendMessage);
+messageInput.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    handleSendMessage();
+  }
 });
 
+chatItems.forEach((item) => {
+  const chatItem = createChatItemHTML(item);
+  chatList.appendChild(chatItem);
+  chatItem.addEventListener("click", function () {
+    document.querySelectorAll(".list-group-item.active").forEach((item) => {
+      item.classList.remove("active");
+    });
+    chatItem.classList.add("active");
+    messageInput.style.display = "block";
+    sendMessageBtn.style.display = "block";
+    const chatMessagesContainer = container.querySelector("ul");
+    chatMessagesContainer.innerHTML = "";
+    item.messages.forEach((message) => {
+      const isUserMessage =
+        message.sender ===
+        (sessionStorage.getItem("currentUser")
+          ? JSON.parse(sessionStorage.getItem("currentUser")).userName
+          : "Unknown Sender");
+      const chatMessage = createChatMessageHTML(message, isUserMessage);
+      chatMessagesContainer.appendChild(chatMessage);
+      chatMessage.scrollIntoView({ behavior: "smooth", block: "end" });
+    });
+  });
+});
 // Function to create a chat item element
 function createChatItemHTML(item) {
   const li = document.createElement("li");
@@ -233,48 +142,9 @@ function initializeChatItems() {
     chatList.prepend(chatItem);
 
     // Add event listener to each chat item
-    chatItem.addEventListener("click", function () {
-      // Remove the "active" class from all chat items
-      const activeItems = document.querySelectorAll(".list-group-item.active");
-      activeItems.forEach(function (item) {
-        item.classList.remove("active");
-      });
-
-      // Add the "active" class to the clicked chat item
-      chatItem.classList.add("active");
-
-      // Show the message input and send button
-      messageInput.style.display = "block";
-      sendMessageBtn.style.display = "block";
-
-      // Retrieve the chat messages for the clicked chat item from the local storage
-      const messages = localStorage.getItem(item.name);
-
-      if (messages) {
-        // Parse the stored messages if they exist
-        chatMessages[item.name] = JSON.parse(messages);
-      } else {
-        // If no messages are stored, initialize an empty array
-        chatMessages[item.name] = [];
-      }
-
-      // Clear the chat messages container
-      const chatMessagesContainer = container.querySelector("ul");
-      chatMessagesContainer.innerHTML = "";
-
-      // Render the chat messages in the chat messages container
-      chatMessages[item.name].forEach(function (message) {
-        const isUserMessage = message.sender === "Mayra"; // Check if the message is sent by "Mayra"
-        const messageElement = createChatMessageHTML(message, isUserMessage);
-        chatMessagesContainer.appendChild(messageElement);
-      });
-
-      // Scroll to the bottom of the chat messages container
-      container.scrollTo(0, container.scrollHeight);
-    });
+    chatItem.addEventListener("click", chatItemClickHandler);
   });
 }
-initializeChatItems();
 
 function addUser() {
   // Function to get the user's email from the input field
@@ -285,7 +155,6 @@ function addUser() {
 
   // Get the user's email and retrieve the user object from local storage
   const userEmail = getUserEmail();
-
   const allUsers = JSON.parse(localStorage.getItem("allUsers"));
   const user = allUsers[userEmail];
 
@@ -306,7 +175,7 @@ function addUser() {
     const userName = user.userName;
 
     // Check if the chat already exists in the local storage
-    const existingChat = JSON.parse(localStorage.getItem(userName));
+    const existingChat = chatItems.find((item) => item.name === userName);
 
     if (existingChat) {
       console.log(`Chat with "${userName}" already exists.`);
@@ -336,45 +205,11 @@ function addUser() {
     chatList.prepend(newChatItemElement);
 
     // Add event listener to the new chat item
-    newChatItemElement.addEventListener("click", function () {
-      // Remove the "active" class from all chat items
-      const activeItems = document.querySelectorAll(".list-group-item.active");
-      activeItems.forEach(function (item) {
-        item.classList.remove("active");
-      });
-
-      // Add the "active" class to the clicked chat item
-      newChatItemElement.classList.add("active");
-
-      // Show the message input and send button
-      messageInput.style.display = "block";
-      sendMessageBtn.style.display = "block";
-
-      // Retrieve the chat messages for the clicked chat item from the local storage
-      const messages = localStorage.getItem(userName);
-
-      if (messages) {
-        // Parse the stored messages if they exist
-        chatMessages[userName] = JSON.parse(messages);
-      } else {
-        // If no messages are stored, initialize an empty array
-        chatMessages[userName] = [];
-      }
-
-      // Clear the chat messages container
-      const chatMessagesContainer = container.querySelector("ul");
-      chatMessagesContainer.innerHTML = "";
-
-      // Render the chat messages for the clicked chat item
-      chatMessages[userName].forEach(function (message) {
-        const messageElement = createMessageHTML(message);
-        chatMessagesContainer.appendChild(messageElement);
-      });
-    });
+    newChatItemElement.addEventListener("click", chatItemClickHandler);
 
     console.log(`User "${userName}" added successfully.`);
   }
 }
 
-// Example usage
+initializeChatItems();
 addUser();
