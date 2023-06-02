@@ -217,19 +217,7 @@ addPostButton.addEventListener("click", addPost);
 //Funcion para guardar la informacion en Local Storage.
 function appendObjectToLocalStorage(allData) {
   const element = allData;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  localStorage.setItem("forum2Posts", JSON.stringify(element));
-=======
   localStorage.setItem("forum10Posts", JSON.stringify(element));
->>>>>>> developer
-=======
-  localStorage.setItem("forum10Posts", JSON.stringify(element));
->>>>>>> d0b74825c667e1d0a0f026de3ed87918880c3fab
-=======
-  localStorage.setItem("forum10Posts", JSON.stringify(element));
->>>>>>> e4445da50e53adaae7af46a74439b27ac0d27e3c
 }
 
 /*------------------------Animacion de los eventos del lado izquierdo------*/

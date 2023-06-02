@@ -107,8 +107,8 @@ function addPost() {
 
   const postHeader = {
     postHeaderId: 1,
-    "post-header-name": "John Doe",
-    "post-header-date": "26/5/2023",
+    "post-header-name": nameElement.textContent,
+    "post-header-date": postDate.textContent,
     "post-header-text": postInput,
   };
 
@@ -179,9 +179,17 @@ function addReply(event) {
   const listOfAnswer = postContainer.querySelector(".users_reply__form");
   listOfAnswer.appendChild(replyContainer);
 
-  replyInput.value = "";
+  replyInput.value = "";  
 
-  const replyId = postReplyIdCounter++;
+  const postId = parseInt(postContainer.getAttribute("data-postId")); //No mover de aquí.Trae el id del post
+  
+  let replyId = 0;
+
+  if(Object.entries(allData.postData[postId-1].replyData) === 0){
+    replyId = 1;
+  }else{
+    replyId = allData.postData[postId-1].replyData.length + 1;
+  }   
 
   const replyData = {
     replyId,
@@ -191,26 +199,29 @@ function addReply(event) {
     "reply-text": replyText,
   };
 
-  const postId = parseInt(postContainer.getAttribute("data-postId"));
-  const postData = allData.postData.find((post) => post.postDataId === postId);
+  
+  const postData = allData.postData.find((post) => post.postDataId === postId); //Seleccionando el postData por su id
   postData.replyData.push(replyData);
 
-  // Save the updated data to local storage
-  appendObjectToLocalStorage(allData);
+   // Save the updated data to local storage
+   appendObjectToLocalStorage(allData);
 }
 
-/*   allData.postData[idHeader - 1].replyData.push(replyData);
-} */
 
-// Add an event listener to the "Agregar publicación" button
+// Add an event listener to the "Publicar" button
 const addPostButton = document.getElementById("add-post-btn");
 addPostButton.addEventListener("click", addPost);
+
+/*------------------- Pertinencia de la informacion ----------------------*/
 
 //Funcion para guardar la informacion en Local Storage.
 function appendObjectToLocalStorage(allData) {
   const element = allData;
   localStorage.setItem("forum2Posts", JSON.stringify(element));
 }
+
+/*------------------------Animacion de los eventos del lado izquierdo------*/
+
 // Lista aparece en orden con a animación
 const listItems = document.querySelectorAll(".list-animation");
 
@@ -222,19 +233,17 @@ function showItems() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", showItems);
+document.addEventListener("DOMContentLoaded", showItems); // DOMContentLoaded = Al cargarse la pagina
+
+/*--------------------Recuperar la inforamacion del local storage---------------*/
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Function to store the information in local storage
-  function saveDataToLocalStorage(data) {
-    localStorage.setItem("forum2Posts", JSON.stringify(data));
-  }
-
-  // Function to retrieve the information from local storage
-  function getDataFromLocalStorage() {
+   // Function to retrieve the information from local storage
+   function getDataFromLocalStorage() {
     const storedData = localStorage.getItem("forum2Posts");
     return JSON.parse(storedData);
   }
+
 
   // Function to populate the wall__container with the retrieved data
   function populateWallContainer(data) {
@@ -287,9 +296,15 @@ document.addEventListener("DOMContentLoaded", () => {
         postHeaderUser.appendChild(postTextDiv);
 
         postContainer.appendChild(postHeaderUser);
-      });
 
-      postData.replyData.forEach((replyData) => {
+      });
+      //----------------Se debe crear el users_reply_form dentro del post container aunque no existan replyData----
+      const usersReplyForm = document.createElement("div");
+      usersReplyForm.classList.add("users_reply__form");
+      postContainer.appendChild(usersReplyForm);
+      
+    postData.replyData.forEach((replyData) => {
+
         const replyContainer = document.createElement("div");
         replyContainer.classList.add("reply-container");
 
@@ -327,8 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         replyContainer.appendChild(replyContentDiv);
         replyContainer.appendChild(textReplyDiv);
-
-        postContainer.appendChild(replyContainer);
+        usersReplyForm.appendChild(replyContainer);
       });
 
       const replyForm = document.createElement("div");
@@ -344,9 +358,7 @@ document.addEventListener("DOMContentLoaded", () => {
       replyButton.textContent = "Comenta";
       replyButton.addEventListener("click", addReply);
       replyForm.appendChild(replyButton);
-
       postContainer.appendChild(replyForm);
-
       wallContainer.appendChild(postContainer);
     });
   }
@@ -358,31 +370,4 @@ document.addEventListener("DOMContentLoaded", () => {
     populateWallContainer(storedData);
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  /*  // Axios request to post the data to the local storage
-=======
-  // Axios request to post the data to the local storage
->>>>>>> d0b74825c667e1d0a0f026de3ed87918880c3fab
-=======
-  /*  // Axios request to post the data to the local storage
->>>>>>> e4445da50e53adaae7af46a74439b27ac0d27e3c
-  axios
-    .get("/getforum2")
-    .then((response) => {
-      const data = response.data;
-      saveDataToLocalStorage(data);
-      populateWallContainer(data);
-    })
-    .catch((error) => {
-      console.log(error);
-<<<<<<< HEAD
-<<<<<<< HEAD
-    }); */
-=======
-    });
->>>>>>> d0b74825c667e1d0a0f026de3ed87918880c3fab
-=======
-    }); */
->>>>>>> e4445da50e53adaae7af46a74439b27ac0d27e3c
 });
