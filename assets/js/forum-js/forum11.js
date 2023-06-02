@@ -12,6 +12,10 @@ function appendObjectToLocalStorage(allData) {
   localStorage.setItem("forum11Posts", JSON.stringify(element));
 }
 
+// Get the current user name from sessionStorage
+const currentUser = sessionStorage.getItem("currentUser");
+const userName = currentUser ? JSON.parse(currentUser).userName : "Anonymous";
+
 // Función para manejar el evento de clic en el botón "Agregar publicación"
 function addPost() {
   const postInput = document.getElementById("post-input").value.trim();
@@ -45,9 +49,9 @@ function addPost() {
   postImage.style.width = "60px";
   postImage.style.height = "60px";
 
-  // Crear un elemento para el nombre
+  // Create the name element for the post
   const nameElement = document.createElement("h3");
-  nameElement.textContent = "John Doe";
+  nameElement.textContent = userName;
   nameElement.classList.add("post-name");
 
   // Crear un elemento para la fecha
@@ -151,8 +155,9 @@ function addReply(event) {
   replyImage.style.width = "60px";
   replyImage.style.height = "60px";
 
+  // Create the name element for the reply
   const nameElement = document.createElement("h3");
-  nameElement.textContent = "Jane Doe";
+  nameElement.textContent = userName;
   nameElement.classList.add("reply-name");
 
   const replyDate = document.createElement("p");
@@ -179,17 +184,17 @@ function addReply(event) {
   const listOfAnswer = postContainer.querySelector(".users_reply__form");
   listOfAnswer.appendChild(replyContainer);
 
-  replyInput.value = "";  
+  replyInput.value = "";
 
   const postId = parseInt(postContainer.getAttribute("data-postId")); //No mover de aquí.Trae el id del post
-  
+
   let replyId = 0;
 
-  if(Object.entries(allData.postData[postId-1].replyData) === 0){
+  if (Object.entries(allData.postData[postId - 1].replyData) === 0) {
     replyId = 1;
-  }else{
-    replyId = allData.postData[postId-1].replyData.length + 1;
-  }   
+  } else {
+    replyId = allData.postData[postId - 1].replyData.length + 1;
+  }
 
   const replyData = {
     replyId,
@@ -199,14 +204,12 @@ function addReply(event) {
     "reply-text": replyText,
   };
 
-  
   const postData = allData.postData.find((post) => post.postDataId === postId); //Seleccionando el postData por su id
   postData.replyData.push(replyData);
 
-   // Save the updated data to local storage
-   appendObjectToLocalStorage(allData);
+  // Save the updated data to local storage
+  appendObjectToLocalStorage(allData);
 }
-
 
 // Add an event listener to the "Publicar" button
 const addPostButton = document.getElementById("add-post-btn");
@@ -238,12 +241,11 @@ document.addEventListener("DOMContentLoaded", showItems); // DOMContentLoaded = 
 /*--------------------Recuperar la inforamacion del local storage---------------*/
 
 document.addEventListener("DOMContentLoaded", () => {
-   // Function to retrieve the information from local storage
-   function getDataFromLocalStorage() {
+  // Function to retrieve the information from local storage
+  function getDataFromLocalStorage() {
     const storedData = localStorage.getItem("forum11Posts");
     return JSON.parse(storedData);
   }
-
 
   // Function to populate the wall__container with the retrieved data
   function populateWallContainer(data) {
@@ -296,15 +298,13 @@ document.addEventListener("DOMContentLoaded", () => {
         postHeaderUser.appendChild(postTextDiv);
 
         postContainer.appendChild(postHeaderUser);
-
       });
       //----------------Se debe crear el users_reply_form dentro del post container aunque no existan replyData----
       const usersReplyForm = document.createElement("div");
       usersReplyForm.classList.add("users_reply__form");
       postContainer.appendChild(usersReplyForm);
-      
-    postData.replyData.forEach((replyData) => {
 
+      postData.replyData.forEach((replyData) => {
         const replyContainer = document.createElement("div");
         replyContainer.classList.add("reply-container");
 
@@ -369,5 +369,4 @@ document.addEventListener("DOMContentLoaded", () => {
     allData = storedData;
     populateWallContainer(storedData);
   }
-
 });
