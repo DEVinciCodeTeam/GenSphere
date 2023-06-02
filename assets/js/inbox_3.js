@@ -40,14 +40,16 @@ sendMessageBtn.addEventListener("click", function () {
   // Add the message to the active chat item's messages array
   const activeChat = getActiveChatItem();
   // Retrieve the chat messages for the active chat item from local storage
-  const storedMessages =
-    JSON.parse(localStorage.getItem(activeChat.name)) || [];
+  const chatItems = JSON.parse(localStorage.getItem("chatItems")) || [];
+  const chatItem = chatItems.find((item) => item.name === activeChat.name);
+
+  const storedMessages = chatItem.messages;
 
   // Append the new message to the existing messages array
   storedMessages.push(newMessage);
 
-/*   // Store the updated messages in local storage
-  localStorage.setItem(activeChat.name, JSON.stringify(storedMessages)); */
+  // Store the updated messages in local storage
+  localStorage.setItem("chatItems", JSON.stringify(chatItems));
 
   // Create a new chat message element for the user's message
   const userMessage = createChatMessageHTML(newMessage, true);
@@ -93,15 +95,17 @@ messageInput.addEventListener("keypress", function (event) {
     };
     // Add the message to the active chat item's messages array
     const activeChat = getActiveChatItem();
-    // Retrieve the chat messages for the active chat item from local storage
-    const storedMessages =
-      JSON.parse(localStorage.getItem(activeChat.name)) || [];
+
+    const chatItems = JSON.parse(localStorage.getItem("chatItems")) || [];
+    const chatItem = chatItems.find((item) => item.name === activeChat.name);
+
+    const storedMessages = chatItem.messages;
 
     // Append the new message to the existing messages array
     storedMessages.push(newMessage);
-/* 
+
     // Store the updated messages in local storage
-    localStorage.setItem(activeChat.name, JSON.stringify(storedMessages)); */
+    localStorage.setItem("chatItems", JSON.stringify(chatItems));
 
     // Create a new chat message element for the user's message
     const userMessage = createChatMessageHTML(newMessage, true);
@@ -324,9 +328,6 @@ function addUser() {
 
     // Store the updated chatItems array in the local storage
     localStorage.setItem("chatItems", JSON.stringify(chatItems));
-/* 
-    // Store the empty messages array for the new chat item in the local storage
-    localStorage.setItem(userName, JSON.stringify([])); */
 
     // Create a new chat item element for the user
     const newChatItemElement = createChatItemHTML(newChatItem);
