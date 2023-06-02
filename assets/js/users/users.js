@@ -2,14 +2,14 @@
 let generalUsersCount = 0;
 let usersCountByCohorte = {};
 
-const removeMessage = (elementId) => {
-  const buttonRef = document.getElementById(elementId);
-  buttonRef.style.display = "none";
-}
-const restoreMessage = (elementId) => {
-  const buttonRef = document.getElementById(elementId);
-  buttonRef.style.display = "inline";
-}
+// const removeMessage = (elementId) => {
+//   const buttonRef = document.getElementById(elementId);
+//   buttonRef.style.display = "none";
+// }
+// const restoreMessage = (elementId) => {
+//   const buttonRef = document.getElementById(elementId);
+//   buttonRef.style.display = "inline";
+// }
 removeMessage("unregisteredEmail");
 removeMessage("incomplitedFields");
 removeMessage("wrongPassword");

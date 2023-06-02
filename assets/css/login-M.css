@@ -21,7 +21,8 @@ img {
 	width: 100%;
 	max-width: 100%;
 	height: auto;
-	margin-top: -210px;
+	margin-top: -110px;
+  padding-top: 100px;
 	object-fit: cover;
   }
   
