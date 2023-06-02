@@ -76,6 +76,17 @@ html body {
   visibility: visible;
 }
 
+.blink-me {
+  animation: blinker 1s step-start infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+
 /*--------------------------- Seccion del lado derecho --------------*/
 .mask-custom {
   background: rgba(213, 223, 240, 1);
