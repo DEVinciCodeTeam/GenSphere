@@ -139,7 +139,7 @@ function initializeChatItems() {
   // Loop through the stored chat items and render them
   storedChatItems.forEach(function (item) {
     const chatItem = createChatItemHTML(item);
-    chatList.prepend(chatItem);
+    chatList.appendChild(chatItem);
 
     // Add event listener to each chat item
     chatItem.addEventListener("click", chatItemClickHandler);
@@ -205,11 +205,32 @@ function addUser() {
     chatList.prepend(newChatItemElement);
 
     // Add event listener to the new chat item
-    newChatItemElement.addEventListener("click", chatItemClickHandler);
+    newChatItemElement.addEventListener("click", function () {
+      document.querySelectorAll(".list-group-item.active").forEach((item) => {
+        item.classList.remove("active");
+      });
+      newChatItemElement.classList.add("active");
+      messageInput.style.display = "block";
+      sendMessageBtn.style.display = "block";
+      const chatMessagesContainer = container.querySelector("ul");
+      chatMessagesContainer.innerHTML = "";
+      newChatItem.messages.forEach((message) => {
+        const isUserMessage =
+          message.sender ===
+          (sessionStorage.getItem("currentUser")
+            ? JSON.parse(sessionStorage.getItem("currentUser")).userName
+            : "Unknown Sender");
+        const chatMessage = createChatMessageHTML(message, isUserMessage);
+        chatMessagesContainer.appendChild(chatMessage);
+        chatMessage.scrollIntoView({ behavior: "smooth", block: "end" });
+      });
+    });
+
+    // Trigger the click event to simulate the initial selection of the new chat item
+    newChatItemElement.click();
 
     console.log(`User "${userName}" added successfully.`);
   }
 }
 
-initializeChatItems();
 addUser();
