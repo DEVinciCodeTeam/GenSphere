@@ -8,7 +8,12 @@ const messageInput = document.getElementById("textAreaExample2");
 messageInput.style.display = "none";
 sendMessageBtn.style.display = "none";
 
-let chatItems = JSON.parse(localStorage.getItem("chatItems")) || [];
+let chatItems = JSON.parse(localStorage.getItem(getChatItemsKey())) || [];
+
+function getChatItemsKey() {
+  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  return currentUser ? currentUser.userEmail + "_chatItems" : "chatItems";
+}
 
 function getActiveChatItem() {
   const activeChatItem = document.querySelector(".list-group-item.active");
@@ -73,10 +78,11 @@ function handleSendMessage() {
   if (activeChat) {
     activeChat.messages.push(newMessage);
   }
-  localStorage.setItem("chatItems", JSON.stringify(chatItems));
+  localStorage.setItem(getChatItemsKey(), JSON.stringify(chatItems));
   const userMessage = createChatMessageHTML(newMessage, true);
   container.querySelector("ul").appendChild(userMessage);
   userMessage.scrollIntoView({ behavior: "smooth", block: "end" });
+  localStorage.setItem(getChatItemsKey(), JSON.stringify(chatItems));
 }
 
 sendMessageBtn.addEventListener("click", handleSendMessage);
@@ -196,7 +202,7 @@ function addUser() {
     chatItems.unshift(newChatItem);
 
     // Store the updated chatItems array in the local storage
-    localStorage.setItem("chatItems", JSON.stringify(chatItems));
+    localStorage.setItem(getChatItemsKey(), JSON.stringify(chatItems));
 
     // Create a new chat item element for the user
     const newChatItemElement = createChatItemHTML(newChatItem);
