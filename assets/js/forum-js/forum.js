@@ -1,5 +1,5 @@
 // Objeto que almacena todos los objetos de datos creados dentro de las funciones
-let allData = { id: "Semana1", postData: [] };
+let allData = { id: "Semana2", postData: [] };
 
 // Counter variables
 let postDataIdCounter = 1;
@@ -214,6 +214,14 @@ function addReply(event) {
 // Add an event listener to the "Publicar" button
 const addPostButton = document.getElementById("add-post-btn");
 addPostButton.addEventListener("click", addPost);
+
+// Add event listener for Enter keypress on the post-input field
+const postInput = document.getElementById("post-input");
+postInput.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    addPost();
+  }
+});
 
 /*------------------- Pertinencia de la informacion ----------------------*/
 

@@ -39,12 +39,12 @@ h4 {
   padding-top: 20px !important;
 }
 .text-black {
-  color: var(--headers) !important;
+  color: var(--fondo1) !important;
   text-align: center;
   padding-bottom: 10px;
 }
 .mask-custom-right {
-  background-color: var(--fondo2);
+  background-color: var(--headers);
   height: 100%;
   padding: 10px;
 }
