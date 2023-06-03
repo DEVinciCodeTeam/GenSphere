@@ -1,3 +1,4 @@
+
 // Objeto que almacena todos los objetos de datos creados dentro de las funciones
 let generalUsersCount = 0;
 let usersCountByCohorte = {};
@@ -50,7 +51,8 @@ signUpForm.onsubmit = function(e) {
         userName: getUserName,
         userEmail: getUserEmail,
         userCohorte: getUserCohorte,
-        userPassword: getUserPassword
+        userPassword: getUserPassword,
+        userProfilePicture: "assets/img/logo/genspherePP2.png",
       }
       localStorage.setItem("allUsers", JSON.stringify(allUsers))
       restoreMessage("singUpSuccesful");
@@ -104,7 +106,6 @@ signInForm.onsubmit = function(e) {
   }
 
 }
-
 
 
 

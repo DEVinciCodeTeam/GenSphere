@@ -41,70 +41,36 @@
   <div class="container-fluid">
     <!-- Logo desktop -->
     <a class="navbar-brand d-none d-lg-block logo-GS" href="../index.html">
-      <img
-        src="../assets/img/logo/logo-blanco-horizontal.png"
-        width="180"
-        alt="Logo GenSphere"
-      />
+      <img src="../assets/img/logo/logo-blanco-horizontal.png" width="180" alt="Logo GenSphere" />
     </a>
     <!-- Logo mobile -->
     <a class="navbar-brand d-block d-lg-none" href="../index.html">
-      <img
-        src="../assets/img/logo/logoblanco.png"
-        width="40"
-        alt="Logo GenSphere"
-      />
+      <img src="../assets/img/logo/logoblanco.png" width="40" alt="Logo GenSphere" />
     </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div
-      class="collapse navbar-collapse navbar-links-custom"
-      id="navbarNav"
-    >
+    <div class="collapse navbar-collapse navbar-links-custom" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item mx-3">
-          <a
-            class="nav-link bi bi-house"
-            style="font-size: 1.8rem; color: var(--fondo1)"
-            href="../index.html"
-          ></a>
+          <a class="nav-link bi bi-house" style="font-size: 1.8rem; color: var(--fondo1)" href="../index.html"></a>
         </li>
         <li class="nav-item mx-3">
-          <a
-            class="nav-link bi bi-person-square"
-            style="font-size: 1.8rem; color: var(--fondo1)"
-            href="./perfiles.html"
-          ></a>
+          <a class="nav-link bi bi-person-square" style="font-size: 1.8rem; color: var(--fondo1)"
+            href="./perfilUsuario.html"></a>
         </li>
         <li class="nav-item mx-3">
-          <a
-            class="nav-link bi bi-chat-text active"
-            style="font-size: 1.8rem; color: var(--fondo1)"
-            href="./inbox.html"
-          ></a>
+          <a class="nav-link bi bi-chat-text active" style="font-size: 1.8rem; color: var(--fondo1)"
+            href="./inbox.html"></a>
         </li>
         <li class="nav-item mx-3">
-          <a
-            class="nav-link bi bi-question-square active"
-            style="font-size: 1.8rem; color: var(--fondo1)"
-            href="./aboutusT.html"
-          ></a>
+          <a class="nav-link bi bi-question-square active" style="font-size: 1.8rem; color: var(--fondo1)"
+            href="./aboutus.html"></a>
         </li>
         <li class="nav-item mx-3">
-          <a
-            class="nav-link bi bi-box-arrow-left"
-            style="font-size: 1.8rem; color: var(--fondo1)"
-            href="./login.html"
-          ></a>
+          <a class="nav-link bi bi-box-arrow-left" style="font-size: 1.8rem; color: var(--fondo1)"
+            href="./login.html"></a>
         </li>
       </ul>
     </div>
@@ -123,9 +89,7 @@
               <div class="d-flex flex-column align-items-center text-center">
                 <!--Contenedor de foto-->
                 <div class="profile-img">
-                  <img id="photo"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                    alt="Foto usuario" class="rounded-circle" />
+                  <img id="photo" src="../assets/img/logo/genspherePP2.png" alt="Foto usuario" class="rounded-circle" />
                   <div class="capa">
                     <div id="changeIcono" class="file btn btn-lg btn-primary">
                       Change Photo
@@ -134,45 +98,48 @@
                   </div>
                 </div>
                 <div class="mt-3">
-                  <h4>Kshiti Ghelani</h4>
-                  <p class="text-secondary mb-1">Full Stack Developer</p>
-                  <p class="text-muted font-size-sm">CDMX</p>
+                  <h4 id="userName">Nombre Usuario</h4>
+                  <p id="userTile" class="text-secondary mb-1">User Title</p>
+                  <p id="userLocation" class="text-muted font-size-sm">User, Location</p>
                   <!-- <button class="btn btn-outline-secondary">Editar perfil</button> -->
                   <div class="row justify-content-center">
-                    <div class="col-12 justify-content-center">
-                      <p id="cohorte"> Cohorte 25 </p>
+                    <div class="col-6">
+                      <p id="cohorte"> Cohorte </p>
+                    </div>
+                    <div class="col-6">
+                      <p id="cohorteNum">0</p>
                     </div>
                   </div>
                   <div class="information my-3" style="text-align: justify;">
-                    <h6 id="hseis">Acerca de mí</h6>
-                    <p id="info">Apasionada por la tecnología y los viajes ✈️🎶</p>
-                    <h6 id="hseis">Experiencia</h6>
-                    <p id="info">Gerente de proyectos en una empresa de software.</p>
+                    <h6 id="userDescription">Acerca de mí</h6>
+                    <p id="aboutUser">User description</p>
+                    <h6 id="userExperience">Experiencia</h6>
+                    <p id="userExperience">User Experience</p>
                   </div>
                   <!-- iconos -->
                   <div class="row justify-content-center">
                     <div class="col-4 justify-content-center">
-                      <a href="https://github.com/MarioROT" class="btn-sm" target="_blank">
+                      <a id="userGithub" href="#" class="btn-sm" target="_blank">
                         <img style="width: 40px; text-align: center;"
                           src="../assets/img/logo/iconos grises/github-removebg-preview.png" alt="My GitHub" />
                       </a>
                     </div>
                     <div class="col-4 justify-content-center">
-                      <a href="https://www.linkedin.com/in/mario-rosas-otero-443726187/" class="btn-sm" target="_blank">
+                      <a id="userLinkedIn" href="#" class="btn-sm" target="_blank">
                         <img style="width: 40px; text-align: center;"
                           src="../assets/img/logo/iconos grises/linkdin-removebg-preview.png" alt="My LinkedIn" />
                       </a>
                     </div>
                     <div class="col-4 justify-content-center">
-                      <a href="mailto://mario.rosas.otero@gmail.com " class="btn-sm" target="_blank">
+                      <a id="userEmail" href="mailto://" class="btn-sm" target="_blank">
                         <img style="width: 40px; text-align: center;"
                           src="../assets/img/logo/iconos grises/correo-removebg-preview.png" alt="My Email" />
                       </a>
                     </div>
                   </div>
                   <div class="row justify-content-center">
-                    <a href="./perfilesEditable-A.html" styl|e="width: 100%;">
-                      <button class="btn btn-outline-secondary my-5" style="width: 50%;">Editar perfil</button>
+                    <a href="./perfilEditable.html" styl|e="width: 100%;">
+                      <button class="btn btn-outline-secondary my-5" style="width: 100%;">Editar perfil</button>
                     </a>
                   </div>
                 </div>
@@ -183,7 +150,7 @@
         <!--Tarjeta Post-->
         <div class="col-lg-8" style="padding: 3%;">
           <div class="profile-head ">
-            <h6 class="my-2">
+            <h6 id="userJoinedDate" class="my-2">
               Se unió en 2023
             </h6>
             <ul class="nav nav-tabs my-5" id="myTab" role="tablist">
@@ -206,13 +173,13 @@
                     <div class="row" style="padding: 10px 0px;">
                       <div class="col-3 my-3">
                         <div class="img_pod2">
-                          <img class="post-image2"
+                          <img class="user-post-img"
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
                             alt="random image">
                         </div>
                       </div>
                       <div class="col-7 my-2" style="padding: 0px 23px;">
-                        <h1 class="post-title">Kshiti Ghelani</h1>
+                        <h1 class="user-post-title">Nombre Usuario</h1>
                         <h3 class="post-date">Hace 5 horas</h3>
                       </div>
                       <div class="col-2">
@@ -240,13 +207,13 @@
                     <div class="row" style="padding: 10px 0px;">
                       <div class="col-3 my-3">
                         <div class="img_pod2">
-                          <img class="post-image2"
+                          <img class="user-post-img"
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
                             alt="random image">
                         </div>
                       </div>
                       <div class="col-7 my-2" style="padding: 0px 23px;">
-                        <h1 class="post-title">Kshiti Ghelani</h1>
+                        <h1 class="user-post-title">Nombre Usuario</h1>
                         <h3 class="post-date">Hace 5 horas</h3>
                       </div>
                       <div class="col-2">
@@ -276,13 +243,13 @@
                     <div class="row" style="padding: 10px 0px;">
                       <div class="col-3 my-3">
                         <div class="img_pod2">
-                          <img class="post-image2"
+                          <img class="user-post-img"
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
                             alt="random image">
                         </div>
                       </div>
                       <div class="col-7 my-2" style="padding: 0px 23px;">
-                        <h1 class="post-title">Kshiti Ghelani</h1>
+                        <h1 class="user-post-title">Nombre Usuario</h1>
                         <h3 class="post-date">Hace 5 horas</h3>
                       </div>
                       <div class="col-2">
@@ -310,13 +277,13 @@
                     <div class="row" style="padding: 10px 0px;">
                       <div class="col-3 my-3">
                         <div class="img_pod2">
-                          <img class="post-image2"
+                          <img class="user-post-img"
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
                             alt="random image">
                         </div>
                       </div>
                       <div class="col-7 my-2" style="padding: 0px 23px;">
-                        <h1 class="post-title">Kshiti Ghelani</h1>
+                        <h1 class="user-post-title">Nombre Usuario</h1>
                         <h3 class="post-date">Hace 5 horas</h3>
                       </div>
                       <div class="col-2">
@@ -349,14 +316,14 @@
                       <div class="col-3 my-3">
                         <div class="img_pod2">
                           <a href="./perfilExterno.html">
-                            <img class="post-image2"
+                            <img class="user-post-img"
                               src="https://lapi.com.mx/web/image/product.template/4987/image_1024?unique=a660b70"
                               alt="random image">
                           </a>
                         </div>
                       </div>
                       <div class="col-7 my-2" style="padding: 0px 23px;">
-                        <h1 class="post-title">Karen Ruíz</h1>
+                        <h1 class="user-post-title">Karen Ruíz</h1>
                         <h3 class="post-date">Hace 5 horas</h3>
                       </div>
                       <div class="col-2">
@@ -384,13 +351,13 @@
                     <div class="row" style="padding: 10px 0px;">
                       <div class="col-3 my-3">
                         <div class="img_pod2">
-                          <img class="post-image2"
+                          <img class="user-post-img"
                             src="https://lapi.com.mx/web/image/product.template/4987/image_1024?unique=a660b70"
                             alt="random image">
                         </div>
                       </div>
                       <div class="col-7 my-2" style="padding: 0px 23px;">
-                        <h1 class="post-title">Karen Ruíz</h1>
+                        <h1 class="user-post-title">Karen Ruíz</h1>
                         <h3 class="post-date">Hace 5 horas</h3>
                       </div>
                       <div class="col-2">
@@ -420,13 +387,13 @@
                     <div class="row" style="padding: 10px 0px;">
                       <div class="col-3 my-3">
                         <div class="img_pod2">
-                          <img class="post-image2"
+                          <img class="user-post-img"
                             src="https://lapi.com.mx/web/image/product.template/4987/image_1024?unique=a660b70"
                             alt="random image">
                         </div>
                       </div>
                       <div class="col-7 my-2" style="padding: 0px 23px;">
-                        <h1 class="post-title">Karen Ruíz</h1>
+                        <h1 class="user-post-title">Karen Ruíz</h1>
                         <h3 class="post-date">Hace 5 horas</h3>
                       </div>
                       <div class="col-2">
@@ -454,13 +421,13 @@
                     <div class="row" style="padding: 10px 0px;">
                       <div class="col-3 my-3">
                         <div class="img_pod2">
-                          <img class="post-image2"
+                          <img class="user-post-img"
                             src="https://lapi.com.mx/web/image/product.template/4987/image_1024?unique=a660b70"
                             alt="random image">
                         </div>
                       </div>
                       <div class="col-7 my-2" style="padding: 0px 23px;">
-                        <h1 class="post-title">Karen Ruíz</h1>
+                        <h1 class="user-post-title">Karen Ruíz</h1>
                         <h3 class="post-date">Hace 5 horas</h3>
                       </div>
                       <div class="col-2">

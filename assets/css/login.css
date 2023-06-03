@@ -3,10 +3,11 @@
 
 * {
 	box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
-    background: #F1F6F9;
+    /* background: #F1F6F9; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,30 +21,33 @@ img {
 	width: 100%;
 	max-width: 100%;
 	height: auto;
-	margin-top: -210px;
+	margin-top: -110px;
+  padding-top: 100px;
 	object-fit: cover;
   }
   
 
 
-h1 { /* Carta derecha */
+.titlesSec { /* Carta derecha */
 	color:white;
 	font-weight: bold;
 	margin: 0;
 	padding: 10px;
+  font-size: 32px;
 }
 .overlay-panel h1 { /* Carta izquierda */
 	color:#212A3E;
 	font-weight: bold;
 	margin: 0;
 	padding: 10px;
+  font-size: 32px;
 }
 h2 {
 	text-align: center;
 
 }
 
-p {
+.messSec {
 	font-size: 14px;
 	font-weight: 100;
 	line-height: 20px;
@@ -55,14 +59,14 @@ span {
 	font-size: 12px;
 }
 
-a {
+#passFor {
 	color: white;
 	font-size: 14px;
 	text-decoration: none;
 	margin: 15px 0;
 }
 
-button { /* boton iniciar */
+#signInButton, #signUpButton, #iniciar, #registrar, #iniciar2, #registrar2 { /* boton iniciar */
 	border-radius: 20px;
 	border:none;
 	background-color: #B8C2D5;
@@ -76,15 +80,15 @@ button { /* boton iniciar */
 	box-shadow: #212A3E 2px 2px 4px;
 }
 
-button:active {
+#signInButton:active, #signUpButton:active, #iniciar:active, #registrar:active, #iniciar2:active, #registrar2:active {
 	transform: scale(0.95);
 }
 
-button:focus {
+#signInButton:focus, #signUpButton:focus, #iniciar:focus, #registrar:focus, #iniciar2:focus, #registrar2:focus {
 	outline: none;
 }
 
-button.ghost { /*boton regístrarse */
+#registrar.ghost, #iniciar.ghost, #iniciar2.ghost, #registrar2.ghost { /*boton regístrarse */
 	box-shadow: #212A3E 2px 2px 4px;
 	background-color: #5977B3;
 }
@@ -100,16 +104,17 @@ form {
 	text-align: center;
 }
 
-input { 
+.formInput { 
 	background-color: #F1F6F9;
 	border: none;
-	padding: 12px 15px;
+	padding: 4px 4px;
 	margin: 8px 0;
 	width: 87%;
 	border-radius: 4px;
 }
-.container {
-    background-color: #212A3E;
+.container-fluid {
+    /* background-color: #212A3E; */
+    background-color: #5977B3;
     border-radius: 0px;
     box-shadow: 0 14px 28px #212A3E,
         0 10px 10px rgba(0, 0, 0, 0.993);
@@ -122,37 +127,37 @@ input {
 }
 
 
-.form-container {
-	position: absolute;
-	top: 0;
-	height: 100%;
-	transition: all 0.6s ease-in-out;
-	width: 100%;
-}
+/* .form-container { */
+/* 	position: absolute; */
+/* 	top: 0; */
+/* 	height: 100%; */
+/* 	transition: all 0.6s ease-in-out; */
+/* 	width: 100%; */
+/* } */
 
-.sign-in-container {
-	left: 0;
-	width: 50%;
-	z-index: 2;
-}
+/* .sign-in-container { */
+/* 	left: 0; */
+/* 	width: 50%; */
+/* 	z-index: 2; */
+/* } */
 
-.container.right-panel-active .sign-in-container {
-	transform: translateX(100%);
-}
+/* .container-fluid.right-panel-active .sign-in-container { */
+/* 	transform: translateX(100%); */
+/* } */
 
-.sign-up-container {
-	left: 0;
-	width: 50%;
-	opacity: 0;
-	z-index: 1;
-}
+/* .sign-up-container { */
+/* 	left: 50%; */
+/* 	width: 50%; */
+/* 	opacity: 1; */
+/* 	z-index: 1; */
+/* } */
 
-.container.right-panel-active .sign-up-container {
-	transform: translateX(100%);
-	opacity: 1;
-	z-index: 5;
-	animation: show 0.6s;
-}
+/* .container-fluid.right-panel-active .sign-up-container { */
+/* 	transform: translateX(100%); */
+/* 	opacity: 1; */
+/* 	z-index: 5; */
+/* 	animation: show 0.6s; */
+/* } */
 
 @keyframes show {
 	0%, 49.99% {
@@ -177,8 +182,35 @@ input {
 	z-index: 100;
 }
 
-.container.right-panel-active .overlay-container{
+.overlay-container2 {
+	position: absolute;
+	top: 50%;
+	left: 0%;
+	width: 100%;
+	height: 50%;
+	overflow: hidden;
+	transition: transform 0.6s ease-in-out;
+	z-index: 100;
+}
+
+.overlay-container3 {
+	position: absolute;
+	bottom: 50%;
+	left: 0%;
+	width: 100%;
+	height: 50%;
+	overflow: hidden;
+	transition: transform 0.6s ease-in-out;
+	z-index: 100;
+}
+
+
+.container-fluid.right-panel-active .overlay-container{
 	transform: translateX(-100%);
+}
+
+.container-fluid.up-panel-active .overlay-container2{
+	transform: translateY(-100%);
 }
 
 .overlay {
@@ -197,11 +229,68 @@ input {
 	transition: transform 0.6s ease-in-out;
 }
 
-.container.right-panel-active .overlay {
+.overlay2 {
+	background: #D5DFF0;
+	background: -webkit-linear-gradient(to right, #D5DFF0 , #D5DFF0 );
+	background: linear-gradient(to right, #D5DFF0 , #D5DFF0 );
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: #212A3E;
+	position: relative;
+	left: -100%;
+	height: 100%;
+	width: 200%;
+  transform: translateY(0);
+	transition: transform 0.s ease-in-out;
+}
+
+.overlay3 {
+	background: #D5DFF0;
+	background: -webkit-linear-gradient(to right, #D5DFF0 , #D5DFF0 );
+	background: linear-gradient(to right, #D5DFF0 , #D5DFF0 );
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: #212A3E;
+	position: relative;
+	left: 0%;
+	height: 100%;
+	width: 200%;
+  	transform: translateY(0);
+	transition: transform 0.2s ease-in-out;
+}
+
+.container-fluid.right-panel-active .overlay {
   	transform: translateX(50%);
 }
 
+.container-fluid.up-panel-active .overlay2 {
+  	transform: translateX(50%);
+    /* left: 0%; */
+}
+
+.container-fluid.up-panel-active .overlay3 {
+  	transform: translateY(100%);
+
+}
+
 .overlay-panel {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 40px;
+	text-align: center;
+	top: 0;
+	height: 100%;
+	width: 50%;
+	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.overlay-panel2 {
 	position: absolute;
 	display: flex;
 	align-items: center;
@@ -220,7 +309,12 @@ input {
 	transform: translateX(-20%);
 }
 
-.container.right-panel-active .overlay-left {
+.overlay-up {
+	transform: translateX(0%);
+  /* opacity: 0; */
+}
+
+.container-fluid.right-panel-active .overlay-left {
 	transform: translateX(0);
 }
 
@@ -258,6 +352,7 @@ input {
  margin:0 0 10px 0;
  padding:0;
  font-weight:normal;
+  font-size: 125%;
 }
 #pswd_info::before, #userName_info::before, #userEmail_info::before, #userCohorte_info::before {
  content: "\25B2";
