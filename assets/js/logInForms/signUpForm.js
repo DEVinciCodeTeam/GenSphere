@@ -1,46 +1,3 @@
-// $(function() {
-
-//   'use strict';
-
-//   var signUpForm = function() {
-
-//     if ($('#signUpForm').length > 0) {
-//       $("#signUpForm").validate({
-//         rules: {
-//           userName: {
-//             required: true,
-//             minlength: 5,
-//             maxlength: 30
-//           },
-//           userEmail: {
-//             required: true,
-//             email: true
-//           },
-//           userCohorte: {
-//             required: true,
-//             digits: true,
-//             minlength: 1,
-//             maxlength: 3
-//           },
-//           userPassword: {
-//             required: true,
-//             minlength: 8,
-//             maxlength: 25
-//           }
-//         },
-//         // messages: {
-//         //   userName: "Introduzca su nombre",
-//         //   userEmail: "Introduzca una dirección de correo electrónico válida",
-//         //   userCohorte: "Introduzca el numero de su corte",
-//         //   userPassword: "Su contraseña debe tener al menos una mayuscula, una"
-//         //     + "minuscula,\nun numero, un simbolo y debe tener al menos 8 caracteres."
-//         // },
-//       });
-//     }
-//   };
-//   signUpForm();
-
-// });
 $(document).ready(function() {
   // ---------------- Name ----------------------
   $('input[id=userName]').keyup(function() {
@@ -167,3 +124,48 @@ $(document).ready(function() {
     $('#pswd_info').hide();
   });
 });
+
+// $(function() {
+
+//   'use strict';
+
+//   var signUpForm = function() {
+
+//     if ($('#signUpForm').length > 0) {
+//       $("#signUpForm").validate({
+//         rules: {
+//           userName: {
+//             required: true,
+//             minlength: 5,
+//             maxlength: 30
+//           },
+//           userEmail: {
+//             required: true,
+//             email: true
+//           },
+//           userCohorte: {
+//             required: true,
+//             digits: true,
+//             minlength: 1,
+//             maxlength: 3
+//           },
+//           userPassword: {
+//             required: true,
+//             minlength: 8,
+//             maxlength: 25
+//           }
+//         },
+//         // messages: {
+//         //   userName: "Introduzca su nombre",
+//         //   userEmail: "Introduzca una dirección de correo electrónico válida",
+//         //   userCohorte: "Introduzca el numero de su corte",
+//         //   userPassword: "Su contraseña debe tener al menos una mayuscula, una"
+//         //     + "minuscula,\nun numero, un simbolo y debe tener al menos 8 caracteres."
+//         // },
+//       });
+//     }
+//   };
+//   signUpForm();
+
+// });
+

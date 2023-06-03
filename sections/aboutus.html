@@ -17,7 +17,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="../assets/css/aboutus.css" />
   <link rel="stylesheet" href="../assets/css/cards/cards.css">
-  <link rel="stylesheet" href="../assets/css/aboutus1.css">
+  <link rel="stylesheet" href="../assets/css/navbar.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" />
   <!-- Bootstrap icons CDN formulario -->
@@ -38,76 +38,41 @@
   <div class="container-fluid">
     <!-- Logo desktop -->
     <a class="navbar-brand d-none d-lg-block logo-GS" href="../index.html">
-      <img
-        src="../assets/img/logo/logo-blanco-horizontal.png"
-        width="180"
-        alt="Logo GenSphere"
-      />
+      <img src="../assets/img/logo/logo-blanco-horizontal.png" width="180" alt="Logo GenSphere" />
     </a>
     <!-- Logo mobile -->
     <a class="navbar-brand d-block d-lg-none" href="../index.html">
-      <img
-        src="../assets/img/logo/logoblanco.png"
-        width="40"
-        alt="Logo GenSphere"
-      />
+      <img src="../assets/img/logo/logoblanco.png" width="40" alt="Logo GenSphere" />
     </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div
-      class="collapse navbar-collapse navbar-links-custom"
-      id="navbarNav"
-    >
+    <div class="collapse navbar-collapse navbar-links-custom" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item mx-3">
-          <a
-            class="nav-link bi bi-house"
-            style="font-size: 1.8rem; color: var(--fondo1)"
-            href="../index.html"
-          ></a>
+          <a class="nav-link bi bi-house" style="font-size: 1.8rem; color: var(--fondo1)" href="../index.html"></a>
         </li>
         <li class="nav-item mx-3">
-          <a
-            class="nav-link bi bi-person-square"
-            style="font-size: 1.8rem; color: var(--fondo1)"
-            href="./perfiles.html"
-          ></a>
+          <a class="nav-link bi bi-person-square" style="font-size: 1.8rem; color: var(--fondo1)"
+            href="./perfilUsuario.html"></a>
         </li>
         <li class="nav-item mx-3">
-          <a
-            class="nav-link bi bi-chat-text active"
-            style="font-size: 1.8rem; color: var(--fondo1)"
-            href="./inbox.html"
-          ></a>
+          <a class="nav-link bi bi-chat-text active" style="font-size: 1.8rem; color: var(--fondo1)"
+            href="./inbox.html"></a>
         </li>
         <li class="nav-item mx-3">
-          <a
-            class="nav-link bi bi-question-square active"
-            style="font-size: 1.8rem; color: var(--fondo1)"
-            href="./aboutusT.html"
-          ></a>
+          <a class="nav-link bi bi-question-square active" style="font-size: 1.8rem; color: var(--fondo1)"
+            href="./aboutusT.html"></a>
         </li>
         <li class="nav-item mx-3">
-          <a
-            class="nav-link bi bi-box-arrow-left"
-            style="font-size: 1.8rem; color: var(--fondo1)"
-            href="./login.html"
-          ></a>
+          <a class="nav-link bi bi-box-arrow-left" style="font-size: 1.8rem; color: var(--fondo1)"
+            href="./login.html"></a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-
 <!-- Contenedores -->
 
 <body>
@@ -116,8 +81,8 @@
     <div class="row justify-content-center">
       <div class="col-lg-12 my-3">
         <div id="aboutUs" class="my-3">
-          <h2>Sobre Nosotros</h2>
-          <p>
+          <h1 style="font-size: 70px;">Sobre Nosotros</h1>
+          <p style=" text-align: justify; font-size: 20px;">
             ¡Bienvenidos! ¿Qué es GenSphere? GenSphere es tuyo, es tu espacio
             para interactuar con otros estudiantes actuales de GenerationMX
             con la esperanza de facilitar tu experiencia en el Bootcamp.
@@ -127,15 +92,15 @@
             continuación para obtener una referencia sobre el comportamiento
             adecuado.
           </p>
-          <p style="text-align: justify;">
+          <p style="text-align: justify; font-size: 20px;">
             ¿Quiénes somos? Somos DEVinciCode, dedicados a proporcionar
             herramientas que faciliten la experiencia de cada usuario. Unidos
             por nuestra experiencia mutua en GenerationMX, trabajamos juntos
             para proporcionar código de calidad para las necesidades de los
             demás.
           </p>
-          <p>Código de Conducta:</p>
-          <p style="text-align: justify;">
+          <h2>Código de Conducta:</h2>
+          <p style="text-align: justify; font-size: 20px;">
             En GenSphere, fomentamos un ambiente respetuoso y constructivo
             para todos los usuarios. Por favor, mantengan las discusiones
             relacionadas con el bootcamp y las herramientas para facilitar el
@@ -150,28 +115,71 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid" id="container-cards" style="background-color:#243049;">
+  <div class="container-fluid" id="container-cards" style="background-color: #243049;">
     <!-- Tarjetas nuevas -->
     <div class="row" style="width: 100%;">
-      <div class="col-12 col-xxl-6">
+      <div class="col-12 col-md-6 col-xl-4 col-xxl-3">
         <div class="wrap animate pop">
           <div class="overlay">
             <div class="overlay-content animate slide-left delay-2">
-              <h1 class="animate slide-left pop delay-4" style="margin-bottom: 0px;">Mario Rosas</h1>
-              <p class="animate slide-left pop delay-5" style="color: #243049; margin-bottom: 0rem;">FullStack
-                <em>Developer</em>
+              <h1 class="animate slide-left pop delay-4" id="aboutP" style="margin-bottom: 0px;">Gabriela <br> Peña</h1>
+              <p class="animate slide-left pop delay-5" id="aboutP" style="margin-bottom: 0rem;">FullStack
+                <br><em>Developer</em>
               </p>
-              <a href="https://github.com/walsergomez" class="btn-sm" target="_blank">
+              <a href="https://github.com/gabyansp" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/github.png" alt="My GitHub" />
               </a>
-              <a href="https://www.linkedin.com/in/nicolas-walser/" class="btn-sm" target="_blank">
+              <a href=" https://www.linkedin.com/in/gabriela-salazar-pe%C3%B1a-305609189/" class="btn-sm"
+                target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/linkedin.png" alt="My LinkedIn" />
               </a>
-              <a href="" class="btn-sm" target="_blank">
+              <a href="mailto://gabriela_salazar03@outlook.es" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/mail.png" alt="My Email" />
               </a>
             </div>
-            <div class="image-content animate slide delay-5"></div>
+            <div class="image-content animate slide delay-5"
+              style="background-image: url(../assets/img/integrantes/gaby.jpg);"></div>
+            <div class="dots animate">
+              <div class="dot animate slide-up delay-6"></div>
+              <div class="dot animate slide-up delay-7"></div>
+              <div class="dot animate slide-up delay-8"></div>
+            </div>
+          </div>
+          <div class="text">
+            <p style="font-size: 12pt;">
+              Hola soy Gabriela Peña, estudie la licenciatura en Arquitectura en el Instituto Tecnológico de Colima.
+              <br><br>
+              Siempre tuvo un gran interés por el diseño y la creación. Forge habilidades para visualizar espacios y
+              comprender la relación entre la forma y la función.
+              <br><br>
+              Decidí ampliar mis horizontes y explorar el mundo del diseño de experiencia de usuario, ademas de
+              lenguajes de programación como HTML, CSS, JavaScript, entre otros. Descubrí que con mi carrera y estos
+              nuevos aprendizajes me permitíria combinar el amor por el diseño estético con el deseo de crear soluciones
+              prácticas y funcionales para los usuarios.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-xl-4 col-xxl-3">
+        <div class="wrap animate pop">
+          <div class="overlay">
+            <div class="overlay-content animate slide-left delay-2">
+              <h1 class="animate slide-left pop delay-4" id="aboutP" style="margin-bottom: 0px;">
+                Mario <br />Rosas </h1>
+              <p class="animate slide-left pop delay-5" id="aboutP" style="margin-bottom: 0rem;">FullStack
+                <br><em>Developer</em>
+              </p> <a href="https://github.com/MarioROT" class="btn-sm" target="_blank">
+                <img style="width: 40px" src="../assets/img/logo/github.png" alt="My GitHub" />
+              </a>
+              <a href="https://www.linkedin.com/in/mario-rosas-otero-443726187/" class="btn-sm" target="_blank">
+                <img style="width: 40px" src="../assets/img/logo/linkedin.png" alt="My LinkedIn" />
+              </a>
+              <a href="mailto://mario.rosas.otero@gmail.com " class="btn-sm" target="_blank">
+                <img style="width: 40px" src="../assets/img/logo/mail.png" alt="My Email" />
+              </a>
+            </div>
+            <div class="image-content animate slide delay-5"
+              style="background-image: url(../assets/img/integrantes/mario.jpg);"></div>
             <div class="dots animate">
               <div class="dot animate slide-up delay-6"></div>
               <div class="dot animate slide-up delay-7"></div>
@@ -181,32 +189,40 @@
           <div class="text">
             <p style="font-size: 12pt;">Soy Mario Rosas Otero, estudié la licenciatura en Tecnología en la Universidad
               Nacional Autónoma de
-              México. Disfruto mucho programar, es una de mis pasiones. Algunos de mis principales intereses son las
-              Matemáticas Aplicadas, Inteligencia Artificial y Criptografía. He colaborado principalmente en grupos de
-              investigación desarrollando proyectos relacionados con mis intereses donde he publicado algunos artículos.
+              México.
+              <br><br>
+              Disfruto mucho programar, es una de mis pasiones. Algunos de mis principales intereses son las Matemáticas
+              Aplicadas, Inteligencia Artificial y Criptografía.
+              <br><br>
+              He colaborado principalmente en grupos de investigación desarrollando proyectos relacionados con mis
+              intereses donde he publicado algunos artículos.
+              <br><br>
+              También soy miembro voluntario de la junta ejecutiva de RIIAA una conferencia internacional centrada en
+              catalizar el ecosistema de IA en LATAM.
             </p>
           </div>
         </div>
       </div>
-      <div class="col-12 col-xxl-6">
+      <div class="col-12 col-md-6 col-xl-4 col-xxl-3">
         <div class="wrap animate pop">
           <div class="overlay">
             <div class="overlay-content animate slide-left delay-2">
-              <h1 class="animate slide-left pop delay-4">Mario Rosas</h1>
-              <p class="animate slide-left pop delay-5" style="color: #243049; margin-bottom: 0rem;">FullStack
-                <em>Developer</em>
+              <h1 class="animate slide-left pop delay-4" id="aboutP" style="margin-bottom: 0px;">Andrea <br>Aguilar</h1>
+              <p class="animate slide-left pop delay-5" id="aboutP" style="margin-bottom: 0rem;">FullStack
+                <br><em>Developer</em>
               </p>
-              <a href="https://github.com/walsergomez" class="btn-sm" target="_blank">
+              <a href="https://github.com/andrealar30" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/github.png" alt="My GitHub" />
               </a>
-              <a href="https://www.linkedin.com/in/nicolas-walser/" class="btn-sm" target="_blank">
+              <a href="https://www.linkedin.com/in/andrea-aguilar-836034272/" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/linkedin.png" alt="My LinkedIn" />
               </a>
-              <a href="" class="btn-sm" target="_blank">
+              <a href="mailto://dreaguilar098@gmail.com" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/mail.png" alt="My Email" />
               </a>
             </div>
-            <div class="image-content animate slide delay-5"></div>
+            <div class="image-content animate slide delay-5"
+              style="background-image: url(../assets/img/integrantes/andrea.jpg);"></div>
             <div class="dots animate">
               <div class="dot animate slide-up delay-6"></div>
               <div class="dot animate slide-up delay-7"></div>
@@ -214,23 +230,28 @@
             </div>
           </div>
           <div class="text">
-            <p>Soy Mario Rosas Otero, estudié la licenciatura en Tecnología en la Universidad Nacional Autónoma de
-              México. Disfruto mucho programar, es una de mis pasiones. Algunos de mis principales intereses son las
-              Matemáticas Aplicadas, Inteligencia Artificial y Criptografía. He colaborado principalmente en grupos de
-              investigación desarrollando proyectos relacionados con mis intereses donde he publicado algunos artículos.
+            <p style="font-size: 12pt;">
+              Como egresada de la licenciatura en Física, tengo un gran interés en seguir aprendiendo y explorando
+              nuevos temas.
+              <br><br>
+              Recientemente he descubierto una gran pasión por el desarrollo web de igual manera también disfruto mucho
+              enseñar, he sido maestra por 3 años lo cual me brinda una ventaja al explicar temas complejos de manera
+              sencilla, aplicando herramientas de programación.
+              <br><br>
+              Actualmente, me encuentro en proceso de formación para ser JavaFullStack en Generation México. Fue gracias
+              a este bootcamp y al esfuerzo de todo nuestro trabajo en equipo que podemos presentarles esta gran
+              plataforma llamada GenSphere.
             </p>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-12 col-xxl-6">
+      <div class="col-12 col-md-6 col-xl-4 col-xxl-3">
         <div class="wrap animate pop">
           <div class="overlay">
             <div class="overlay-content animate slide-left delay-2">
-              <h1 class="animate slide-left pop delay-4">Mario Rosas</h1>
-              <p class="animate slide-left pop delay-5" style="color: #243049; margin-bottom: 0rem;">FullStack
-                <em>Developer</em>
+              <h1 class="animate slide-left pop delay-4" id="aboutP" style="margin-bottom: 0px;">Nicolás <br>Walser</h1>
+              <p class="animate slide-left pop delay-5" id="aboutP" style="margin-bottom: 0rem;">FullStack
+                <br> <em>Developer</em>
               </p>
               <a href="https://github.com/walsergomez" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/github.png" alt="My GitHub" />
@@ -238,11 +259,12 @@
               <a href="https://www.linkedin.com/in/nicolas-walser/" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/linkedin.png" alt="My LinkedIn" />
               </a>
-              <a href="" class="btn-sm" target="_blank">
+              <a href="mailto://nicolaswalser@protonmail.ch" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/mail.png" alt="My Email" />
               </a>
             </div>
-            <div class="image-content animate slide delay-5"></div>
+            <div class="image-content animate slide delay-5"
+              style="background-image: url(../assets/img/integrantes/nicolas.jpg);"></div>
             <div class="dots animate">
               <div class="dot animate slide-up delay-6"></div>
               <div class="dot animate slide-up delay-7"></div>
@@ -250,33 +272,35 @@
             </div>
           </div>
           <div class="text">
-            <p>Soy Mario Rosas Otero, estudié la licenciatura en Tecnología en la Universidad Nacional Autónoma de
-              México. Disfruto mucho programar, es una de mis pasiones. Algunos de mis principales intereses son las
-              Matemáticas Aplicadas, Inteligencia Artificial y Criptografía. He colaborado principalmente en grupos de
-              investigación desarrollando proyectos relacionados con mis intereses donde he publicado algunos artículos.
+            <p style="font-size: 12pt;">¡Hola! Mi nombre es Nicolás y soy un apasionado de la música y la naturaleza.
+              Junto con mi equipo,
+              estamos emocionados de presentar nuestro primer proyecto de desarrollo web. Este proyecto representa una
+              oportunidad para aprender y crecer en el campo del desarrollo web, y para expresar mi instinto creativo y
+              mi ambición profesional. ¡Bienvenidos!
             </p>
           </div>
         </div>
       </div>
-      <div class="col-12 col-xxl-6">
+      <div class="col-12 col-md-6 col-xl-4 col-xxl-3">
         <div class="wrap animate pop">
           <div class="overlay">
             <div class="overlay-content animate slide-left delay-2">
-              <h1 class="animate slide-left pop delay-4">Mario Rosas</h1>
-              <p class="animate slide-left pop delay-5" style="color: #243049; margin-bottom: 0rem;">FullStack
-                <em>Developer</em>
+              <h1 class="animate slide-left pop delay-4" id="aboutP" style="margin-bottom: 0px;">Erick <br> Ortiz</h1>
+              <p class="animate slide-left pop delay-5" id="aboutP" style="margin-bottom: 0rem;">FullStack
+                <br><em>Developer</em>
               </p>
-              <a href="https://github.com/walsergomez" class="btn-sm" target="_blank">
+              <a href="https://github.com/ErickOrtiz0298" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/github.png" alt="My GitHub" />
               </a>
-              <a href="https://www.linkedin.com/in/nicolas-walser/" class="btn-sm" target="_blank">
+              <a href="https://www.linkedin.com/in/erick-ivan-ortiz-gasca-76a098162/" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/linkedin.png" alt="My LinkedIn" />
               </a>
-              <a href="" class="btn-sm" target="_blank">
+              <a href="mailto://erickortiz9814@gmail.com" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/mail.png" alt="My Email" />
               </a>
             </div>
-            <div class="image-content animate slide delay-5"></div>
+            <div class="image-content animate slide delay-5"
+              style="background-image: url(../assets/img/integrantes/erick.jpg);"></div>
             <div class="dots animate">
               <div class="dot animate slide-up delay-6"></div>
               <div class="dot animate slide-up delay-7"></div>
@@ -284,35 +308,34 @@
             </div>
           </div>
           <div class="text">
-            <p>Soy Mario Rosas Otero, estudié la licenciatura en Tecnología en la Universidad Nacional Autónoma de
-              México. Disfruto mucho programar, es una de mis pasiones. Algunos de mis principales intereses son las
-              Matemáticas Aplicadas, Inteligencia Artificial y Criptografía. He colaborado principalmente en grupos de
-              investigación desarrollando proyectos relacionados con mis intereses donde he publicado algunos artículos.
+            <p style="font-size: 12pt;">Desarrollador Java. Soy una persona que ama estar al tanto de los avances en
+              tecnología. Esta pasión por
+              aprender nuevas cosas no solo me mantiene entretenido, sino que también me ha permitido desarrollar junto
+              con mi equipo de trabajo GenSphere!
             </p>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-12 col-xxl-6">
+      <div class="col-12 col-md-6 col-xl-4 col-xxl-3">
         <div class="wrap animate pop">
           <div class="overlay">
             <div class="overlay-content animate slide-left delay-2">
-              <h1 class="animate slide-left pop delay-4">Mario Rosas</h1>
-              <p class="animate slide-left pop delay-5" style="color: #243049; margin-bottom: 0rem;">FullStack
-                <em>Developer</em>
+              <h1 class="animate slide-left pop delay-4" id="aboutP" style="margin-bottom: 0px;">Mayra <br> Lepro</h1>
+              <p class="animate slide-left pop delay-5" id="aboutP" style="margin-bottom: 0rem;">FullStack
+                <br> <em>Developer</em>
               </p>
-              <a href="https://github.com/walsergomez" class="btn-sm" target="_blank">
+              <a href="https://github.com/mayralepro" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/github.png" alt="My GitHub" />
               </a>
-              <a href="https://www.linkedin.com/in/nicolas-walser/" class="btn-sm" target="_blank">
+              <a href="https://www.linkedin.com/in/mayralep/" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/linkedin.png" alt="My LinkedIn" />
               </a>
-              <a href="" class="btn-sm" target="_blank">
+              <a href="mailto://mayralepro@gmail.com" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/mail.png" alt="My Email" />
               </a>
             </div>
-            <div class="image-content animate slide delay-5"></div>
+            <div class="image-content animate slide delay-5"
+              style="background-image: url(../assets/img/integrantes/mayra.jpg);"></div>
             <div class="dots animate">
               <div class="dot animate slide-up delay-6"></div>
               <div class="dot animate slide-up delay-7"></div>
@@ -320,33 +343,35 @@
             </div>
           </div>
           <div class="text">
-            <p>Soy Mario Rosas Otero, estudié la licenciatura en Tecnología en la Universidad Nacional Autónoma de
-              México. Disfruto mucho programar, es una de mis pasiones. Algunos de mis principales intereses son las
-              Matemáticas Aplicadas, Inteligencia Artificial y Criptografía. He colaborado principalmente en grupos de
-              investigación desarrollando proyectos relacionados con mis intereses donde he publicado algunos artículos.
+            <p style="font-size: 12pt;">Soy una apasionada compositora con más de 6 años de experiencia. También tengo
+              un fuerte interés en la
+              tecnología y poseo habilidades competentes en el desarrollo front-end. Al combinar estos talentos, ofrezco
+              soluciones innovadoras que maximizan los proyectos.
             </p>
           </div>
         </div>
       </div>
-      <div class="col-12 col-xxl-6">
+      <div class="col-12 col-md-6 col-xl-4 col-xxl-3">
         <div class="wrap animate pop">
           <div class="overlay">
             <div class="overlay-content animate slide-left delay-2">
-              <h1 class="animate slide-left pop delay-4">Mario Rosas</h1>
-              <p class="animate slide-left pop delay-5" style="color: #243049; margin-bottom: 0rem;">FullStack
-                <em>Developer</em>
+              <h1 class="animate slide-left pop delay-4" id="aboutP" style="margin-bottom: 0px;">Alejandro <br> Gómez
+              </h1>
+              <p class="animate slide-left pop delay-5" id="aboutP" style="margin-bottom: 0rem;">FullStack
+                <br> <em>Developer</em>
               </p>
-              <a href="https://github.com/walsergomez" class="btn-sm" target="_blank">
+              <a href="https://github.com/AlexGomezCota" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/github.png" alt="My GitHub" />
               </a>
-              <a href="https://www.linkedin.com/in/nicolas-walser/" class="btn-sm" target="_blank">
+              <a href="https://www.linkedin.com/in/jos%C3%A9-g%C3%B3mez-cota-4525a5136/" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/linkedin.png" alt="My LinkedIn" />
               </a>
-              <a href="" class="btn-sm" target="_blank">
+              <a href="mailto://alejandrogomezcota@gmail.com" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/mail.png" alt="My Email" />
               </a>
             </div>
-            <div class="image-content animate slide delay-5"></div>
+            <div class="image-content animate slide delay-5"
+              style="background-image: url(../assets/img/integrantes/alex.jpg);"></div>
             <div class="dots animate">
               <div class="dot animate slide-up delay-6"></div>
               <div class="dot animate slide-up delay-7"></div>
@@ -354,35 +379,36 @@
             </div>
           </div>
           <div class="text">
-            <p>Soy Mario Rosas Otero, estudié la licenciatura en Tecnología en la Universidad Nacional Autónoma de
-              México. Disfruto mucho programar, es una de mis pasiones. Algunos de mis principales intereses son las
-              Matemáticas Aplicadas, Inteligencia Artificial y Criptografía. He colaborado principalmente en grupos de
-              investigación desarrollando proyectos relacionados con mis intereses donde he publicado algunos artículos.
+            <p style="font-size: 12pt;">
+              ¡Qué tal! Yo soy Alex, soy psicólogo de formación y ahora me dedico al mundo de IT y desarrollo. <br> <br>
+              Les presentamos nuestra red social GenSphere donde conectaremos a lxs alumnxs y ex alumnxs de Generation
+              México para formar una comunidad de apoyo mutuo.
+              <br><br>
+              Pásala bien!
             </p>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-12 col-xxl-6">
+      <div class="col-12 col-md-6 col-xl-4 col-xxl-3">
         <div class="wrap animate pop">
           <div class="overlay">
             <div class="overlay-content animate slide-left delay-2">
-              <h1 class="animate slide-left pop delay-4">Mario Rosas</h1>
-              <p class="animate slide-left pop delay-5" style="color: #243049; margin-bottom: 0rem;">FullStack
-                <em>Developer</em>
+              <h1 class="animate slide-left pop delay-4" id="aboutP" style="margin-bottom: 0px;">Mariana <br> Ruíz </h1>
+              <p class="animate slide-left pop delay-5" id="aboutP" style="margin-bottom: 0rem;">FullStack
+                <br> <em>Developer</em>
               </p>
-              <a href="https://github.com/walsergomez" class="btn-sm" target="_blank">
+              <a href="https://github.com/marianarui" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/github.png" alt="My GitHub" />
               </a>
-              <a href="https://www.linkedin.com/in/nicolas-walser/" class="btn-sm" target="_blank">
+              <a href="https://www.linkedin.com/in/mariana-ruiz-g-593277272/" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/linkedin.png" alt="My LinkedIn" />
               </a>
-              <a href="" class="btn-sm" target="_blank">
+              <a href="mailto://mariana.4ruiz8@gmail.com" class="btn-sm" target="_blank">
                 <img style="width: 40px" src="../assets/img/logo/mail.png" alt="My Email" />
               </a>
             </div>
-            <div class="image-content animate slide delay-5"></div>
+            <div class="image-content animate slide delay-5"
+              style="background-image: url(../assets/img/integrantes/mariana.jpg);"></div>
             <div class="dots animate">
               <div class="dot animate slide-up delay-6"></div>
               <div class="dot animate slide-up delay-7"></div>
@@ -390,45 +416,10 @@
             </div>
           </div>
           <div class="text">
-            <p>Soy Mario Rosas Otero, estudié la licenciatura en Tecnología en la Universidad Nacional Autónoma de
-              México. Disfruto mucho programar, es una de mis pasiones. Algunos de mis principales intereses son las
-              Matemáticas Aplicadas, Inteligencia Artificial y Criptografía. He colaborado principalmente en grupos de
-              investigación desarrollando proyectos relacionados con mis intereses donde he publicado algunos artículos.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-xxl-6">
-        <div class="wrap animate pop">
-          <div class="overlay">
-            <div class="overlay-content animate slide-left delay-2">
-              <h1 class="animate slide-left pop delay-4">Mario Rosas</h1>
-              <p class="animate slide-left pop delay-5" style="color: #243049; margin-bottom: 0rem;">FullStack
-                <em>Developer</em>
-              </p>
-              <a href="https://github.com/walsergomez" class="btn-sm" target="_blank">
-                <img style="width: 40px" src="../assets/img/logo/github.png" alt="My GitHub" />
-              </a>
-              <a href="https://www.linkedin.com/in/nicolas-walser/" class="btn-sm" target="_blank">
-                <img style="width: 40px" src="../assets/img/logo/linkedin.png" alt="My LinkedIn" />
-              </a>
-              <a href="" class="btn-sm" target="_blank">
-                <img style="width: 40px" src="../assets/img/logo/mail.png" alt="My Email" />
-              </a>
-            </div>
-            <div class="image-content animate slide delay-5"></div>
-            <div class="dots animate">
-              <div class="dot animate slide-up delay-6"></div>
-              <div class="dot animate slide-up delay-7"></div>
-              <div class="dot animate slide-up delay-8"></div>
-            </div>
-          </div>
-          <div class="text">
-            <p>Soy Mario Rosas Otero, estudié la licenciatura en Tecnología en la Universidad Nacional Autónoma de
-              México. Disfruto mucho programar, es una de mis pasiones. Algunos de mis principales intereses son las
-              Matemáticas Aplicadas, Inteligencia Artificial y Criptografía. He colaborado principalmente en grupos de
-              investigación desarrollando proyectos relacionados con mis intereses donde he publicado algunos artículos.
-            </p>
+            <p style="font-size: 12pt;">Soy Mariana, me encanta la música y el ayudar a los demás. El mundo de la
+              tecnología en un nuevo
+              reto para mí pero es todo un compromiso conmigo misma para seguir en constante búsqueda de
+              conocimientos para seguir aprendiendo y crecimiento en este campo fascinante. </p>
           </div>
         </div>
       </div>
@@ -488,11 +479,10 @@
         <div class="col-md-4" style="padding: 0px;">
           <div class="contact-info h-100">
             <h3>Información de Contacto</h3>
-            <p class="mb-5" style="text-align: justify;">DEVinciCode somos un equipo de desarrolladores formado
-              gracias a GenerationMX.
-              Para contactarnos, puedes dejarnos un mensaje en el formulario disponible, o escribirnos a traves
-              de nuestras redes sociales personales que aparecen en las tarjetas de contacto en la parte
-              superior.
+            <p class="mb-5" style="text-align: justify; font-size: 110%;">DEVinciCode somos un equipo de
+              desarrolladores formado gracias a GenerationMX. Para contactarnos, puedes dejarnos un mensaje en el
+              formulario disponible, o escribirnos a traves de nuestras redes sociales personales que aparecen en
+              las tarjetas de contacto en la parte superior.
             </p>
             <ul class="text-center" style="list-style-type: none">
               <li>
@@ -510,14 +500,18 @@
       </div>
     </div>
   </div>
-  <!-- </div> -->
 
   <!-- Scripts -->
-  <!-- <script src="../assets/js/forms/jquery-3.3.1.min.js"></script> -->
-  <!-- <script src="../assets/js/forms/popper.min.js"></script> -->
-  <!-- <script src="../assets/js/forms/bootstrap.min.js"></script> -->
   <script src="../assets/js/forms/jquery.validate.min.js"></script>
   <script src="../assets/js/forms/main.js"></script>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+    integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+    integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+    crossorigin="anonymous"></script>
+
 </body>
 
 </html>
