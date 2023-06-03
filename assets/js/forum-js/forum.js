@@ -1,5 +1,5 @@
 // Objeto que almacena todos los objetos de datos creados dentro de las funciones
-let allData = { id: "Semana2", postData: [] };
+let allData = { id: "Semana1", postData: [] };
 
 // Counter variables
 let postDataIdCounter = 1;
