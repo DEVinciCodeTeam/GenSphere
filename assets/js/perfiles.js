@@ -1,46 +1,43 @@
 /*-------------- Reading elements ----------------*/
-const userName = document.getElementById("userName");
-const editUserName = document.getElementById("editUserName");
-const editUserNameInput = document.getElementById("editUserNameInput");
-const userCohorte = document.getElementById("cohorteNum");
-const userDescription = document.getElementById("userDescrition");
-const userExperience = document.getElementById("userExperience");
-const userGithub = document.getElementById("userGithub");
-const userLinkedIn = document.getElementById("userLinkedIn");
-const userEmail = document.getElementById("userEmail");
-const userJoinedDate = document.getElementById("userJoinedDate");
-const userPostCardsTitle = document.getElementsByClassName("user-post-title");
-const userPostCardsImg = document.getElementsByClassName("user-post-img");
-/*-----------------------------------------------*/
+function changeHtmlElementsPropById (id, value, prop, testvalue = "none"){
 
+  const element = document.getElementById(id)
+  if (testvalue == "none" ) {
+    if(element != null || value == "undefined"){
+      element[prop]= value;
+   }
+  } else {
+    if(element[prop] != testvalue ){
+      if(element != null || value == "undefined"){
+        element[prop]= value;
+     }
+    }
+  }
+} 
 const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
-userName.innerHTML = currentUser.userName;
-/* editUserName.innerHTML = currentUser.userName; */
-userCohorte.innerHTML = currentUser.userCohorte;
-userEmail['href'] += currentUser.userEmail;
-console.log(currentUser['userEmail'])
+changeHtmlElementsPropById("userName",currentUser.userName, "innerHTML");
+changeHtmlElementsPropById("editUserName",currentUser.userName, "innerHTML");
+changeHtmlElementsPropById("editUserNameInput",currentUser.userName, "value");
+changeHtmlElementsPropById("cohorteNum",currentUser.userCohorte, "innerHTML");
+changeHtmlElementsPropById("aboutUser",currentUser.aboutUser, "innerHTML", "Una breve descripción de ti");
+changeHtmlElementsPropById("experienceUser",currentUser.experienceUser, "innerHTML","Cuentanos de tu experiencia");
+changeHtmlElementsPropById("userGithub",currentUser.userGithub, "href");
+changeHtmlElementsPropById("userLinkedIn",currentUser.userLinkedIn, "href");
+changeHtmlElementsPropById("userEmail",currentUser.userEmail, "href");
+changeHtmlElementsPropById("userJoinedDate","Se unió en " + currentUser.userJoinedDate, "innerHTML");
 
-if ( editUserName != null ){
-  editUserName.innerHTML = currentUser.userName;
-}
+function changeHtmlElementsPropByClass (clase, value, prop){
+  const element = document.getElementsByClassName(clase)
+  if(element != null){
+    for( const subElement of element){
+      subElement[prop]= value;
+    }
+  }
+} 
 
-if ( editUserNameInput != null ){
-  editUserNameInput.innerHTML = currentUser.userName;
-}
-
-for (const postCard of userPostCardsTitle) {
-  postCard.innerHTML = currentUser.userName;
-}
-
-for (const postImg of userPostCardsImg) {
-  postImg.src = "../../" + currentUser.userProfilePicture;
-}
-
-const userJoinDate = new Date();
-
-console.log(userJoinDate.toJSON().slice(0, 10));
-
+changeHtmlElementsPropByClass("user-post-title", currentUser.userName,"innerHTML");
+changeHtmlElementsPropByClass("user-post-img", "../../" + currentUser.userProfilePicture,"src");
 
 const img = document.querySelector('#photo');
 const file = document.querySelector('#file');
