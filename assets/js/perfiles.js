@@ -39,6 +39,20 @@ function changeHtmlElementsPropByClass (clase, value, prop){
 changeHtmlElementsPropByClass("user-post-title", currentUser.userName,"innerHTML");
 changeHtmlElementsPropByClass("user-post-img", "../../" + currentUser.userProfilePicture,"src");
 
+// ------------------------------------------------
+function getBase64Image(img) {
+  var canvas = document.createElement("canvas");
+  canvas.width = img.width;
+  canvas.height = img.height;
+
+  var ctx = canvas.getContext("2d");
+  ctx.drawImage(img, 0, 0);
+
+  var dataURL = canvas.toDataURL("image/png");
+
+  return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+}
+
 const img = document.querySelector('#photo');
 const file = document.querySelector('#file');
 
@@ -49,8 +63,9 @@ file.addEventListener('change', function() {
     reader.addEventListener('load', function() {
       img.setAttribute('src', reader.result);
     });
-    reader.readAsDataURL(chosenFile);
+    console.log(getBase64Image(img))
   }
 });
 
+// --------------------------------------------
 
