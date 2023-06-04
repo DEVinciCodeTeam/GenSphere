@@ -1,3 +1,4 @@
+
 // Objeto que almacena todos los objetos de datos creados dentro de las funciones
 let generalUsersCount = 0;
 let usersCountByCohorte = {};
@@ -15,6 +16,37 @@ removeMessage("incomplitedFields");
 removeMessage("wrongPassword");
 removeMessage("repeatedEmail");
 removeMessage("singUpSuccesful");
+
+function transformDates(date) {
+  const dateArray = date.split("-")
+  console.log(dateArray)
+  daysToString = {
+    "01": "Lunes",
+    "02": "Martes",
+    "03": "Miércoles",
+    "04": "Jueves",
+    "05": "Viernes",
+    "06": "Sábado",
+    "07": "Domingo"
+  }
+  monthsToString = {
+    "01": "Enero",
+    "02": "Febrero",
+    "03": "Marzo",
+    "04": "Abril",
+    "05": "Mayo",
+    "06": "Junio",
+    "07": "Julio",
+    "08": "Agosto",
+    "09": "Septiembre",
+    "10": "Octubre",
+    "11": "Noviembre",
+    "12": "Diciembre",
+  }
+  return (monthsToString[dateArray[1]] + ", " + dateArray[0])
+
+}
+
 let allUsers = JSON.parse(localStorage.getItem("allUsers"));
 
 if (allUsers == null) {
@@ -43,6 +75,10 @@ signUpForm.onsubmit = function(e) {
       if (!usersCountByCohorte[getUserCohorte]) {
         usersCountByCohorte[getUserCohorte] = 0
       }
+      const userJoinDate = new Date();
+      console.log(userJoinDate.toJSON().slice(0, 10));
+      transformDates(userJoinDate.toJSON().slice(0, 10));
+      console.log(transformDates(userJoinDate.toJSON().slice(0, 10)))
 
       allUsers[getUserEmail] = {
         userId: generalUsersCount++,
@@ -50,7 +86,9 @@ signUpForm.onsubmit = function(e) {
         userName: getUserName,
         userEmail: getUserEmail,
         userCohorte: getUserCohorte,
-        userPassword: getUserPassword
+        userPassword: getUserPassword,
+        userProfilePicture: "../../assets/img/logo/genspherePP2.png",
+        userJoinedDate: transformDates(userJoinDate.toJSON().slice(0, 10))
       }
       localStorage.setItem("allUsers", JSON.stringify(allUsers))
       restoreMessage("singUpSuccesful");
@@ -104,7 +142,6 @@ signInForm.onsubmit = function(e) {
   }
 
 }
-
 
 
 

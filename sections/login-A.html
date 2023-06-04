@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GenSphere</title>
+  <link rel="stylesheet" href="../assets/css/login.css">
+  <link rel="stylesheet" href="../assets/css/forms/style.css">
+  <link rel="icon" href="../img/logonegro.ico">
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+  <script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+</head>
+<body>
+  <div class="container" id="container"style="background-color:rgb(42, 165, 69);">
+    <div class="form-container sign-up-container">
+      <form id="signUpForm" action="#" method="GET" style="background-color: yellow;">
+        <h1>Crea tu cuenta</h1>
+        <div class="row" id="incomplitedFields">
+          <div class="col-sm-12">
+            <div
+              class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
+              role="alert" data-brk-library="component__alert">
+              <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+              
+               Porfavor, completa todos los campos
+            </div>
+          </div>
+        </div>
+        <div class="userNameContainer">
+          <label for="userName"></label>
+          <input name="userName" type="text" id="userName" placeholder="Nombre" />
+          <div id="userName_info">
+            <h4>El nombre debe cumplir los siguientes requerimientos:</h4>
+            <ul>
+              <li id="onlyLetters" class="invalid">Únicamente <strong>letras</strong></li>
+              <li id="lengthUN" class="invalid">Tener al menos <strong>5 caracteres</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row" id="repeatedEmail">
+          <div class="col-sm-12">
+            <div
+              class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
+              role="alert" data-brk-library="component__alert">
+              <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+              Esta cuenta de correo ya ha sido registrada previamente.
+            </div>
+          </div>
+        </div>
+        <div class="userEmailContainer">
+          <label for="userEmail"></label>
+          <input name="userEmail" type="email" id="userEmail" placeholder="Correo electronico" />
+          <div id="userEmail_info">
+            <h4>El email debe cumplir los siguientes requerimientos:</h4>
+            <ul>
+              <li id="noSpaces" class="invalid">No contener <strong>espacios</strong></li>
+              <li id="at" class="invalid">Contener un <strong>@</strong></li>
+              <li id="dot" class="invalid">Contener extencion con <strong>punto</strong></li>
+              <li id="format" class="invalid">Tener el formato: <strong>correo@ejemplo.com</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="userCohorteContainer">
+          <label for="userCohorte"></label>
+          <input name="userCohorte" type="text" id="userCohorte" placeholder="Cohorte" />
+          <div id="userCohorte_info">
+            <h4>El numero de cohorte debe cumplir con:</h4>
+            <ul>
+              <li id="onlyDigits" class="invalid">Solo contener <strong>digitos</strong></li>
+              <li id="charNum" class="invalid">Contener máximo <strong>3 caracteres</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="userPasswordContainer">
+          <label for="userPassword"></label>
+          <input name="userPassword" type="password" id="userPassword" placeholder="Contraseña" />
+          <div id="pswd_info">
+            <h4>La contraseña debe cumplir los siguientes requerimientos:</h4>
+            <ul>
+              <li id="letter" class="invalid">Al menos <strong>una minúscula</strong></li>
+              <li id="capital" class="invalid">Al menos <strong>una mayúscula</strong></li>
+              <li id="number" class="invalid">Al menos <strong>un número</strong></li>
+              <li id="length" class="invalid">Tener al menos <strong>8 caracteres</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row" id="singUpSuccesful">
+          <div class="col-sm-12">
+            <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
+              <i class="start-icon far fa-check-circle faa-tada animated"></i>
+              Felicidades ya eres parte de GenSphere, inicia sesión. 
+            </div>
+          </div>
+        </div>
+        <br>
+        <button type="submit" id="signUpButton">Regístrate</button>
+      </form>
+    </div>
+    <div class="form-container sign-in-container" id="signInFormContainer">
+      <form id="signInForm" action="#" method="GET" style="background-color:brown;">
+        <h1>Inicia sesión</h1>
+        <div class="row" id="unregisteredEmail">
+          <div class="col-sm-12">
+            <div
+              class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
+              role="alert" data-brk-library="component__alert">
+              <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+              
+              <strong class="font__weight-semibold">El correo no esta registrado</strong>, por favor crea una cuenta en
+              GenSphere.
+            </div>
+          </div>
+        </div>
+        <input type="text" id="userEmailLogin" placeholder="Correo Electrónico" required="required" />
+        <div class="row" id="wrongPassword">
+          <div class="col-sm-12">
+            <div
+              class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
+              role="alert" data-brk-library="component__alert">
+              <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+              La contraseña <strong class="font__weight-semibold">no coincide con el correo que ingresaste.</strong>.
+            </div>
+          </div>
+        </div>
+
+        <input type="password" id="userPasswordLogin" placeholder="Contraseña" required="required" />
+        <a href="./contraseña/contraseña.html">Olvidé mi contraseña</a>
+        <button type="submit" id="signInButton">Iniciar</button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left" style="background-color: rgb(204, 0, 255); ">
+          <h1><img src="../assets/img/logo/logo-negro-horizontal.png" alt="logo"><br>¡Hola de nuevo!</h1>
+          <p>Por favor, inicia sesión para acceder a tu cuenta</p>
+          <button class="ghost" id="iniciar">Iniciar</button>
+        </div>
+        <div class="overlay-panel overlay-right" style="background-color: aqua; " >
+          <h1><img src="../assets/img/logo/logo-negro-horizontal.png" alt="logo"><br>¡Hola!</h1>
+          <p>¿No tienes cuenta aún? <br>
+            Regístrate ahora para poder acceder a nuestra comunidad.</p>
+          <button class="ghost" id="registrar">Regístrarse</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script src="../assets/js/forms/jquery.validate.min.js"></script> -->
+  <script src="../assets/js/login.js"></script>
+  <script src="../assets/js/logInForms/signUpForm.js"></script>
+  <script src="../assets/js/users/users.js"></script>
+
+</body>
+
+</html>
