@@ -1,5 +1,7 @@
 /*-------------- Reading elements ----------------*/
 const userName = document.getElementById("userName");
+const editUserName = document.getElementById("editUserName");
+const editUserNameInput = document.getElementById("editUserNameInput");
 const userCohorte = document.getElementById("cohorteNum");
 const userDescription = document.getElementById("userDescrition");
 const userExperience = document.getElementById("userExperience");
@@ -14,9 +16,18 @@ const userPostCardsImg = document.getElementsByClassName("user-post-img");
 const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
 userName.innerHTML = currentUser.userName;
+/* editUserName.innerHTML = currentUser.userName; */
 userCohorte.innerHTML = currentUser.userCohorte;
 userEmail['href'] += currentUser.userEmail;
 console.log(currentUser['userEmail'])
+
+if ( editUserName != null ){
+  editUserName.innerHTML = currentUser.userName;
+}
+
+if ( editUserNameInput != null ){
+  editUserNameInput.innerHTML = currentUser.userName;
+}
 
 for (const postCard of userPostCardsTitle) {
   postCard.innerHTML = currentUser.userName;
