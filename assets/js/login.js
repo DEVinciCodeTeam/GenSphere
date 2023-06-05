@@ -67,3 +67,12 @@ function showPassword(){
       tipo.type = "password";
   }
 }
+
+function userPasswordLog(){
+  const tipo = document.getElementById("userPasswordLogin");
+  if(tipo.type == "password"){
+      tipo.type = "text";
+  }else{
+      tipo.type = "password";
+  }
+}
