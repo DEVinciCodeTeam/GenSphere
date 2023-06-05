@@ -150,7 +150,9 @@
         </div>
 
         <!------------------------------------------------ Editable -------------------------------------------------------------------->
+        
         <div id="container-edit" class="col-lg-8" style="background-color: #d5dff0; padding-left: 2%;">
+          <form id="profileEditForm" action="#" method="GET">
           <div class="p-3 py-5">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <div class="row">
@@ -171,9 +173,9 @@
               <!--     value="" placeholder=""></div> -->
               <div class="col-md-6">
                 <label class="labels">Edad</label>
-                <input type="number" class="form-control" placeholder="Tu edad" min="18" max="80" value="">
+                <input id="userAgeInput" type="number" class="form-control" placeholder="Tu edad" value="">
               </div>
-              <div class="col-md-6"><label class="labels">Ubicación</label><input type="text" class="form-control"
+              <div class="col-md-6"><label class="labels">Ubicación</label><input id="userLocationInput" type="text" class="form-control"
                   value="" placeholder="Tu ubicacion"></div>
               <div class="col-md-6">
                 <label class="labels" id="editUserCohorteLabel">Cohorte</label>
@@ -185,23 +187,23 @@
               <!-- </div> -->
             </div>
             <div class="row mt-3">
-              <div class="col-md-12"><label class="labels">Acerca de mí</label><input type="text" class="form-control"
+              <div class="col-md-12"><label class="labels">Acerca de mí</label><input id="userAboutMeInput" type="text" class="form-control"
                   placeholder="Descripción" value=""></div>
-              <div class="col-md-12"><label class="labels">Experiencia</label><input type="text" class="form-control"
+              <div class="col-md-12"><label class="labels">Experiencia</label><input id="userExperienceInput" type="text" class="form-control"
                   placeholder="Empleos, actividades extra, practicas profesionales" value=""></div>
               <div class="row my-5">
                 <div class="col-12 col-md-4 text-justify-align">
-                  <div class="col-md-12"><label class="labels">URL - Github</label><input type="text"
+                  <div class="col-md-12"><label class="labels">URL - Github</label><input id="userGithubLinkInput" type="text"
                       class="form-control" placeholder="Perfil Github" value=""></div>
                 </div>
                 <div class="col-12 col-md-4 text-justify-align">
-                  <div class="col-md-12"><label class="labels">URL - LinkedIn</label><input type="text"
+                  <div class="col-md-12"><label class="labels">URL - LinkedIn</label><input id="userLinkedinLinkInput" type="text"
                       class="form-control" placeholder="Perfil LinkedIn" value=""></div>
                 </div>
                 <div class="col-12 col-md-4 text-justify-align">
                   <div class="col-md-12">
                     <label class="labels" id="editUserEmailLabel">URL - correo</label>
-                    <input type="text" class="form-control" id="editUserEmailInput" placeholder="micorreo@compania.com"
+                    <input id="userOtherEmailInput" type="text" class="form-control" id="editUserEmailInput" placeholder="micorreo@compania.com"
                       value="">
                   </div>
                 </div>
@@ -209,12 +211,25 @@
                   correo" solo cambiara el correo asociado al boton en tu tarjeta de la derecha, pero no el correo con
                   el que inicias sesión</p>
               </div>
+              <div class="row" id="incomplitedFields">
+                <div class="col-sm-12">
+                  <div
+                    class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
+                    role="alert" data-brk-library="component__alert">
+                    <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+  
+                    Porfavor, completa todos los campos
+                  </div>
+                </div>
+              </div>
               <div class="col-12 text-center">
                 <button type="submit" class="btn btn-outline-secondary my-3" style="width: 30%; float: right;">Guardar
                   cambios</button>
+
               </div>
             </div>
           </div>
+        </form>
         </div>
       </div>
     </div>

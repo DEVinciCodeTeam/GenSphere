@@ -56,6 +56,7 @@ if (allUsers == null) {
 const signUpForm = document.getElementById("signUpForm");
 
 
+
 signUpForm.onsubmit = function(e) {
 
   e.preventDefault();
@@ -89,6 +90,13 @@ signUpForm.onsubmit = function(e) {
         userPassword: getUserPassword,
         userProfilePicture: "../../assets/img/logo/genspherePP2.png",
         userJoinedDate: transformDates(userJoinDate.toJSON().slice(0, 10))
+      /* userAge: getUserAge,
+        userLocation: getUserLocation,
+        userAboutMe: getUserAboutMe,
+        userExperience: getUserExperience,
+        userLinkedinLink: getUserLinkedinLink,
+        userGithubLink: getUserGithubLink,
+        userOtherEmail: getUserOtherEmail*/
       }
       localStorage.setItem("allUsers", JSON.stringify(allUsers))
       restoreMessage("singUpSuccesful");
@@ -142,8 +150,5 @@ signInForm.onsubmit = function(e) {
   }
 
 }
-
-
-
 
 

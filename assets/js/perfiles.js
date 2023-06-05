@@ -82,3 +82,79 @@ file.addEventListener('change', function() {
 
 // --------------------------------------------
 
+ const removeMessage = (elementId) => {
+   const buttonRef = document.getElementById(elementId);
+   buttonRef.style.display = "none";
+ }
+ const restoreMessage = (elementId) => {
+   const buttonRef = document.getElementById(elementId);
+   buttonRef.style.display = "inline";
+ }
+
+ function saveElementsOnObject(id, prop, objectToUpdate ) {
+  console.log("entro a la funcion")
+  const element = document.getElementById(id).value.trim();
+  
+    if (element != null && objectToUpdate != "undefined") {
+      console.log(objectToUpdate + " " + prop + " " + element)
+
+      objectToUpdate[prop] = element;
+      console.log("Entro al if de la funcion")
+    }
+}
+
+const editProfile = document.getElementById("profileEditForm");
+
+
+
+if(editProfile !== null){
+
+
+
+editProfile.onsubmit = function(e)  {
+console.log("entramos edit profile")
+  
+  e.preventDefault();
+  
+  const getUserName = document.getElementById("editUserNameInput").value.trim();
+ // const getUserAge = document.getElementById("userAgeInput").value.trim();
+  //const getUserLocation = document.getElementById("userEmailInput").value.trim();
+  const getUserCohorte = document.getElementById("editUserCohorteInput").value.trim();
+ // const getUserAboutMe = document.getElementById("userAboutMeInput").value.trim();
+ // const getUserExperience = document.getElementById("userExperienceInput").value.trim();
+//const getUserGithubLink = document.getElementById("userGithubLinkInput").value.trim();
+ // const getUserLinkedinLink = document.getElementById("userLinkedinLinkInput").value.trim();
+ // const getUserOtherEmail = document.getElementById("userOtherEmailInput").value.trim();
+
+//================================================
+
+  if (getUserName == "" || getUserCohorte == "") {
+    restoreMessage("incomplitedFields");
+  } else {
+    console.log("else")
+    saveElementsOnObject("userAgeInput", "userAge", allUsers[currentUser.userEmail])
+
+
+    /*allUsers[currentUser.userEmail].userAge = getUserAge;*/
+    
+    
+    
+    
+      /*allUsers[currentUser.userEmail] = {
+        userAge: getUserAge,
+        userLocation: getUserLocation,
+        userCohorte: getUserCohorte,
+        userAboutMe: getUserAboutMe,
+        userExperience: getUserExperience,
+        userGithubLink: getUserGithubLink,
+        userLinkedinLink: getUserLinkedinLink,
+        userOtherEmail: getUserOtherEmail
+      }
+      localStorage.setItem("allUsers", JSON.stringify(allUsers))
+      restoreMessage("singUpSuccesful");
+      removeMessage("incomplitedFields");
+      removeMessage("repeatedEmail");*/
+     
+  }
+}
+}

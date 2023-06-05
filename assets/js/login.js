@@ -57,3 +57,13 @@ signInButton2.addEventListener('click', () => {
   removeMessage("repeatedEmail");
   removeMessage("singUpSuccesful");
 });
+
+
+function showPassword(){
+  const tipo = document.getElementById("userPassword");
+  if(tipo.type == "password"){
+      tipo.type = "text";
+  }else{
+      tipo.type = "password";
+  }
+}
