@@ -14,14 +14,16 @@
 } */
 
 h1 {
-	font-size: 4.5vmin;
+	font-size: 20pt;
+  /* font-size: 1.8vmax; */
 	text-align: left;
 	color:#243049;
 }
 p {
-	font-size: max(10pt, 2vmin);
+	/* font-size: max(7pt, 1.8vmin); */
+  font-size: 18pt;
 	line-height: 1.4;
-	color: #0e390e;
+	color: #243049;
 	margin-bottom: 1.5rem;
 }
 /* Marco exterior de la tarjeta */
@@ -29,8 +31,8 @@ p {
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: space-between;
-	width: 69vmin;
-	height: 21em;
+	width: 22em;
+	height: 22em;
 	border: 5px solid;
 	border-image: linear-gradient(-50deg, #5977b3, #d5dff0,#5977b3, #5977b3, #d5dff0, #5977b3, #5977b3) 1;
 	margin: 2rem auto;
@@ -51,11 +53,13 @@ p {
   padding-top: 0px;
   /* padding-bottom: 0px; */
 }
+/* Mueve nombre de Mario */
 .overlay-content {
 	display: flex;
+  font-size: min(20pt, 30pt);
 	flex-direction: column;
 	justify-content: space-between;
-	width: 15vmin;
+	width: 60%;
 	height: 100%;
 	padding: .5rem 0 0 .5rem;
 	border: 3px solid;
@@ -69,20 +73,21 @@ p {
 	transition: .3s ease-in-out .2s;
 	z-index: 1;
 }
+/* Imagen de integrante */
 .image-content {
 	position: absolute;
 	top: 0;
   justify-content: center;
-	right: -15px;
-	width: 45vmin;
+	right: 0;
+	width: 60%;
 	height: 100%;
-	background-image: url("../../img/integrantes/mayra.jpg");
+	/* background-image: url("../../img/integrantes/mayra.jpg"); */
 	background-size: cover;
   background-position: center;
 	transition: .3s ease-in-out;
 	/* border: 1px solid green; */
 }
-
+/* iconos */
 .dots {
 	position: absolute;
 	bottom: 1rem;
@@ -106,34 +111,50 @@ p {
 }
 
 .text {
+  font-size: 12pt;
 	position: absolute;
 	top: 0;
 	right: 0;
-	width: 45vmin;
+	width: 70%;
 	height: 100%;
 	padding: 3vmin 4vmin;
 	background: #fff;
 	box-shadow: inset 1px 1px 15px 0 rgba(0 0 0 / .4);
 	overflow-y: scroll;
 }
-
+/*Mueve la imagen */
 .wrap:hover .overlay
- {
-	transform: translateX(-45vmin);
+ { /* Eso ayuda a que no se vea el contenedor azul fuerte de abajo (%) */
+	transform: translateX(-40%);  
+	width: 50%;
 }
-.wrap:hover .image-content {
-	width: 30vmin;
-}
+ /* .wrap:hover .image-content {  */
+	/*  width: 30%;  */
+  /* right: 45%; */
+ /* }  */
+/* Texto e iconos*/
 .wrap:hover .overlay-content {
 	border: none;
 	transition-delay: .2s;
-	transform: translateX(45vmin);
+	transform: translateX(70%);
 }
 .wrap:hover .dots {
 	transform: translateX(1rem);
 }
 .wrap:hover .dots .dot {
 	background: white;
+	width: 0%;
+	height: 0%;
+
+}
+
+.wrap:hover #aboutP {
+  color: white;
+  font-size: 15pt;
+} 
+
+.wrap:hover h1 {
+  font-size: 15pt;
 }
 
 

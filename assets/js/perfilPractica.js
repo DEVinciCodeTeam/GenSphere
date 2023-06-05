@@ -8,7 +8,7 @@ const emailSpan = document.getElementById('email');
 const nameInput = document.getElementById('nameInput');
 const emailInput = document.getElementById('emailInput');
 
-function activateEditMode() {
+/* function activateEditMode() {
     profileContainer.style.display = 'none';
     editFormContainer.style.display = 'none';
     nameInput.value = nameSpan.textContent;
@@ -28,7 +28,7 @@ editButton.addEventListener('click', activateEditMode);
 saveButton.addEventListener('click', saveChanges);
 
 
-/* // Obtenemos referencias a los elementos del DOM
+// Obtenemos referencias a los elementos del DOM
 const profileContainer = document.getElementById('profile');
 const editFormContainer = document.getElementById('editForm');
 const editButton = document.getElementById('editBtn');
@@ -59,4 +59,4 @@ function saveChanges() {
 // Agregamos los event listeners a los botones
 editButton.addEventListener('click', activateEditMode);
 saveButton.addEventListener('click', saveChanges);
- */
+  */

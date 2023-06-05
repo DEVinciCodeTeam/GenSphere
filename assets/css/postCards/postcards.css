@@ -82,7 +82,7 @@
   z-index: 1;
 }
 
-.post-image2 {
+.user-post-img {
   height: 3.8rem;
   width: 3.8rem;
   position: relative;
@@ -97,7 +97,7 @@
   font-size: 1rem;
 }
 
-.post-title {
+.user-post-title {
   margin: 0 0 0.5rem 0;
   font-size: 1.3rem;
   letter-spacing: 0.5px;
