@@ -124,6 +124,8 @@ function addPost() {
 
   allData.postData.push(postData);
 
+  addPostToUserData(postData)
+
   console.clear();
 
   //Guardar en Local Storage
@@ -206,6 +208,8 @@ function addReply(event) {
 
   const postData = allData.postData.find((post) => post.postDataId === postId); //Seleccionando el postData por su id
   postData.replyData.push(replyData);
+
+  addPostToUserData(postData)
 
   // Save the updated data to local storage
   appendObjectToLocalStorage(allData);

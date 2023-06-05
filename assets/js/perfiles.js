@@ -1,3 +1,4 @@
+visualizeUserPosts();
 // ------------------ Setting user's data ------------------------------
 const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 const allUsers = JSON.parse(localStorage.getItem("allUsers"));
@@ -34,7 +35,9 @@ changeHtmlElementsPropById("userExperienceInput", currentUser.experienceUser, "v
 changeHtmlElementsPropById("userGithubLinkInput", currentUser.userGithub, "value");
 changeHtmlElementsPropById("userLinkedinLinkInput", currentUser.userLinkedIn, "value");
 changeHtmlElementsPropById("userOtherEmailInput", currentUser.userOtherEmail, "value");
+
 // ------------- Saving the photo that the user uploads --------------
+
 
 const img = document.querySelector('#userProfilePicture');
 const file = document.querySelector('#file');

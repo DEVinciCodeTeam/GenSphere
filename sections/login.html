@@ -141,10 +141,6 @@
               <label for="userPassword"></label>
               <input class="formInput" name="userPassword" type="password" id="userPassword" placeholder="Contraseña" />
 
-              <div class="col">
-                <button id="show-password" class="btn btn-primary" type="button" onclick="showPassword()">Mostrar Contraseña</button>
-              </div>
-
               <div id="pswd_info">
                 <h4>La contraseña debe cumplir los siguientes requerimientos:</h4>
                 <ul>
@@ -153,6 +149,11 @@
                   <li id="number" class="invalid">Al menos <strong>un número</strong></li>
                   <li id="length" class="invalid">Tener al menos <strong>8 caracteres</strong></li>
                 </ul>
+              </div>
+
+              <div class="col">
+                <button id="show-password" class="btn btn-primary" type="button" onclick="showPassword()">Mostrar
+                  Contraseña</button>
               </div>
             </div>
             <div class="row" id="singUpSuccesful">
