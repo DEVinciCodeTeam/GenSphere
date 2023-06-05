@@ -89,14 +89,8 @@ signUpForm.onsubmit = function(e) {
         userCohorte: getUserCohorte,
         userPassword: getUserPassword,
         userProfilePicture: "../../assets/img/logo/genspherePP2.png",
-        userJoinedDate: transformDates(userJoinDate.toJSON().slice(0, 10))
-      /* userAge: getUserAge,
-        userLocation: getUserLocation,
-        userAboutMe: getUserAboutMe,
-        userExperience: getUserExperience,
-        userLinkedinLink: getUserLinkedinLink,
-        userGithubLink: getUserGithubLink,
-        userOtherEmail: getUserOtherEmail*/
+        userJoinedDate: transformDates(userJoinDate.toJSON().slice(0, 10)),
+        userPosts: []
       }
       localStorage.setItem("allUsers", JSON.stringify(allUsers))
       restoreMessage("singUpSuccesful");
