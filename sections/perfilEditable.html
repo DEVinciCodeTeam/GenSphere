@@ -101,7 +101,7 @@
                 </div>
                 <div class="mt-3">
                   <h4 id="userName">Nombre usuario</h4>
-                  <p id="userTile" class="text-secondary mb-1">Tu título</p>
+                  <p id="userTitle" class="text-secondary mb-1">Tu título</p>
                   <p id="userLocation" class="text-muted font-size-sm">Tu ubicación</p>
                   <!-- <button class="btn btn-outline-secondary">Editar perfil</button> -->
                   <div class="row justify-content-center">
@@ -169,6 +169,10 @@
                 <label class="labels" id="editUserNameLabel">Nombre</label>
                 <input type="text" class="form-control" id="editUserNameInput" placeholder="" value="">
               </div>
+              <div class="col-md-6">
+                <label class="labels" id="editUserTitle">Tu título</label>
+                <input type="text" class="form-control" id="editUserTitleInput" placeholder="Ej: Junior Developer" value="">
+              </div>
               <!-- <div class="col-md-6"><label class="labels">Apellidos</label><input type="text" class="form-control" -->
               <!--     value="" placeholder=""></div> -->
               <div class="col-md-6">
@@ -218,7 +222,7 @@
                     role="alert" data-brk-library="component__alert">
                     <i class="start-icon far fa-times-circle faa-pulse animated"></i>
   
-                    Porfavor, completa todos los campos
+                    Porfavor asegurate de que Cohorte y Nombre no esten vacíos.
                   </div>
                 </div>
               </div>
@@ -241,7 +245,8 @@
   <!-- Scripts -->
   <script src="../assets/js/forms/jquery.validate.min.js"></script>
   <script src="../assets/js/forms/main.js"></script>
-  <script src="../assets/js/perfiles.js"></script>
+  <script  src="../assets/js/utils.js"></script>
+  <script  src="../assets/js/perfiles.js"></script>
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
     integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
