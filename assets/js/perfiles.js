@@ -6,13 +6,13 @@ const allUsers = JSON.parse(localStorage.getItem("allUsers"));
 changeHtmlElementsPropById("userProfilePicture", currentUser.userProfilePicture, "src")
 changeHtmlElementsPropById("userName", currentUser.userName, "innerHTML");
 changeHtmlElementsPropById("userTitle", currentUser.userTitle, "innerHTML", "Tu título");
-changeHtmlElementsPropById("userLocation", currentUser.userLocation, "innerHTML","Tu ubicación");
+changeHtmlElementsPropById("userLocation", currentUser.userLocation, "innerHTML", "Tu ubicación");
 changeHtmlElementsPropById("cohorteNum", currentUser.userCohorte, "innerHTML");
-changeHtmlElementsPropById("aboutUser", currentUser.aboutUser, "innerHTML","Una breve descripción de ti");
+changeHtmlElementsPropById("aboutUser", currentUser.aboutUser, "innerHTML", "Una breve descripción de ti");
 changeHtmlElementsPropById("experienceUser", currentUser.experienceUser, "innerHTML", "Cuentanos de tu experiencia");
 changeHtmlElementsPropById("userGithub", currentUser.userGithub, "href");
 changeHtmlElementsPropById("userLinkedIn", currentUser.userLinkedIn, "href");
-if(currentUser.userOtherEmail != undefined ){
+if (currentUser.userOtherEmail != undefined) {
   changeHtmlElementsPropById("userEmail", currentUser.userOtherEmail, "href");
 } else {
   changeHtmlElementsPropById("userEmail", currentUser.userEmail, "href");
@@ -25,7 +25,15 @@ changeHtmlElementsPropByClass("user-post-img", currentUser.userProfilePicture, "
 // ---------------- Just perfilEditable IDs ----------------------------
 changeHtmlElementsPropById("editUserName", currentUser.userName, "innerHTML");
 changeHtmlElementsPropById("editUserNameInput", currentUser.userName, "value");
+changeHtmlElementsPropById("editUserTitleInput", currentUser.userTitle, "value");
+changeHtmlElementsPropById("userAgeInput", currentUser.userAge, "value");
+changeHtmlElementsPropById("userLocationInput", currentUser.userLocation, "value");
 changeHtmlElementsPropById("editUserCohorteInput", currentUser.userCohorte, "value");
+changeHtmlElementsPropById("userAboutMeInput", currentUser.aboutUser, "value");
+changeHtmlElementsPropById("userExperienceInput", currentUser.experienceUser, "value");
+changeHtmlElementsPropById("userGithubLinkInput", currentUser.userGithub, "value");
+changeHtmlElementsPropById("userLinkedinLinkInput", currentUser.userLinkedIn, "value");
+changeHtmlElementsPropById("userOtherEmailInput", currentUser.userOtherEmail, "value");
 // ------------- Saving the photo that the user uploads --------------
 
 const img = document.querySelector('#userProfilePicture');
@@ -50,54 +58,55 @@ file.addEventListener('change', function() {
 });
 
 // ---------------- Saving the secondary data perfil editable----------------------------
-removeMessage("incomplitedFields")
 const editProfile = document.getElementById("profileEditForm");
 
 
-if(editProfile !== null){
+if (editProfile !== null) {
+  removeMessage("incomplitedFields")
 
-editProfile.onsubmit = function(e)  {
-console.log("entramos edit profile")
-  
-  e.preventDefault();
-  
-  const getUserName = document.getElementById("editUserNameInput").value.trim();
-  const getUserCohorte = document.getElementById("editUserCohorteInput").value.trim();
+  editProfile.onsubmit = function(e) {
+    console.log("entramos edit profile")
+
+    e.preventDefault();
+
+    const getUserName = document.getElementById("editUserNameInput").value.trim();
+    const getUserCohorte = document.getElementById("editUserCohorteInput").value.trim();
 
 
-//================================================
+    //================================================
 
-  if (getUserName == "" || getUserCohorte == "") {
-    restoreMessage("incomplitedFields");
-  } else {
-    const allUsers = JSON.parse(localStorage.getItem("allUsers"));
-    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-    console.log("else")
-    saveElementsOnObject("editUserNameInput", "userName", allUsers[currentUser.userEmail])
-    saveElementsOnObject("userAgeInput", "userAge", allUsers[currentUser.userEmail])
-    saveElementsOnObject("userLocationInput", "userLocation", allUsers[currentUser.userEmail])
-    saveElementsOnObject("editUserCohorteInput", "usertIdCohorte", allUsers[currentUser.userEmail])
-    saveElementsOnObject("userAboutMeInput", "aboutUser", allUsers[currentUser.userEmail])
-    saveElementsOnObject("editUserTitleInput", "userTitle", allUsers[currentUser.userEmail])
-    saveElementsOnObject("userExperienceInput", "experienceUser", allUsers[currentUser.userEmail])
-    saveElementsOnObject("userGithubLinkInput", "userGithub", allUsers[currentUser.userEmail])
-    saveElementsOnObject("userLinkedinLinkInput", "userLinkedIn", allUsers[currentUser.userEmail])
-    saveElementsOnObject("userOtherEmailInput", "userOtherEmail", allUsers[currentUser.userEmail])
-    
-    saveElementsOnObject("editUserNameInput", "userName", currentUser)
-    saveElementsOnObject("userAgeInput", "userAge", currentUser)
-    saveElementsOnObject("userLocationInput", "userLocation",currentUser)
-    saveElementsOnObject("editUserCohorteInput", "usertIdCohorte", currentUser)
-    saveElementsOnObject("userAboutMeInput", "aboutUser", currentUser)
-    saveElementsOnObject("userExperienceInput", "experienceUser", currentUser)
-    saveElementsOnObject("editUserTitleInput", "userTitle", currentUser)
-    saveElementsOnObject("userGithubLinkInput", "userGithub", currentUser)
-    saveElementsOnObject("userLinkedinLinkInput", "userLinkedIn", currentUser)
-    saveElementsOnObject("userOtherEmailInput", "userOtherEmail", currentUser)
-    
-    updateStorageObject('session', 'currentUser', currentUser);
-    updateStorageObject('local', 'allUsers', allUsers)
-     
+    if (getUserName == "" || getUserCohorte == "") {
+      restoreMessage("incomplitedFields");
+    } else {
+      const allUsers = JSON.parse(localStorage.getItem("allUsers"));
+      const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+      console.log("else")
+      saveElementsOnObject("editUserNameInput", "userName", allUsers[currentUser.userEmail])
+      saveElementsOnObject("userAgeInput", "userAge", allUsers[currentUser.userEmail])
+      saveElementsOnObject("userLocationInput", "userLocation", allUsers[currentUser.userEmail])
+      saveElementsOnObject("editUserCohorteInput", "userCohorte", allUsers[currentUser.userEmail])
+      saveElementsOnObject("userAboutMeInput", "aboutUser", allUsers[currentUser.userEmail])
+      saveElementsOnObject("editUserTitleInput", "userTitle", allUsers[currentUser.userEmail])
+      saveElementsOnObject("userExperienceInput", "experienceUser", allUsers[currentUser.userEmail])
+      saveElementsOnObject("userGithubLinkInput", "userGithub", allUsers[currentUser.userEmail])
+      saveElementsOnObject("userLinkedinLinkInput", "userLinkedIn", allUsers[currentUser.userEmail])
+      saveElementsOnObject("userOtherEmailInput", "userOtherEmail", allUsers[currentUser.userEmail])
+
+      saveElementsOnObject("editUserNameInput", "userName", currentUser)
+      saveElementsOnObject("userAgeInput", "userAge", currentUser)
+      saveElementsOnObject("userLocationInput", "userLocation", currentUser)
+      saveElementsOnObject("editUserCohorteInput", "usertIdCohorte", currentUser)
+      saveElementsOnObject("userAboutMeInput", "aboutUser", currentUser)
+      saveElementsOnObject("userExperienceInput", "experienceUser", currentUser)
+      saveElementsOnObject("editUserTitleInput", "userTitle", currentUser)
+      saveElementsOnObject("userGithubLinkInput", "userGithub", currentUser)
+      saveElementsOnObject("userLinkedinLinkInput", "userLinkedIn", currentUser)
+      saveElementsOnObject("userOtherEmailInput", "userOtherEmail", currentUser)
+
+      updateStorageObject('session', 'currentUser', currentUser);
+      updateStorageObject('local', 'allUsers', allUsers)
+
+      window.location.href = "../../sections/perfilUsuario.html";
+    }
   }
-}
 }
