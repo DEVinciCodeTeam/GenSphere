@@ -16,6 +16,26 @@ function appendObjectToLocalStorage(allData) {
 const currentUser = sessionStorage.getItem("currentUser");
 const userName = currentUser ? JSON.parse(currentUser).userName : "Anonymous";
 
+function handleHover() {
+  const nameElements = document.querySelectorAll(".post-name, .reply-name");
+
+  nameElements.forEach((element) => {
+    const originalText = element.textContent;
+    const userEmail = element.getAttribute("data-userEmail");
+
+    element.addEventListener("mouseenter", function () {
+      element.textContent = userEmail;
+      element.setAttribute("data-userEmail", originalText);
+    });
+
+    element.addEventListener("mouseleave", function () {
+      element.textContent = originalText;
+      element.setAttribute("data-userEmail", userEmail);
+    });
+  });
+  console.log(targetElement.textContent);
+}
+
 // Función para manejar el evento de clic en el botón "Agregar publicación"
 function addPost() {
   const postInput = document.getElementById("post-input").value.trim();
@@ -131,6 +151,8 @@ function addPost() {
 
   //Guardar en Local Storage
   appendObjectToLocalStorage(allData);
+
+  handleHover();
 }
 
 function addReply(event) {
@@ -212,6 +234,8 @@ function addReply(event) {
   postData.replyData.push(replyData);
 
   addPostToUserData(postData);
+
+  handleHover();
 
   // Save the updated data to local storage
   appendObjectToLocalStorage(allData);
@@ -406,5 +430,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (storedData) {
     allData = storedData;
     populateWallContainer(storedData);
+    handleHover();
   }
 });
