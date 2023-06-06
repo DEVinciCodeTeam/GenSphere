@@ -299,7 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
           this.textContent = this.getAttribute("data-userEmail");
           this.setAttribute("data-userEmail", temp);
         });
-        
+
         nameElement.addEventListener("mouseleave", function () {
           const temp = this.textContent;
           this.textContent = this.getAttribute("data-userEmail");
