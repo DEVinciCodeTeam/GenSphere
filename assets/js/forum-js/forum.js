@@ -105,7 +105,7 @@ function addPost() {
   postContainer.appendChild(replyForm);
 
   const wallContainer = document.querySelector(".wall__container");
-  wallContainer.appendChild(postContainer);
+  wallContainer.prepend(postContainer);
 
   document.getElementById("post-input").value = "";
 
@@ -266,7 +266,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const wallContainer = document.querySelector(".wall__container");
     wallContainer.innerHTML = "";
 
-    data.postData.forEach((postData) => {
+    const reversedPosts = data.postData.slice().reverse();
+
+    reversedPosts.forEach((postData) => {
       const postContainer = document.createElement("div");
       postContainer.classList.add("post-container");
       postContainer.setAttribute("data-postId", postData.postDataId);
