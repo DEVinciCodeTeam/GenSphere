@@ -1,6 +1,13 @@
 // Objeto que almacena todos los objetos de datos creados dentro de las funciones
 let allData = { id: "Semana2", postData: [] };
 
+// Function to retrieve the user's profile picture from local storage
+function getUserProfilePicture(userEmail) {
+  const allUsers = JSON.parse(localStorage.getItem("allUsers"));
+  const userProfile = allUsers[userEmail];
+  return userProfile ? userProfile.userProfilePicture : "";
+}
+
 // Counter variables
 let postDataIdCounter = 1;
 let postHeaderIdCounter = 1;
@@ -42,7 +49,7 @@ function addPost() {
 
   // Crear un elemento de imagen para la publicación
   const postImage = document.createElement("img");
-  postImage.src = "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp";
+  postImage.src = getUserProfilePicture(currentUser.userEmail);
   postImage.classList.add("rounded-circle");
   postImage.classList.add("me-3");
   postImage.classList.add("shadow-1-strong");
@@ -150,7 +157,7 @@ function addReply(event) {
   replyContentDiv.classList.add("reply-content");
 
   const replyImage = document.createElement("img");
-  replyImage.src = "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp";
+  replyImage.src = getUserProfilePicture(currentUser.userEmail);
   replyImage.classList.add("rounded-circle");
   replyImage.classList.add("me-3");
   replyImage.classList.add("shadow-1-strong");
@@ -271,8 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
         postContentDiv.classList.add("post-content");
 
         const postImage = document.createElement("img");
-        postImage.src =
-          "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp";
+        postImage.src = getUserProfilePicture(currentUser.userEmail);
         postImage.classList.add("rounded-circle");
         postImage.classList.add("me-3");
         postImage.classList.add("shadow-1-strong");
@@ -318,8 +324,7 @@ document.addEventListener("DOMContentLoaded", () => {
         replyContentDiv.classList.add("reply-content");
 
         const replyImage = document.createElement("img");
-        replyImage.src =
-          "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp";
+        replyImage.src = getUserProfilePicture(currentUser.userEmail);
         replyImage.classList.add("rounded-circle");
         replyImage.classList.add("me-3");
         replyImage.classList.add("shadow-1-strong");
