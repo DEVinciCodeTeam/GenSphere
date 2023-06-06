@@ -114,6 +114,7 @@ function addPost() {
     "post-header-name": nameElement.textContent,
     "post-header-date": postDate.textContent,
     "post-header-text": postInput,
+    userEmail: currentUser ? JSON.parse(currentUser).userEmail : "",
   };
 
   const postData = {
@@ -204,6 +205,7 @@ function addReply(event) {
     "reply-name": nameElement.textContent,
     "reply-date": replyDate.textContent,
     "reply-text": replyText,
+    userEmail: currentUser ? JSON.parse(currentUser).userEmail : "",
   };
 
   const postData = allData.postData.find((post) => post.postDataId === postId); //Seleccionando el postData por su id
