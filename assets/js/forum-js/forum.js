@@ -292,12 +292,16 @@ document.addEventListener("DOMContentLoaded", () => {
         nameElement.setAttribute("data-userEmail", postHeader.userEmail);
         nameElement.classList.add("post-name");
 
-        nameElement.addEventListener("mouseover", function () {
+        nameElement.addEventListener("mouseenter", function () {
+          const temp = this.textContent;
           this.textContent = this.getAttribute("data-userEmail");
+          this.setAttribute("data-userEmail", temp);
         });
-
-        nameElement.addEventListener("mouseout", function () {
-          this.textContent = this.getAttribute("data-userName");
+        
+        nameElement.addEventListener("mouseleave", function () {
+          const temp = this.textContent;
+          this.textContent = this.getAttribute("data-userEmail");
+          this.setAttribute("data-userEmail", temp);
         });
 
         const postDate = document.createElement("p");
