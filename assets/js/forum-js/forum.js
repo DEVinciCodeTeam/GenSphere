@@ -289,7 +289,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const nameElement = document.createElement("h3");
         nameElement.textContent = postHeader["post-header-name"];
+        nameElement.setAttribute("data-userEmail", postHeader.userEmail);
         nameElement.classList.add("post-name");
+
+        nameElement.addEventListener("mouseover", function () {
+          this.textContent = this.getAttribute("data-userEmail");
+        });
+
+        nameElement.addEventListener("mouseout", function () {
+          this.textContent = this.getAttribute("data-userName");
+        });
 
         const postDate = document.createElement("p");
         postDate.textContent = postHeader["post-header-date"];
@@ -336,7 +345,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const nameElement = document.createElement("h3");
         nameElement.textContent = replyData["reply-name"];
+        nameElement.setAttribute("data-userEmail", replyData.userEmail);
         nameElement.classList.add("reply-name");
+
+        nameElement.addEventListener("mouseover", function () {
+          this.textContent = this.getAttribute("data-userEmail");
+        });
+
+        nameElement.addEventListener("mouseout", function () {
+          this.textContent = replyData["reply-name"];
+        });
 
         const replyDate = document.createElement("p");
         replyDate.textContent = replyData["reply-date"];
