@@ -53,6 +53,19 @@ function addPost() {
   const nameElement = document.createElement("h3");
   nameElement.textContent = userName;
   nameElement.classList.add("post-name");
+  nameElement.setAttribute(
+    "data-userEmail",
+    currentUser ? JSON.parse(currentUser).userEmail : ""
+  );
+  // Add event listener for hover
+  nameElement.addEventListener("mouseover", handleUserHover);
+  nameElement.addEventListener("mouseout", handleUserHover);
+
+  function handleUserHover(event) {
+    const userEmail = event.target.getAttribute("data-userEmail");
+    event.target.textContent =
+      event.type === "mouseover" ? userEmail : userName;
+  }
 
   // Crear un elemento para la fecha
   const postDate = document.createElement("p");
@@ -105,7 +118,7 @@ function addPost() {
   postContainer.appendChild(replyForm);
 
   const wallContainer = document.querySelector(".wall__container");
-  wallContainer.appendChild(postContainer);
+  wallContainer.prepend(postContainer);
 
   document.getElementById("post-input").value = "";
 
@@ -161,6 +174,20 @@ function addReply(event) {
   const nameElement = document.createElement("h3");
   nameElement.textContent = userName;
   nameElement.classList.add("reply-name");
+  nameElement.setAttribute(
+    "data-userEmail",
+    currentUser ? JSON.parse(currentUser).userEmail : ""
+  );
+
+  // Add event listener for hover
+  nameElement.addEventListener("mouseover", handleUserHover);
+  nameElement.addEventListener("mouseout", handleUserHover);
+
+  function handleUserHover(event) {
+    const userEmail = event.target.getAttribute("data-userEmail");
+    event.target.textContent =
+      event.type === "mouseover" ? userEmail : userName;
+  }
 
   const replyDate = document.createElement("p");
   const currentDate = new Date();
@@ -209,7 +236,7 @@ function addReply(event) {
   const postData = allData.postData.find((post) => post.postDataId === postId); //Seleccionando el postData por su id
   postData.replyData.push(replyData);
 
-  addPostToUserData(postData)
+  addPostToUserData(postData);
 
   // Save the updated data to local storage
   appendObjectToLocalStorage(allData);
@@ -256,7 +283,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const wallContainer = document.querySelector(".wall__container");
     wallContainer.innerHTML = "";
 
-    data.postData.forEach((postData) => {
+    const reversedPosts = data.postData.slice().reverse();
+
+    reversedPosts.forEach((postData) => {
       const postContainer = document.createElement("div");
       postContainer.classList.add("post-container");
       postContainer.setAttribute("data-postId", postData.postDataId);
@@ -280,6 +309,20 @@ document.addEventListener("DOMContentLoaded", () => {
         const nameElement = document.createElement("h3");
         nameElement.textContent = postHeader["post-header-name"];
         nameElement.classList.add("post-name");
+        nameElement.setAttribute(
+          "data-userEmail",
+          currentUser ? JSON.parse(currentUser).userEmail : ""
+        );
+
+        // Add event listener for hover
+        nameElement.addEventListener("mouseover", handleUserHover);
+        nameElement.addEventListener("mouseout", handleUserHover);
+
+        function handleUserHover(event) {
+          const userEmail = event.target.getAttribute("data-userEmail");
+          event.target.textContent =
+            event.type === "mouseover" ? userEmail : userName;
+        }
 
         const postDate = document.createElement("p");
         postDate.textContent = postHeader["post-header-date"];
@@ -327,6 +370,20 @@ document.addEventListener("DOMContentLoaded", () => {
         const nameElement = document.createElement("h3");
         nameElement.textContent = replyData["reply-name"];
         nameElement.classList.add("reply-name");
+        nameElement.setAttribute(
+          "data-userEmail",
+          currentUser ? JSON.parse(currentUser).userEmail : ""
+        );
+
+        // Add event listener for hover
+        nameElement.addEventListener("mouseover", handleUserHover);
+        nameElement.addEventListener("mouseout", handleUserHover);
+
+        function handleUserHover(event) {
+          const userEmail = event.target.getAttribute("data-userEmail");
+          event.target.textContent =
+            event.type === "mouseover" ? userEmail : userName;
+        }
 
         const replyDate = document.createElement("p");
         replyDate.textContent = replyData["reply-date"];

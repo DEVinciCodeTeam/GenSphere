@@ -53,19 +53,6 @@ function addPost() {
   const nameElement = document.createElement("h3");
   nameElement.textContent = userName;
   nameElement.classList.add("post-name");
-  nameElement.setAttribute(
-    "data-userEmail",
-    currentUser ? JSON.parse(currentUser).userEmail : ""
-  );
-  // Add event listener for hover
-  nameElement.addEventListener("mouseover", handleUserHover);
-  nameElement.addEventListener("mouseout", handleUserHover);
-
-  function handleUserHover(event) {
-    const userEmail = event.target.getAttribute("data-userEmail");
-    event.target.textContent =
-      event.type === "mouseover" ? userEmail : userName;
-  }
 
   // Crear un elemento para la fecha
   const postDate = document.createElement("p");
@@ -174,20 +161,6 @@ function addReply(event) {
   const nameElement = document.createElement("h3");
   nameElement.textContent = userName;
   nameElement.classList.add("reply-name");
-  nameElement.setAttribute(
-    "data-userEmail",
-    currentUser ? JSON.parse(currentUser).userEmail : ""
-  );
-
-  // Add event listener for hover
-  nameElement.addEventListener("mouseover", handleUserHover);
-  nameElement.addEventListener("mouseout", handleUserHover);
-
-  function handleUserHover(event) {
-    const userEmail = event.target.getAttribute("data-userEmail");
-    event.target.textContent =
-      event.type === "mouseover" ? userEmail : userName;
-  }
 
   const replyDate = document.createElement("p");
   const currentDate = new Date();
@@ -309,20 +282,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const nameElement = document.createElement("h3");
         nameElement.textContent = postHeader["post-header-name"];
         nameElement.classList.add("post-name");
-        nameElement.setAttribute(
-          "data-userEmail",
-          currentUser ? JSON.parse(currentUser).userEmail : ""
-        );
-
-        // Add event listener for hover
-        nameElement.addEventListener("mouseover", handleUserHover);
-        nameElement.addEventListener("mouseout", handleUserHover);
-
-        function handleUserHover(event) {
-          const userEmail = event.target.getAttribute("data-userEmail");
-          event.target.textContent =
-            event.type === "mouseover" ? userEmail : userName;
-        }
 
         const postDate = document.createElement("p");
         postDate.textContent = postHeader["post-header-date"];
@@ -370,20 +329,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const nameElement = document.createElement("h3");
         nameElement.textContent = replyData["reply-name"];
         nameElement.classList.add("reply-name");
-        nameElement.setAttribute(
-          "data-userEmail",
-          currentUser ? JSON.parse(currentUser).userEmail : ""
-        );
-
-        // Add event listener for hover
-        nameElement.addEventListener("mouseover", handleUserHover);
-        nameElement.addEventListener("mouseout", handleUserHover);
-
-        function handleUserHover(event) {
-          const userEmail = event.target.getAttribute("data-userEmail");
-          event.target.textContent =
-            event.type === "mouseover" ? userEmail : userName;
-        }
 
         const replyDate = document.createElement("p");
         replyDate.textContent = replyData["reply-date"];
