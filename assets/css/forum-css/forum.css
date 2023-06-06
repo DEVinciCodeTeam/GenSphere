@@ -99,6 +99,28 @@ h4 {
   box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
 }
 
+.tooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+
 /*-------------------Anidando Elementos------------------------------*/
 .container {
   margin: 0 auto;

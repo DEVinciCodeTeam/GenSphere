@@ -12,9 +12,11 @@ function appendObjectToLocalStorage(allData) {
   localStorage.setItem("forum1Posts", JSON.stringify(element));
 }
 
+
 // Get the current user name from sessionStorage
 const currentUser = sessionStorage.getItem("currentUser");
 const userName = currentUser ? JSON.parse(currentUser).userName : "Anonymous";
+const userEmail = currentUser ? JSON.parse(currentUser).userEmail : "Anonymous";
 
 // Función para manejar el evento de clic en el botón "Agregar publicación"
 function addPost() {
@@ -49,10 +51,33 @@ function addPost() {
   postImage.style.width = "60px";
   postImage.style.height = "60px";
 
+  // Function to get the current user's email
+function getCurrentUserEmail() {
+  const currentUser = localStorage.getItem("currentUser");
+  if (currentUser) {
+    const { userEmail } = JSON.parse(currentUser);
+    return userEmail;
+  }
+  return "Anonymous";
+}
+
   // Create the name element for the post
   const nameElement = document.createElement("h3");
   nameElement.textContent = userName;
   nameElement.classList.add("post-name");
+
+  // Add event listeners for hover effect
+  nameElement.addEventListener("mouseenter", function () {
+    const currentUser = sessionStorage.getItem("currentUser");
+    const userEmail = currentUser
+      ? JSON.parse(currentUser).userEmail
+      : "Anonymous";
+    nameElement.textContent = userEmail;
+  });
+
+  nameElement.addEventListener("mouseleave", function () {
+    nameElement.textContent = userName;
+  });
 
   // Crear un elemento para la fecha
   const postDate = document.createElement("p");
@@ -157,10 +182,22 @@ function addReply(event) {
   replyImage.style.width = "60px";
   replyImage.style.height = "60px";
 
-  // Create the name element for the reply
-  const nameElement = document.createElement("h3");
+// Create the name element for the reply
+const nameElement = document.createElement("h3");
+nameElement.textContent = userName;
+nameElement.classList.add("reply-name");
+
+// Add event listeners for hover effect
+nameElement.addEventListener("mouseenter", function () {
+  const currentUser = sessionStorage.getItem("currentUser");
+  const userEmail = currentUser ? JSON.parse(currentUser).userEmail : "Anonymous";
+  nameElement.textContent = userEmail;
+});
+
+nameElement.addEventListener("mouseleave", function () {
   nameElement.textContent = userName;
-  nameElement.classList.add("reply-name");
+});
+
 
   const replyDate = document.createElement("p");
   const currentDate = new Date();
@@ -218,14 +255,6 @@ function addReply(event) {
 // Add an event listener to the "Publicar" button
 const addPostButton = document.getElementById("add-post-btn");
 addPostButton.addEventListener("click", addPost);
-
-// Add event listener for Enter keypress on the post-input field
-const postInput = document.getElementById("post-input");
-postInput.addEventListener("keypress", function (event) {
-  if (event.key === "Enter") {
-    addPost();
-  }
-});
 
 /*------------------- Pertinencia de la informacion ----------------------*/
 
