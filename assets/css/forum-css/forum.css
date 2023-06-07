@@ -35,15 +35,18 @@ html body {
 /*--------------------------- Seccion del lado izquierdo --------------*/
 
 /*Fondo lado izquierdo*/
+h4 {
+  padding-top: 20px !important;
+}
+.text-black {
+  color: var(--fondo1) !important;
+  text-align: center;
+  padding-bottom: 10px;
+}
 .mask-custom-right {
-  background: linear-gradient(
-    to bottom right,
-    rgba(241, 246, 249, 1),
-    rgba(213, 223, 240, 1)
-  );
-  border: none;
-  border-radius: 0%;
-  border-right: 2px solid rgba(0, 0, 0, 0.4);
+  background-color: var(--headers);
+  height: 100%;
+  padding: 10px;
 }
 
 /* Cajas del lado izquierdo donde se coloca el texto de los eventos*/
@@ -62,7 +65,8 @@ html body {
 }
 
 .events-custom {
-  height: 100vh;
+  height: 68vh;
+  padding: 10px;
 }
 
 .list-animation {
@@ -74,6 +78,16 @@ html body {
 .fade-in {
   opacity: 1;
   visibility: visible;
+}
+
+.blink-me {
+  animation: blinker 1s step-start infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
 
 /*--------------------------- Seccion del lado derecho --------------*/
@@ -88,7 +102,6 @@ html body {
 /*-------------------Anidando Elementos------------------------------*/
 .container {
   margin: 0 auto;
-  padding: 20px;
 }
 
 .post__container {
@@ -106,12 +119,7 @@ html body {
 }
 
 .wall__container {
-  /*  border: 5px solid #5977b3; */
   padding: 10px;
-
-  /* background-color: #5977b3; */
-  border-radius: 10px;
-  max-height: 500px;
   overflow: auto;
   padding-bottom: 0;
   max-width: 1000px;
@@ -124,23 +132,24 @@ html body {
   margin-bottom: 20px;
   /* border: 2px solid #5977b3; */
   padding: 10px;
-  background-color: #d5dff0;
+  background-color: var(--fondo1);
   border-radius: 30px;
 }
 
 .post-text {
   font-family: "Roboto", sans-serif;
-  animation: fadeIn 1s ease-in-out;
+  animation: fadeIn 0.5s ease-in-out;
   padding: 10px;
   font-weight: 450;
   font-size: 18px;
-  color: #212a3e;
+  color: var(--headers);
 }
 .reply-text {
   font-family: "Roboto", sans-serif;
   padding: 10px;
   font-size: 15px;
-  color: #212a3e;
+  animation: fadeIn 1s ease-in-out;
+  color: var(--headers);
 }
 
 .reply__form {
@@ -163,18 +172,16 @@ html body {
   border: none;
   padding: 8px 12px;
   cursor: pointer;
-  background-color: #5977b3;
-  color: #d5dff0;
+  background-color: var(--fondo2);
+  color: var(--headers);
+  font-weight: 700;
+  border: 2px solid var(--headers);
 }
 
 .reply__text {
   margin-top: 10px;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
-}
-
-.reply-text {
-  color: #212a3e;
 }
 
 #post-input {
@@ -187,8 +194,10 @@ html body {
 #add-post-btn {
   border-radius: 5px;
   border: none;
-  background-color: #5977b3;
-  color: #d5dff0;
+  background-color: var(--headers);
+  color: var(--fondo1);
+  border: 2px solid var(--botones);
+  font-weight: 700;
   /* animation: fadeIn 1s ease-in-out; */
 }
 @keyframes fadeIn {
@@ -215,14 +224,14 @@ html body {
 .post-content {
   display: flex;
   align-items: center;
-  background-color: #b8c2d5;
+  background-color: var(--headers);
   border-radius: 30px;
   margin: 8px;
 }
 .reply-content {
   display: flex;
   align-items: center;
-  background-color: #b8c2d5;
+  background-color: var(--fondo2);
   border-radius: 30px;
   margin: 8px;
 }
@@ -230,7 +239,7 @@ html body {
 
 .post-name {
   flex-grow: 1;
-  color: black;
+  color: var(--fondo1);
   font-size: 18px;
   padding-top: 10px;
   font-family: "Roboto", sans-serif;
@@ -239,7 +248,7 @@ html body {
 
 .post-date {
   margin-left: auto;
-  color: #dfe6f7;
+  color: var(--fondo1);
   font-size: 14px;
   padding-right: 20px;
   padding-top: 15px;
@@ -251,7 +260,7 @@ html body {
 
 .reply-name {
   flex-grow: 1;
-  color: black;
+  color: var(--headers);
   font-size: 18px;
   padding-top: 10px;
   font-family: "Roboto", sans-serif;
@@ -260,7 +269,7 @@ html body {
 
 .reply-date {
   margin-left: auto;
-  color: #dfe6f7;
+  color: var(--headers);
   font-size: 14px;
   padding-right: 20px;
   padding-top: 15px;

@@ -219,6 +219,14 @@ function addReply(event) {
 const addPostButton = document.getElementById("add-post-btn");
 addPostButton.addEventListener("click", addPost);
 
+// Add event listener for Enter keypress on the post-input field
+const postInput = document.getElementById("post-input");
+postInput.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    addPost();
+  }
+});
+
 /*------------------- Pertinencia de la informacion ----------------------*/
 
 //Funcion para guardar la informacion en Local Storage.
