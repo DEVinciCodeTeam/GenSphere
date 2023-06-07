@@ -150,5 +150,10 @@ function visualizeUserPosts() {
   }
 }
 
+function getUserPP() {
+  temporalCurrentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  return temporalCurrentUser.userProfilePicture
+}
+
  // exporta la función previamente declarada
 /* export { changeHtmlElementsPropById, changeHtmlElementsPropByClass, updateStorageObject, removeMessage, restoreMessage, saveElementsOnObject}; */

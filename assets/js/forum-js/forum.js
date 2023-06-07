@@ -16,26 +16,6 @@ function appendObjectToLocalStorage(allData) {
 const currentUser = sessionStorage.getItem("currentUser");
 const userName = currentUser ? JSON.parse(currentUser).userName : "Anonymous";
 
-function handleHover() {
-  const nameElements = document.querySelectorAll(".post-name, .reply-name");
-
-  nameElements.forEach((element) => {
-    const originalText = element.textContent;
-    const userEmail = element.getAttribute("data-userEmail");
-
-    element.addEventListener("mouseenter", function () {
-      element.textContent = userEmail;
-      element.setAttribute("data-userEmail", originalText);
-    });
-
-    element.addEventListener("mouseleave", function () {
-      element.textContent = originalText;
-      element.setAttribute("data-userEmail", userEmail);
-    });
-  });
-  console.log(targetElement.textContent);
-}
-
 // Función para manejar el evento de clic en el botón "Agregar publicación"
 function addPost() {
   const postInput = document.getElementById("post-input").value.trim();
@@ -62,7 +42,7 @@ function addPost() {
 
   // Crear un elemento de imagen para la publicación
   const postImage = document.createElement("img");
-  postImage.src = "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp";
+  postImage.src = getUserPP();
   postImage.classList.add("rounded-circle");
   postImage.classList.add("me-3");
   postImage.classList.add("shadow-1-strong");
@@ -125,7 +105,7 @@ function addPost() {
   postContainer.appendChild(replyForm);
 
   const wallContainer = document.querySelector(".wall__container");
-  wallContainer.prepend(postContainer);
+  wallContainer.appendChild(postContainer);
 
   document.getElementById("post-input").value = "";
 
@@ -134,7 +114,7 @@ function addPost() {
     "post-header-name": nameElement.textContent,
     "post-header-date": postDate.textContent,
     "post-header-text": postInput,
-    userEmail: currentUser ? JSON.parse(currentUser).userEmail : "",
+    "post-header-pp": getUserPP(),
   };
 
   const postData = {
@@ -145,14 +125,12 @@ function addPost() {
 
   allData.postData.push(postData);
 
-  addPostToUserData(postData);
+  addPostToUserData(postData)
 
   console.clear();
 
   //Guardar en Local Storage
   appendObjectToLocalStorage(allData);
-
-  handleHover();
 }
 
 function addReply(event) {
@@ -173,7 +151,7 @@ function addReply(event) {
   replyContentDiv.classList.add("reply-content");
 
   const replyImage = document.createElement("img");
-  replyImage.src = "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp";
+  replyImage.src = getUserPP();
   replyImage.classList.add("rounded-circle");
   replyImage.classList.add("me-3");
   replyImage.classList.add("shadow-1-strong");
@@ -227,15 +205,13 @@ function addReply(event) {
     "reply-name": nameElement.textContent,
     "reply-date": replyDate.textContent,
     "reply-text": replyText,
-    userEmail: currentUser ? JSON.parse(currentUser).userEmail : "",
+    "reply-pp": getUserPP(),
   };
 
   const postData = allData.postData.find((post) => post.postDataId === postId); //Seleccionando el postData por su id
   postData.replyData.push(replyData);
 
-  addPostToUserData(postData);
-
-  handleHover();
+  addPostToUserData(postData)
 
   // Save the updated data to local storage
   appendObjectToLocalStorage(allData);
@@ -244,14 +220,6 @@ function addReply(event) {
 // Add an event listener to the "Publicar" button
 const addPostButton = document.getElementById("add-post-btn");
 addPostButton.addEventListener("click", addPost);
-
-// Add event listener for Enter keypress on the post-input field
-const postInput = document.getElementById("post-input");
-postInput.addEventListener("keypress", function (event) {
-  if (event.key === "Enter") {
-    addPost();
-  }
-});
 
 /*------------------- Pertinencia de la informacion ----------------------*/
 
@@ -290,9 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const wallContainer = document.querySelector(".wall__container");
     wallContainer.innerHTML = "";
 
-    const reversedPosts = data.postData.slice().reverse();
-
-    reversedPosts.forEach((postData) => {
+    data.postData.forEach((postData) => {
       const postContainer = document.createElement("div");
       postContainer.classList.add("post-container");
       postContainer.setAttribute("data-postId", postData.postDataId);
@@ -305,8 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
         postContentDiv.classList.add("post-content");
 
         const postImage = document.createElement("img");
-        postImage.src =
-          "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp";
+        postImage.src = postHeader["post-header-pp"];
         postImage.classList.add("rounded-circle");
         postImage.classList.add("me-3");
         postImage.classList.add("shadow-1-strong");
@@ -315,20 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const nameElement = document.createElement("h3");
         nameElement.textContent = postHeader["post-header-name"];
-        nameElement.setAttribute("data-userEmail", postHeader.userEmail);
         nameElement.classList.add("post-name");
-
-        nameElement.addEventListener("mouseenter", function () {
-          const temp = this.textContent;
-          this.textContent = this.getAttribute("data-userEmail");
-          this.setAttribute("data-userEmail", temp);
-        });
-
-        nameElement.addEventListener("mouseleave", function () {
-          const temp = this.textContent;
-          this.textContent = this.getAttribute("data-userEmail");
-          this.setAttribute("data-userEmail", temp);
-        });
 
         const postDate = document.createElement("p");
         postDate.textContent = postHeader["post-header-date"];
@@ -365,8 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
         replyContentDiv.classList.add("reply-content");
 
         const replyImage = document.createElement("img");
-        replyImage.src =
-          "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp";
+        replyImage.src = replyData["reply-pp"];
         replyImage.classList.add("rounded-circle");
         replyImage.classList.add("me-3");
         replyImage.classList.add("shadow-1-strong");
@@ -375,16 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const nameElement = document.createElement("h3");
         nameElement.textContent = replyData["reply-name"];
-        nameElement.setAttribute("data-userEmail", replyData.userEmail);
         nameElement.classList.add("reply-name");
-
-        nameElement.addEventListener("mouseover", function () {
-          this.textContent = this.getAttribute("data-userEmail");
-        });
-
-        nameElement.addEventListener("mouseout", function () {
-          this.textContent = replyData["reply-name"];
-        });
 
         const replyDate = document.createElement("p");
         replyDate.textContent = replyData["reply-date"];
@@ -430,6 +372,5 @@ document.addEventListener("DOMContentLoaded", () => {
   if (storedData) {
     allData = storedData;
     populateWallContainer(storedData);
-    handleHover();
   }
 });
