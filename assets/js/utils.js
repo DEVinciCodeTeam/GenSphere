@@ -127,7 +127,12 @@ function placeCard(userName, text, date, numRespuestas) {
 
 function visualizeUserPosts() {
   if (!document.location.pathname.includes("perfilEditable")) {
-    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    let currentUser;
+    if (document.location.pathname.includes("perfilExterno")) {
+      currentUser = JSON.parse(sessionStorage.getItem("identifiedPerson"));
+    } else {
+      currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    }
     const userPosts = currentUser.userPosts;
     const approvedPostsText = [];
     const approvedPosts = [];
@@ -142,15 +147,25 @@ function visualizeUserPosts() {
         break;
       }
     }
-    currentUser.userPosts = approvedPosts;
-    updateStorageObject('session', 'currentUser', currentUser)
-    const allUsers = JSON.parse(localStorage.getItem("allUsers"));
-    allUsers[currentUser.userEmail] = currentUser;
-    updateStorageObject('local', 'allData', allUsers)
+    if (document.location.pathname.includes("perfilExterno")) {
+      currentUser.userPosts = approvedPosts;
+      updateStorageObject('session', 'identifiedPerson', currentUser)
+      const allUsers = JSON.parse(localStorage.getItem("allUsers"));
+      allUsers[currentUser.userEmail] = currentUser;
+      updateStorageObject('local', 'allData', allUsers)
+
+    } else {
+      currentUser.userPosts = approvedPosts;
+      updateStorageObject('session', 'currentUser', currentUser)
+      const allUsers = JSON.parse(localStorage.getItem("allUsers"));
+      allUsers[currentUser.userEmail] = currentUser;
+      updateStorageObject('local', 'allData', allUsers)
+
+    }
   }
 }
 
- // exporta la función previamente declarada
+// exporta la función previamente declarada
 /* export { changeHtmlElementsPropById, changeHtmlElementsPropByClass, updateStorageObject, removeMessage, restoreMessage, saveElementsOnObject}; */
 
 /* Gaby */
@@ -170,29 +185,29 @@ buscarUsuarios.onsubmit = function(e) {
   if (searchTerm !== "") {
     const allUsers = JSON.parse(localStorage.getItem("allUsers"));
     console.log(allUsers[searchTerm])
-    sessionStorage.setItem("identifiedPerson" , JSON.stringify(allUsers[searchTerm] ))
-     window.location.href = "../../sections/perfilExterno.html"; 
+    sessionStorage.setItem("identifiedPerson", JSON.stringify(allUsers[searchTerm]))
+    window.location.href = "../../sections/perfilExterno.html";
   }
 
-/* if (searchTerm !== "") {
-  const resultados = buscarPorCorreo(searchTerm); 
+  /* if (searchTerm !== "") {
+    const resultados = buscarPorCorreo(searchTerm); 
+  
+      const resultsContainer = document.getElementById("resultsContainer");
+      resultsContainer.innerHTML = ""; */
 
-    const resultsContainer = document.getElementById("resultsContainer");
-    resultsContainer.innerHTML = ""; */
+  /*  
 
-   /*  
-
-    window.location.href = "../../../perfil.html" + userEmail; */
-     /*  if (resultados.length > 0) {
-      resultados.forEach(user => {
-        const userElement = document.createElement("div");
-        userElement.textContent = user.userName;
-        resultsContainer.appendChild(userElement);
-      });
-    } else {
-      const noResultsElement = document.createElement("div");
-      noResultsElement.textContent = "No se encontraron resultados.";
-      resultsContainer.appendChild(noResultsElement);
-    }  
-  } */
+   window.location.href = "../../../perfil.html" + userEmail; */
+  /*  if (resultados.length > 0) {
+   resultados.forEach(user => {
+     const userElement = document.createElement("div");
+     userElement.textContent = user.userName;
+     resultsContainer.appendChild(userElement);
+   });
+ } else {
+   const noResultsElement = document.createElement("div");
+   noResultsElement.textContent = "No se encontraron resultados.";
+   resultsContainer.appendChild(noResultsElement);
+ }  
+} */
 } 

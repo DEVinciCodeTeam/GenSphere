@@ -2,11 +2,11 @@ visualizeUserPosts();
 // ------------------ Setting user's data ------------------------------
 console.log(document.location.pathname.includes("perfilExterno"))
 let currentUser;
- if (document.location.pathname.includes("perfilExterno")){
-   currentUser = JSON.parse(sessionStorage.getItem("identifiedPerson"));
-}else{
-   currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-} 
+if (document.location.pathname.includes("perfilExterno")) {
+  currentUser = JSON.parse(sessionStorage.getItem("identifiedPerson"));
+} else {
+  currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+}
 console.log(currentUser)
 /* const currentUser = JSON.parse(sessionStorage.getItem("currentUser")); */
 const allUsers = JSON.parse(localStorage.getItem("allUsers"));
