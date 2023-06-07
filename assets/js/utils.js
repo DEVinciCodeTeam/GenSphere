@@ -55,13 +55,20 @@ function saveElementsOnObject(id, prop, objectToUpdate) {
   }
 }
 
-function addPostToUserData(postData) {
+function addPostToUserData(type, postData) {
+  tempAllUsers = JSON.parse(localStorage.getItem("allUsers"));
   temporalCurrentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   postData.postHeader[0]["post-header-replies"] = postData.replyData.length;
-  temporalCurrentUser.userPosts.unshift(postData.postHeader[0]);
+  if (type === 'post') {
+    temporalCurrentUser.userPosts.unshift(postData.postHeader[0]);
+  } else {
+    tempAllUsers[postData.postHeader[0]['post-header-userEmail']].userPosts.unshift(postData.postHeader[0]);
+    temporalCurrentUser.userReplies.unshift(postData.postHeader[0]);
+  }
+
+  // temporalCurrentUser.userPosts.unshift(postData.postHeader[0]);
   sessionStorage.setItem("currentUser", JSON.stringify(temporalCurrentUser));
 
-  tempAllUsers = JSON.parse(localStorage.getItem("allUsers"));
   tempAllUsers[temporalCurrentUser.userEmail] = temporalCurrentUser;
   localStorage.setItem("allUsers", JSON.stringify(tempAllUsers));
 }
@@ -73,14 +80,14 @@ const convertStringToHTML = htmlString => {
   return html.body;
 }
 
-function generateCardPost(userName, text, date, numRespuestas) {
+function generateCardPost(userName, userPP, text, date, numRespuestas) {
   return `<div class="col-12 col-md-6 my-3 userPosts">
           <div class="blog_post">
             <div class="row" style="padding: 10px 0px;">
               <div class="col-3 my-3">
                 <div class="img_pod2">
                   <img class="user-post-img"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                    src="$${userPP}"
                     alt="random image">
                 </div>
               </div>
@@ -108,7 +115,7 @@ function generateCardPost(userName, text, date, numRespuestas) {
         </div>`
 }
 
-function placeCard(userName, text, date, numRespuestas) {
+function placeCard(userName, userPP, text, date, numRespuestas) {
   const currentPosts = document.getElementsByClassName("userPosts");
 
   const numOfCurrentPosts = currentPosts.length;
@@ -141,7 +148,7 @@ function visualizeUserPosts() {
       if (!approvedPostsText.includes(post["post-header-text"])) {
         approvedPostsText.push(post["post-header-text"])
         approvedPosts.push(post)
-        placeCard(post["post-header-name"], post["post-header-text"], post["post-header-date"], post["post-header-replies"])
+        placeCard(post["post-header-name"], post["post-header-pp"], post["post-header-text"], post["post-header-date"], post["post-header-replies"])
       }
       if (approvedPosts.length == 10) {
         break;

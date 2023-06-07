@@ -90,7 +90,8 @@ signUpForm.onsubmit = function(e) {
         userPassword: getUserPassword,
         userProfilePicture: "../../assets/img/logo/genspherePP2.png",
         userJoinedDate: transformDates(userJoinDate.toJSON().slice(0, 10)),
-        userPosts: []
+        userPosts: [],
+        userReplies: []
       }
       localStorage.setItem("allUsers", JSON.stringify(allUsers))
       restoreMessage("singUpSuccesful");

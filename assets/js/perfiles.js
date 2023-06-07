@@ -29,7 +29,7 @@ if (currentUser.userOtherEmail != undefined) {
 
 // ---------------- Just perfilUsuario IDs -----------------------------
 changeHtmlElementsPropById("userJoinedDate", "Se unió en " + currentUser.userJoinedDate, "innerHTML", "Se unió en 2023");
-changeHtmlElementsPropByClass("user-post-title", currentUser.userName, "innerHTML");
+// changeHtmlElementsPropByClass("user-post-title", currentUser.userName, "innerHTML");
 changeHtmlElementsPropByClass("user-post-img", currentUser.userProfilePicture, "src");
 // ---------------- Just perfilEditable IDs ----------------------------
 changeHtmlElementsPropById("editUserName", currentUser.userName, "innerHTML");

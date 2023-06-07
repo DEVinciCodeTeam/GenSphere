@@ -124,7 +124,7 @@ function addPost() {
 
   allData.postData.push(postData);
 
-  addPostToUserData(postData)
+  addPostToUserData('post', postData)
 
   console.clear();
 
@@ -209,7 +209,7 @@ function addReply(event) {
   const postData = allData.postData.find((post) => post.postDataId === postId); //Seleccionando el postData por su id
   postData.replyData.push(replyData);
 
-  addPostToUserData(postData)
+  addPostToUserData('reply', postData)
 
   // Save the updated data to local storage
   appendObjectToLocalStorage(allData);
@@ -221,7 +221,7 @@ addPostButton.addEventListener("click", addPost);
 
 // Add event listener for Enter keypress on the post-input field
 const postInput = document.getElementById("post-input");
-postInput.addEventListener("keypress", function (event) {
+postInput.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
     addPost();
   }
