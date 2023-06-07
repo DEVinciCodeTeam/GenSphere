@@ -174,3 +174,10 @@ h5{
     display: flex;
         justify-content: center;
 }
+#perfilFriends{
+    padding: 3px 10px;
+}
+
+#searchInput{
+    width: 300px;
+}
