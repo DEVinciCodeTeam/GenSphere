@@ -124,7 +124,7 @@ function addPost() {
   postContainer.appendChild(replyForm);
 
   const wallContainer = document.querySelector(".wall__container");
-  wallContainer.appendChild(postContainer);
+  wallContainer.prepend(postContainer);
 
   document.getElementById("post-input").value = "";
 
@@ -145,7 +145,7 @@ function addPost() {
 
   allData.postData.push(postData);
 
-  addPostToUserData(postData)
+  addPostToUserData(postData);
 
   console.clear();
 
@@ -237,7 +237,7 @@ function addReply(event) {
   const postData = allData.postData.find((post) => post.postDataId === postId); //Seleccionando el postData por su id
   postData.replyData.push(replyData);
 
-  addPostToUserData(postData)
+  addPostToUserData(postData);
 
   // Save the updated data to local storage
   appendObjectToLocalStorage(allData);
@@ -419,7 +419,7 @@ document.addEventListener("DOMContentLoaded", () => {
       replyButton.addEventListener("click", addReply);
       replyForm.appendChild(replyButton);
       postContainer.appendChild(replyForm);
-      wallContainer.appendChild(postContainer);
+      wallContainer.prepend(postContainer);
     });
   }
 

@@ -1,11 +1,18 @@
 // Objeto que almacena todos los objetos de datos creados dentro de las funciones
 let allData = { id: "Semana2", postData: [] };
 
-// Function to retrieve the user's profile picture from local storage
-function getUserProfilePicture(userEmail) {
-  const allUsers = JSON.parse(localStorage.getItem("allUsers"));
-  const userProfile = allUsers[userEmail];
-  return userProfile ? userProfile.userProfilePicture : "";
+function handleMouseEvents(element) {
+  element.addEventListener("mouseenter", function () {
+    const temp = this.textContent;
+    this.textContent = this.getAttribute("data-userEmail");
+    this.setAttribute("data-userEmail", temp);
+  });
+
+  element.addEventListener("mouseleave", function () {
+    const temp = this.textContent;
+    this.textContent = this.getAttribute("data-userEmail");
+    this.setAttribute("data-userEmail", temp);
+  });
 }
 
 // Counter variables
@@ -49,17 +56,22 @@ function addPost() {
 
   // Crear un elemento de imagen para la publicación
   const postImage = document.createElement("img");
-  postImage.src = getUserProfilePicture(currentUser.userEmail);
+  postImage.src = getUserPP();
   postImage.classList.add("rounded-circle");
   postImage.classList.add("me-3");
   postImage.classList.add("shadow-1-strong");
   postImage.style.width = "60px";
   postImage.style.height = "60px";
 
-  // Create the name element for the post
   const nameElement = document.createElement("h3");
   nameElement.textContent = userName;
   nameElement.classList.add("post-name");
+  nameElement.setAttribute(
+    "data-userEmail",
+    currentUser ? JSON.parse(currentUser).userEmail : ""
+  );
+
+  handleMouseEvents(nameElement);
 
   // Crear un elemento para la fecha
   const postDate = document.createElement("p");
@@ -121,6 +133,8 @@ function addPost() {
     "post-header-name": nameElement.textContent,
     "post-header-date": postDate.textContent,
     "post-header-text": postInput,
+    "post-header-pp": getUserPP(),
+    userEmail: currentUser ? JSON.parse(currentUser).userEmail : "",
   };
 
   const postData = {
@@ -157,17 +171,22 @@ function addReply(event) {
   replyContentDiv.classList.add("reply-content");
 
   const replyImage = document.createElement("img");
-  replyImage.src = getUserProfilePicture(currentUser.userEmail);
+  replyImage.src = getUserPP();
   replyImage.classList.add("rounded-circle");
   replyImage.classList.add("me-3");
   replyImage.classList.add("shadow-1-strong");
   replyImage.style.width = "60px";
   replyImage.style.height = "60px";
 
-  // Create the name element for the reply
   const nameElement = document.createElement("h3");
   nameElement.textContent = userName;
   nameElement.classList.add("reply-name");
+  nameElement.setAttribute(
+    "data-userEmail",
+    currentUser ? JSON.parse(currentUser).userEmail : ""
+  );
+
+  handleMouseEvents(nameElement);
 
   const replyDate = document.createElement("p");
   const currentDate = new Date();
@@ -211,6 +230,8 @@ function addReply(event) {
     "reply-name": nameElement.textContent,
     "reply-date": replyDate.textContent,
     "reply-text": replyText,
+    "reply-pp": getUserPP(),
+    userEmail: currentUser ? JSON.parse(currentUser).userEmail : "",
   };
 
   const postData = allData.postData.find((post) => post.postDataId === postId); //Seleccionando el postData por su id
@@ -225,6 +246,14 @@ function addReply(event) {
 // Add an event listener to the "Publicar" button
 const addPostButton = document.getElementById("add-post-btn");
 addPostButton.addEventListener("click", addPost);
+
+// Add event listener for Enter keypress on the post-input field
+const postInput = document.getElementById("post-input");
+postInput.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    addPost();
+  }
+});
 
 /*------------------- Pertinencia de la informacion ----------------------*/
 
@@ -263,9 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const wallContainer = document.querySelector(".wall__container");
     wallContainer.innerHTML = "";
 
-    const reversedPosts = data.postData.slice().reverse();
-
-    reversedPosts.forEach((postData) => {
+    data.postData.forEach((postData) => {
       const postContainer = document.createElement("div");
       postContainer.classList.add("post-container");
       postContainer.setAttribute("data-postId", postData.postDataId);
@@ -278,7 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
         postContentDiv.classList.add("post-content");
 
         const postImage = document.createElement("img");
-        postImage.src = getUserProfilePicture(currentUser.userEmail);
+        postImage.src = postHeader["post-header-pp"];
         postImage.classList.add("rounded-circle");
         postImage.classList.add("me-3");
         postImage.classList.add("shadow-1-strong");
@@ -287,7 +314,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const nameElement = document.createElement("h3");
         nameElement.textContent = postHeader["post-header-name"];
+        nameElement.setAttribute("data-userEmail", postHeader.userEmail);
         nameElement.classList.add("post-name");
+
+        nameElement.addEventListener("mouseenter", function () {
+          const temp = this.textContent;
+          this.textContent = this.getAttribute("data-userEmail");
+          this.setAttribute("data-userEmail", temp);
+        });
+
+        nameElement.addEventListener("mouseleave", function () {
+          const temp = this.textContent;
+          this.textContent = this.getAttribute("data-userEmail");
+          this.setAttribute("data-userEmail", temp);
+        });
 
         const postDate = document.createElement("p");
         postDate.textContent = postHeader["post-header-date"];
@@ -324,7 +364,7 @@ document.addEventListener("DOMContentLoaded", () => {
         replyContentDiv.classList.add("reply-content");
 
         const replyImage = document.createElement("img");
-        replyImage.src = getUserProfilePicture(currentUser.userEmail);
+        replyImage.src = replyData["reply-pp"];
         replyImage.classList.add("rounded-circle");
         replyImage.classList.add("me-3");
         replyImage.classList.add("shadow-1-strong");
@@ -333,7 +373,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const nameElement = document.createElement("h3");
         nameElement.textContent = replyData["reply-name"];
+        nameElement.setAttribute("data-userEmail", replyData.userEmail);
         nameElement.classList.add("reply-name");
+
+        nameElement.addEventListener("mouseover", function () {
+          this.textContent = this.getAttribute("data-userEmail");
+        });
+
+        nameElement.addEventListener("mouseout", function () {
+          this.textContent = replyData["reply-name"];
+        });
 
         const replyDate = document.createElement("p");
         replyDate.textContent = replyData["reply-date"];
@@ -370,7 +419,7 @@ document.addEventListener("DOMContentLoaded", () => {
       replyButton.addEventListener("click", addReply);
       replyForm.appendChild(replyButton);
       postContainer.appendChild(replyForm);
-      wallContainer.appendChild(postContainer);
+      wallContainer.prepend(postContainer);
     });
   }
 

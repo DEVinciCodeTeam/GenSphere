@@ -56,7 +56,7 @@ function addPost() {
 
   // Crear un elemento de imagen para la publicación
   const postImage = document.createElement("img");
-  postImage.src = "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp";
+  postImage.src = getUserPP();
   postImage.classList.add("rounded-circle");
   postImage.classList.add("me-3");
   postImage.classList.add("shadow-1-strong");
@@ -133,6 +133,7 @@ function addPost() {
     "post-header-name": nameElement.textContent,
     "post-header-date": postDate.textContent,
     "post-header-text": postInput,
+    "post-header-pp": getUserPP(),
     userEmail: currentUser ? JSON.parse(currentUser).userEmail : "",
   };
 
@@ -170,7 +171,7 @@ function addReply(event) {
   replyContentDiv.classList.add("reply-content");
 
   const replyImage = document.createElement("img");
-  replyImage.src = "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp";
+  replyImage.src = getUserPP();
   replyImage.classList.add("rounded-circle");
   replyImage.classList.add("me-3");
   replyImage.classList.add("shadow-1-strong");
@@ -229,6 +230,7 @@ function addReply(event) {
     "reply-name": nameElement.textContent,
     "reply-date": replyDate.textContent,
     "reply-text": replyText,
+    "reply-pp": getUserPP(),
     userEmail: currentUser ? JSON.parse(currentUser).userEmail : "",
   };
 
@@ -290,9 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const wallContainer = document.querySelector(".wall__container");
     wallContainer.innerHTML = "";
 
-    const reversedPosts = data.postData.slice().reverse();
-
-    reversedPosts.forEach((postData) => {
+    data.postData.forEach((postData) => {
       const postContainer = document.createElement("div");
       postContainer.classList.add("post-container");
       postContainer.setAttribute("data-postId", postData.postDataId);
@@ -305,8 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
         postContentDiv.classList.add("post-content");
 
         const postImage = document.createElement("img");
-        postImage.src =
-          "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp";
+        postImage.src = postHeader["post-header-pp"];
         postImage.classList.add("rounded-circle");
         postImage.classList.add("me-3");
         postImage.classList.add("shadow-1-strong");
@@ -365,8 +364,7 @@ document.addEventListener("DOMContentLoaded", () => {
         replyContentDiv.classList.add("reply-content");
 
         const replyImage = document.createElement("img");
-        replyImage.src =
-          "https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp";
+        replyImage.src = replyData["reply-pp"];
         replyImage.classList.add("rounded-circle");
         replyImage.classList.add("me-3");
         replyImage.classList.add("shadow-1-strong");
@@ -421,7 +419,7 @@ document.addEventListener("DOMContentLoaded", () => {
       replyButton.addEventListener("click", addReply);
       replyForm.appendChild(replyButton);
       postContainer.appendChild(replyForm);
-      wallContainer.appendChild(postContainer);
+      wallContainer.prepend(postContainer);
     });
   }
 
