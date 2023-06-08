@@ -36,7 +36,7 @@ html body {
 
 /*Fondo lado izquierdo*/
 h4 {
-  padding-top: 20px !important;
+  padding-top: 1px !important;
 }
 .text-black {
   color: var(--fondo1) !important;
@@ -49,14 +49,7 @@ h4 {
   padding: 10px;
 }
 
-/* Cajas del lado izquierdo donde se coloca el texto de los eventos*/
-.pt-1 {
-  background: #d5dff0;
-  border-radius: 5%;
-  text-align: center;
-  max-width: 100px;
-  width: 100%;
-}
+
 /* Cajas del lado izquierdo donde se colocan las imagenes */
 .card-body img {
   border-radius: 5%;
@@ -65,7 +58,7 @@ h4 {
 }
 
 .events-custom {
-  height: 68vh;
+  height: 80vh;
   padding: 10px;
 }
 
@@ -80,15 +73,6 @@ h4 {
   visibility: visible;
 }
 
-.blink-me {
-  animation: blinker 1s step-start infinite;
-}
-
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
-}
 
 /*--------------------------- Seccion del lado derecho --------------*/
 .mask-custom {
@@ -297,4 +281,12 @@ h4 {
   padding-top: 15px;
   font-family: "Roboto", sans-serif;
   font-weight: 425;
+}
+
+#allPics{
+  transition: 500ms;
+  position:relative ;
+}
+#allPics:hover{
+  transform: scale(1.5);
 }
