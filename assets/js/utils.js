@@ -80,8 +80,8 @@ const convertStringToHTML = htmlString => {
   return html.body;
 }
 
-function generateCardPost(userName, userPP, text, date, numRespuestas) {
-  return `<div class="col-12 col-md-6 my-3 userPosts">
+function generateCardPost(userName, userPP, text, date, numRespuestas, type = "userPosts") {
+  return `<div class="col-12 col-md-6 my-3 ${type}">
           <div class="blog_post">
             <div class="row" style="padding: 10px 0px;">
               <div class="col-3 my-3">
@@ -115,8 +115,10 @@ function generateCardPost(userName, userPP, text, date, numRespuestas) {
         </div>`
 }
 
-function placeCard(userName, userPP, text, date, numRespuestas) {
-  const currentPosts = document.getElementsByClassName("userPosts");
+
+
+function placeCard(userName, userPP, text, date, numRespuestas, type) {
+  const currentPosts = document.getElementsByClassName(type);
 
   const numOfCurrentPosts = currentPosts.length;
   let whereToPlaceCard;
@@ -129,7 +131,11 @@ function placeCard(userName, userPP, text, date, numRespuestas) {
   console.log(whereToPlaceCard)
   // const cardToAdd = convertStringToHTML(generateCardPost(userName, text, date, numRespuestas));
   // document.getElementsByClassName(`cardsRow ${whereToPlaceCard}`)[0].appendChild(cardToAdd);
-  document.getElementsByClassName(`cardsRow ${whereToPlaceCard}`)[0].innerHTML += generateCardPost(userName, text, date, numRespuestas);
+  if (type === "userPosts") {
+    document.getElementsByClassName(`cardsRow ${whereToPlaceCard}`)[0].innerHTML += generateCardPost(userName, userPP, text, date, numRespuestas);
+  } else {
+    document.getElementsByClassName(`cardsRowC ${whereToPlaceCard}`)[0].innerHTML += generateCardPost(userName, userPP, text, date, numRespuestas);
+  }
 }
 
 function visualizeUserPosts() {
@@ -218,9 +224,3 @@ buscarUsuarios.onsubmit = function(e) {
  }  
 } */
 } 
-
-
-function getUserPP() {
-  temporalCurrentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-  return temporalCurrentUser.userProfilePicture
-}
