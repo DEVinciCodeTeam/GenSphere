@@ -2,13 +2,13 @@
 let allData = { id: "Semana1", postData: [] };
 
 function handleMouseEvents(element) {
-  element.addEventListener("mouseenter", function () {
+  element.addEventListener("mouseenter", function() {
     const temp = this.textContent;
     this.textContent = this.getAttribute("data-userEmail");
     this.setAttribute("data-userEmail", temp);
   });
 
-  element.addEventListener("mouseleave", function () {
+  element.addEventListener("mouseleave", function() {
     const temp = this.textContent;
     this.textContent = this.getAttribute("data-userEmail");
     this.setAttribute("data-userEmail", temp);
@@ -67,8 +67,7 @@ function addPost() {
   nameElement.textContent = userName;
   nameElement.classList.add("post-name");
   nameElement.setAttribute(
-    "data-userEmail",
-    currentUser ? JSON.parse(currentUser).userEmail : ""
+    "data-userEmail", getUserEmail()
   );
 
   handleMouseEvents(nameElement);
@@ -134,7 +133,7 @@ function addPost() {
     "post-header-date": postDate.textContent,
     "post-header-text": postInput,
     "post-header-pp": getUserPP(),
-    userEmail: currentUser ? JSON.parse(currentUser).userEmail : "",
+    'post-header-userEmail': getUserEmail(),
   };
 
   const postData = {
@@ -145,7 +144,7 @@ function addPost() {
 
   allData.postData.push(postData);
 
-  addPostToUserData(postData);
+  addPostToUserData('post', postData);
 
   console.clear();
 
@@ -182,8 +181,7 @@ function addReply(event) {
   nameElement.textContent = userName;
   nameElement.classList.add("reply-name");
   nameElement.setAttribute(
-    "data-userEmail",
-    currentUser ? JSON.parse(currentUser).userEmail : ""
+    "data-userEmail", getUserEmail()
   );
 
   handleMouseEvents(nameElement);
@@ -231,13 +229,13 @@ function addReply(event) {
     "reply-date": replyDate.textContent,
     "reply-text": replyText,
     "reply-pp": getUserPP(),
-    userEmail: currentUser ? JSON.parse(currentUser).userEmail : "",
+    "reply-userEmail": getUserEmail(),
   };
 
   const postData = allData.postData.find((post) => post.postDataId === postId); //Seleccionando el postData por su id
   postData.replyData.push(replyData);
 
-  addPostToUserData(postData);
+  addPostToUserData('reply', postData);
 
   // Save the updated data to local storage
   appendObjectToLocalStorage(allData);
@@ -314,18 +312,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const nameElement = document.createElement("h3");
         nameElement.textContent = postHeader["post-header-name"];
-        nameElement.setAttribute("data-userEmail", postHeader.userEmail);
+        nameElement.setAttribute("data-userEmail", postHeader["post-header-userEmail"]);
         nameElement.classList.add("post-name");
 
-        nameElement.addEventListener("mouseenter", function () {
+        // nameElement.addEventListener("mouseenter", function() {
+        //   const temp = this.textContent;
+        //   this.textContent = this.getAttribute("data-userEmail");
+        //   this.setAttribute("data-userEmail", temp);
+        // });
+
+        // nameElement.addEventListener("mouseleave", function() {
+        //   const temp = this.textContent;
+        //   this.textContent = this.getAttribute("data-userEmail");
+        //   this.setAttribute("data-userEmail", temp);
+        // });
+
+        nameElement.addEventListener("mouseenter", function() {
           const temp = this.textContent;
-          this.textContent = this.getAttribute("data-userEmail");
+          this.textContent = postHeader["post-header-userEmail"];
           this.setAttribute("data-userEmail", temp);
         });
 
-        nameElement.addEventListener("mouseleave", function () {
+        nameElement.addEventListener("mouseleave", function() {
           const temp = this.textContent;
-          this.textContent = this.getAttribute("data-userEmail");
+          this.textContent = postHeader["post-header-userEmail"];
           this.setAttribute("data-userEmail", temp);
         });
 
@@ -376,11 +386,15 @@ document.addEventListener("DOMContentLoaded", () => {
         nameElement.setAttribute("data-userEmail", replyData.userEmail);
         nameElement.classList.add("reply-name");
 
-        nameElement.addEventListener("mouseover", function () {
-          this.textContent = this.getAttribute("data-userEmail");
+        // nameElement.addEventListener("mouseover", function() {
+        //   this.textContent = this.getAttribute("data-userEmail");
+        // });
+
+        nameElement.addEventListener("mouseover", function() {
+          this.textContent = replyData["reply-userEmail"];
         });
 
-        nameElement.addEventListener("mouseout", function () {
+        nameElement.addEventListener("mouseout", function() {
           this.textContent = replyData["reply-name"];
         });
 

@@ -1,4 +1,5 @@
 visualizeUserPosts();
+visualizeCommentedPosts();
 // ------------------ Setting user's data ------------------------------
 console.log(document.location.pathname.includes("perfilExterno"))
 let currentUser;
@@ -30,7 +31,7 @@ if (currentUser.userOtherEmail != undefined) {
 // ---------------- Just perfilUsuario IDs -----------------------------
 changeHtmlElementsPropById("userJoinedDate", "Se unió en " + currentUser.userJoinedDate, "innerHTML", "Se unió en 2023");
 // changeHtmlElementsPropByClass("user-post-title", currentUser.userName, "innerHTML");
-changeHtmlElementsPropByClass("user-post-img", currentUser.userProfilePicture, "src");
+// changeHtmlElementsPropByClass("user-post-img", currentUser.userProfilePicture, "src");
 // ---------------- Just perfilEditable IDs ----------------------------
 changeHtmlElementsPropById("editUserName", currentUser.userName, "innerHTML");
 changeHtmlElementsPropById("editUserNameInput", currentUser.userName, "value");
@@ -46,28 +47,28 @@ changeHtmlElementsPropById("userOtherEmailInput", currentUser.userOtherEmail, "v
 
 // ------------- Saving the photo that the user uploads --------------
 
+if (document.location.pathname.includes("perfilEditable")) {
+  const img = document.querySelector('#userProfilePicture');
+  const file = document.querySelector('#file');
 
-const img = document.querySelector('#userProfilePicture');
-const file = document.querySelector('#file');
-
-file.addEventListener('change', function() {
-  const allUsers = JSON.parse(localStorage.getItem("allUsers"));
-  const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-  const chosenFile = this.files[0];
-  if (chosenFile) {
-    const reader = new FileReader();
-    reader.addEventListener('load', function() {
-      img.setAttribute('src', reader.result);
-      currentUser.userProfilePicture = reader.result;
-      console.log(allUsers)
-      allUsers[currentUser.userEmail] = currentUser;
-      updateStorageObject('session', 'currentUser', currentUser);
-      updateStorageObject('local', 'allUsers', allUsers)
-    });
-    reader.readAsDataURL(chosenFile);
-  }
-});
-
+  file.addEventListener('change', function() {
+    const allUsers = JSON.parse(localStorage.getItem("allUsers"));
+    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    const chosenFile = this.files[0];
+    if (chosenFile) {
+      const reader = new FileReader();
+      reader.addEventListener('load', function() {
+        img.setAttribute('src', reader.result);
+        currentUser.userProfilePicture = reader.result;
+        console.log(allUsers)
+        allUsers[currentUser.userEmail] = currentUser;
+        updateStorageObject('session', 'currentUser', currentUser);
+        updateStorageObject('local', 'allUsers', allUsers)
+      });
+      reader.readAsDataURL(chosenFile);
+    }
+  });
+}
 // ---------------- Saving the secondary data perfil editable----------------------------
 const editProfile = document.getElementById("profileEditForm");
 

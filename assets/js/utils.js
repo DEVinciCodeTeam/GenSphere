@@ -59,18 +59,25 @@ function addPostToUserData(type, postData) {
   tempAllUsers = JSON.parse(localStorage.getItem("allUsers"));
   temporalCurrentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   postData.postHeader[0]["post-header-replies"] = postData.replyData.length;
+
   if (type === 'post') {
+    console.log("Entra al if")
     temporalCurrentUser.userPosts.unshift(postData.postHeader[0]);
+
+    sessionStorage.setItem("currentUser", JSON.stringify(temporalCurrentUser));
+
+    tempAllUsers[temporalCurrentUser.userEmail] = temporalCurrentUser;
+
+    localStorage.setItem("allUsers", JSON.stringify(tempAllUsers));
   } else {
-    tempAllUsers[postData.postHeader[0]['post-header-userEmail']].userPosts.unshift(postData.postHeader[0]);
     temporalCurrentUser.userReplies.unshift(postData.postHeader[0]);
+    tempAllUsers[temporalCurrentUser.userEmail].userReplies.unshift(postData.postHeader[0]);
+    tempAllUsers[postData.postHeader[0]['post-header-userEmail']].userPosts.unshift(postData.postHeader[0]);
+
+    sessionStorage.setItem("currentUser", JSON.stringify(temporalCurrentUser));
+    localStorage.setItem("allUsers", JSON.stringify(tempAllUsers));
   }
 
-  // temporalCurrentUser.userPosts.unshift(postData.postHeader[0]);
-  sessionStorage.setItem("currentUser", JSON.stringify(temporalCurrentUser));
-
-  tempAllUsers[temporalCurrentUser.userEmail] = temporalCurrentUser;
-  localStorage.setItem("allUsers", JSON.stringify(tempAllUsers));
 }
 
 const convertStringToHTML = htmlString => {
@@ -87,7 +94,7 @@ function generateCardPost(userName, userPP, text, date, numRespuestas, type = "u
               <div class="col-3 my-3">
                 <div class="img_pod2">
                   <img class="user-post-img"
-                    src="$${userPP}"
+                    src="${userPP}"
                     alt="random image">
                 </div>
               </div>
@@ -134,17 +141,22 @@ function placeCard(userName, userPP, text, date, numRespuestas, type) {
   if (type === "userPosts") {
     document.getElementsByClassName(`cardsRow ${whereToPlaceCard}`)[0].innerHTML += generateCardPost(userName, userPP, text, date, numRespuestas);
   } else {
+    console.log(document.getElementsByClassName(`cardsRowC ${whereToPlaceCard}`))
+    console.log(whereToPlaceCard)
     document.getElementsByClassName(`cardsRowC ${whereToPlaceCard}`)[0].innerHTML += generateCardPost(userName, userPP, text, date, numRespuestas);
   }
 }
 
 function visualizeUserPosts() {
   if (!document.location.pathname.includes("perfilEditable")) {
+    let allUsers = JSON.parse(localStorage.getItem("allUsers"));
     let currentUser;
     if (document.location.pathname.includes("perfilExterno")) {
-      currentUser = JSON.parse(sessionStorage.getItem("identifiedPerson"));
+      const identifiedPerson = JSON.parse(sessionStorage.getItem("identifiedPerson"));
+      currentUser = allUsers[identifiedPerson.userEmail];
     } else {
-      currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+      const identifiedPerson = JSON.parse(sessionStorage.getItem("currentUser"));
+      currentUser = allUsers[identifiedPerson.userEmail];
     }
     const userPosts = currentUser.userPosts;
     const approvedPostsText = [];
@@ -154,27 +166,48 @@ function visualizeUserPosts() {
       if (!approvedPostsText.includes(post["post-header-text"])) {
         approvedPostsText.push(post["post-header-text"])
         approvedPosts.push(post)
-        placeCard(post["post-header-name"], post["post-header-pp"], post["post-header-text"], post["post-header-date"], post["post-header-replies"])
+        console.log([post])
+        placeCard(post["post-header-name"], post["post-header-pp"], post["post-header-text"], post["post-header-date"], post["post-header-replies"], "userPosts")
       }
       if (approvedPosts.length == 10) {
         break;
       }
     }
+    allUsers[currentUser.userEmail].userPosts = approvedPosts;
+    updateStorageObject('local', 'allUsers', allUsers)
+
+  }
+}
+
+function visualizeCommentedPosts() {
+  if (!document.location.pathname.includes("perfilEditable")) {
+    let allUsers = JSON.parse(localStorage.getItem("allUsers"));
+    let currentUser;
     if (document.location.pathname.includes("perfilExterno")) {
-      currentUser.userPosts = approvedPosts;
-      updateStorageObject('session', 'identifiedPerson', currentUser)
-      const allUsers = JSON.parse(localStorage.getItem("allUsers"));
-      allUsers[currentUser.userEmail] = currentUser;
-      updateStorageObject('local', 'allData', allUsers)
-
+      const identifiedPerson = JSON.parse(sessionStorage.getItem("identifiedPerson"));
+      currentUser = allUsers[identifiedPerson.userEmail];
     } else {
-      currentUser.userPosts = approvedPosts;
-      updateStorageObject('session', 'currentUser', currentUser)
-      const allUsers = JSON.parse(localStorage.getItem("allUsers"));
-      allUsers[currentUser.userEmail] = currentUser;
-      updateStorageObject('local', 'allData', allUsers)
-
+      const identifiedPerson = JSON.parse(sessionStorage.getItem("currentUser"));
+      currentUser = allUsers[identifiedPerson.userEmail];
     }
+    const userPosts = currentUser.userReplies;
+    const approvedPostsText = [];
+    const approvedPosts = [];
+    for (let i = 0; i < userPosts.length; i++) {
+      const post = userPosts[i]
+      if (!approvedPostsText.includes(post["post-header-text"])) {
+        approvedPostsText.push(post["post-header-text"])
+        approvedPosts.push(post)
+        console.log([post])
+        placeCard(post["post-header-name"], post["post-header-pp"], post["post-header-text"], post["post-header-date"], post["post-header-replies"], "userReplies")
+      }
+      if (approvedPosts.length == 10) {
+        break;
+      }
+    }
+    allUsers[currentUser.userEmail].userReplies = approvedPosts;
+    updateStorageObject('local', 'allUsers', allUsers)
+
   }
 }
 
@@ -189,7 +222,7 @@ function buscarPorCorreo(userEmail) {
   return resultados;
 }
 
-if (document.location.pathname.includes("perfilexterno") || document.location.pathname.includes("perfilUsuario")) {
+if (document.location.pathname.includes("perfilExterno") || document.location.pathname.includes("perfilUsuario")) {
 
   const buscarUsuarios = document.getElementById("buscarUsuarios");
 
@@ -203,32 +236,21 @@ if (document.location.pathname.includes("perfilexterno") || document.location.pa
       console.log(allUsers[searchTerm])
       sessionStorage.setItem("identifiedPerson", JSON.stringify(allUsers[searchTerm]))
       window.location.href = "../../sections/perfilExterno.html";
+    } else {
+      alert("El correo que incregaste no corresponde a algun usuario registrado")
     }
 
-    /* if (searchTerm !== "") {
-      const resultados = buscarPorCorreo(searchTerm); 
-    
-        const resultsContainer = document.getElementById("resultsContainer");
-        resultsContainer.innerHTML = ""; */
 
-    /*  
-  
-     window.location.href = "../../../perfil.html" + userEmail; */
-    /*  if (resultados.length > 0) {
-     resultados.forEach(user => {
-       const userElement = document.createElement("div");
-       userElement.textContent = user.userName;
-       resultsContainer.appendChild(userElement);
-     });
-   } else {
-     const noResultsElement = document.createElement("div");
-     noResultsElement.textContent = "No se encontraron resultados.";
-     resultsContainer.appendChild(noResultsElement);
-   }  
-  } */
   }
 }
 function getUserPP() {
   temporalCurrentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   return temporalCurrentUser.userProfilePicture
 }
+
+function getUserEmail() {
+  temporalCurrentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  return temporalCurrentUser.userEmail
+}
+
+
