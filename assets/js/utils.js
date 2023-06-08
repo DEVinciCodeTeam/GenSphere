@@ -188,43 +188,46 @@ function buscarPorCorreo(userEmail) {
   const resultados = Object.values(allUsers).filter(user => user.userEmail.toLowerCase().includes(userEmail.toLowerCase()));
   return resultados;
 }
-const buscarUsuarios = document.getElementById("buscarUsuarios");
 
-buscarUsuarios.onsubmit = function(e) {
-  e.preventDefault();
-  const searchInput = document.getElementById("searchInput");
-  const searchTerm = searchInput.value.trim();
-  console.log(searchTerm);
-  if (searchTerm !== "") {
-    const allUsers = JSON.parse(localStorage.getItem("allUsers"));
-    console.log(allUsers[searchTerm])
-    sessionStorage.setItem("identifiedPerson", JSON.stringify(allUsers[searchTerm]))
-    window.location.href = "../../sections/perfilExterno.html";
-  }
+if (document.location.pathname.includes("perfilexterno") || document.location.pathname.includes("perfilUsuario")) {
 
-  /* if (searchTerm !== "") {
-    const resultados = buscarPorCorreo(searchTerm); 
+  const buscarUsuarios = document.getElementById("buscarUsuarios");
+
+  buscarUsuarios.onsubmit = function(e) {
+    e.preventDefault();
+    const searchInput = document.getElementById("searchInput");
+    const searchTerm = searchInput.value.trim();
+    console.log(searchTerm);
+    if (searchTerm !== "") {
+      const allUsers = JSON.parse(localStorage.getItem("allUsers"));
+      console.log(allUsers[searchTerm])
+      sessionStorage.setItem("identifiedPerson", JSON.stringify(allUsers[searchTerm]))
+      window.location.href = "../../sections/perfilExterno.html";
+    }
+
+    /* if (searchTerm !== "") {
+      const resultados = buscarPorCorreo(searchTerm); 
+    
+        const resultsContainer = document.getElementById("resultsContainer");
+        resultsContainer.innerHTML = ""; */
+
+    /*  
   
-      const resultsContainer = document.getElementById("resultsContainer");
-      resultsContainer.innerHTML = ""; */
-
-  /*  
-
-   window.location.href = "../../../perfil.html" + userEmail; */
-  /*  if (resultados.length > 0) {
-   resultados.forEach(user => {
-     const userElement = document.createElement("div");
-     userElement.textContent = user.userName;
-     resultsContainer.appendChild(userElement);
-   });
- } else {
-   const noResultsElement = document.createElement("div");
-   noResultsElement.textContent = "No se encontraron resultados.";
-   resultsContainer.appendChild(noResultsElement);
- }  
-} */
+     window.location.href = "../../../perfil.html" + userEmail; */
+    /*  if (resultados.length > 0) {
+     resultados.forEach(user => {
+       const userElement = document.createElement("div");
+       userElement.textContent = user.userName;
+       resultsContainer.appendChild(userElement);
+     });
+   } else {
+     const noResultsElement = document.createElement("div");
+     noResultsElement.textContent = "No se encontraron resultados.";
+     resultsContainer.appendChild(noResultsElement);
+   }  
+  } */
+  }
 }
-
 function getUserPP() {
   temporalCurrentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   return temporalCurrentUser.userProfilePicture
