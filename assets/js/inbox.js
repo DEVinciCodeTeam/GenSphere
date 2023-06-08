@@ -12,7 +12,9 @@ let chatItems = JSON.parse(localStorage.getItem(getChatItemsKey())) || [];
 
 function getChatItemsKey() {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-  return currentUser ? currentUser.userEmail + "_chatItems" : "chatItems";
+  return currentUser && currentUser.userEmail
+    ? currentUser.userEmail + "_chatItems"
+    : "chatItems";
 }
 
 function getActiveChatItem() {
