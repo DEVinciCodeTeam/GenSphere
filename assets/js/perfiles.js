@@ -2,7 +2,7 @@ visualizeUserPosts();
 visualizeCommentedPosts();
 // ------------------ Setting user's data ------------------------------
 let currentUser;
-if (document.location.pathname.includes("perfilExterno")) {
+if (document.location.pathname.includes("perfilexterno")) {
   currentUser = JSON.parse(sessionStorage.getItem("identifiedPerson"));
 } else {
   currentUser = JSON.parse(sessionStorage.getItem("currentUser"));

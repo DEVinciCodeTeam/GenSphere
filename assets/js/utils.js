@@ -230,10 +230,8 @@ if (document.location.pathname.includes("perfilexterno") || document.location.pa
     e.preventDefault();
     const searchInput = document.getElementById("searchInput");
     const searchTerm = searchInput.value.trim();
-    console.log(searchTerm);
     if (searchTerm !== "") {
       const allUsers = JSON.parse(localStorage.getItem("allUsers"));
-      console.log(allUsers[searchTerm])
       sessionStorage.setItem("identifiedPerson", JSON.stringify(allUsers[searchTerm]))
       window.location.href = "../../sections/perfilExterno.html";
     } else {
