@@ -148,10 +148,10 @@ function placeCard(userName, userPP, text, date, numRespuestas, type) {
 }
 
 function visualizeUserPosts() {
-  if (!document.location.pathname.includes("perfilEditable")) {
+  if (!document.location.pathname.includes("perfileditable")) {
     let allUsers = JSON.parse(localStorage.getItem("allUsers"));
     let currentUser;
-    if (document.location.pathname.includes("perfilExterno")) {
+    if (document.location.pathname.includes("perfilexterno")) {
       const identifiedPerson = JSON.parse(sessionStorage.getItem("identifiedPerson"));
       currentUser = allUsers[identifiedPerson.userEmail];
     } else {
@@ -180,10 +180,10 @@ function visualizeUserPosts() {
 }
 
 function visualizeCommentedPosts() {
-  if (!document.location.pathname.includes("perfilEditable")) {
+  if (!document.location.pathname.includes("perfileditable")) {
     let allUsers = JSON.parse(localStorage.getItem("allUsers"));
     let currentUser;
-    if (document.location.pathname.includes("perfilExterno")) {
+    if (document.location.pathname.includes("perfilexterno")) {
       const identifiedPerson = JSON.parse(sessionStorage.getItem("identifiedPerson"));
       currentUser = allUsers[identifiedPerson.userEmail];
     } else {
@@ -222,7 +222,7 @@ function buscarPorCorreo(userEmail) {
   return resultados;
 }
 
-if (document.location.pathname.includes("perfilExterno") || document.location.pathname.includes("perfilUsuario")) {
+if (document.location.pathname.includes("perfilexterno") || document.location.pathname.includes("perfilusuario")) {
 
   const buscarUsuarios = document.getElementById("buscarUsuarios");
 

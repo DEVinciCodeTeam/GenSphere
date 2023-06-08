@@ -1,7 +1,6 @@
 visualizeUserPosts();
 visualizeCommentedPosts();
 // ------------------ Setting user's data ------------------------------
-console.log(document.location.pathname.includes("perfilExterno"))
 let currentUser;
 if (document.location.pathname.includes("perfilExterno")) {
   currentUser = JSON.parse(sessionStorage.getItem("identifiedPerson"));
@@ -47,7 +46,7 @@ changeHtmlElementsPropById("userOtherEmailInput", currentUser.userOtherEmail, "v
 
 // ------------- Saving the photo that the user uploads --------------
 
-if (document.location.pathname.includes("perfilEditable")) {
+if (document.location.pathname.includes("perfileditable")) {
   const img = document.querySelector('#userProfilePicture');
   const file = document.querySelector('#file');
 
