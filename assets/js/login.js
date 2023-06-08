@@ -59,19 +59,20 @@ signInButton2.addEventListener('click', () => {
 });
 
 
-function showPassword(){
+function showPassword() {
   const tipo = document.getElementById("userPassword");
-  if(tipo.type == "password"){
-      tipo.type = "text";
-  }else{
-      tipo.type = "password";
+  if (tipo.type == "password") {
+    tipo.type = "text";
+  } else {
+    tipo.type = "password";
   }
 }
 
-function userPasswordLog(){
+function userPasswordLog() {
   const tipo = document.getElementById("userPasswordLogin");
-  if(tipo.type == "password"){
-      tipo.type = "text";
-  }else{
-      tipo.type = "password";
+  if (tipo.type == "password") {
+    tipo.type = "text";
+  } else {
+    tipo.type = "password";
   }
+}
