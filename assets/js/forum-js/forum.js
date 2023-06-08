@@ -335,7 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         nameElement.addEventListener("mouseleave", function() {
           const temp = this.textContent;
-          this.textContent = postHeader["post-header-userEmail"];
+          this.textContent = postHeader["post-header-name"];
           this.setAttribute("data-userEmail", temp);
         });
 
