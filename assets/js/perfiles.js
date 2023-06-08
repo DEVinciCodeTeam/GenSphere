@@ -1,6 +1,14 @@
 visualizeUserPosts();
 // ------------------ Setting user's data ------------------------------
-const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+console.log(document.location.pathname.includes("perfilExterno"))
+let currentUser;
+if (document.location.pathname.includes("perfilExterno")) {
+  currentUser = JSON.parse(sessionStorage.getItem("identifiedPerson"));
+} else {
+  currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+}
+console.log(currentUser)
+/* const currentUser = JSON.parse(sessionStorage.getItem("currentUser")); */
 const allUsers = JSON.parse(localStorage.getItem("allUsers"));
 
 // ----------------------- Shared IDs ----------------------------------
@@ -21,7 +29,7 @@ if (currentUser.userOtherEmail != undefined) {
 
 // ---------------- Just perfilUsuario IDs -----------------------------
 changeHtmlElementsPropById("userJoinedDate", "Se unió en " + currentUser.userJoinedDate, "innerHTML", "Se unió en 2023");
-changeHtmlElementsPropByClass("user-post-title", currentUser.userName, "innerHTML");
+// changeHtmlElementsPropByClass("user-post-title", currentUser.userName, "innerHTML");
 changeHtmlElementsPropByClass("user-post-img", currentUser.userProfilePicture, "src");
 // ---------------- Just perfilEditable IDs ----------------------------
 changeHtmlElementsPropById("editUserName", currentUser.userName, "innerHTML");

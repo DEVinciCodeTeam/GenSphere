@@ -152,7 +152,20 @@
         <!--Tarjeta Post-->
         <div class="col-lg-8" style="padding: 3%;">
           <div class="profile-head ">
-            <h6 id="userJoinedDate" class="my-2">Se unió en 2023</h6>
+            <div class="row">
+              <div class="col-lg-6">
+                <h6 id="userJoinedDate" class="my-2">Se unió en 2023</h6>
+              </div>
+              <div class="col-lg-6">
+                <h6>Buscador de Correos Electrónicos</h6>
+                <form id="buscarUsuarios">
+                  <input id="searchInput" type="text" class="form-control" placeholder="Buscar por dirección de correo"
+                    value="">
+                  <button id="perfilFriends" class="btn btn-outline-secondary my-1" style="width: 50%;" type="submit"
+                    onclick="buscarPorCorreo()">Perfil amigo</button>
+                </form>
+              </div>
+            </div>
             <ul class="nav nav-tabs my-5" id="myTab" role="tablist">
               <li class="nav-item">
                 <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
@@ -160,7 +173,7 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                  aria-controls="profile" aria-selected="false" style="background-color: #f1f6f9;">Guardados</a>
+                  aria-controls="profile" aria-selected="false" style="background-color: #f1f6f9;">Comentados</a>
               </li>
             </ul>
           </div>
@@ -174,148 +187,10 @@
               <div class="row cardsRow 4"></div>
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-              <div class="row">
-                <div class="col-12 col-md-6 my-3">
-                  <div class="blog_post">
-                    <div class="row" style="padding: 10px 0px;">
-                      <div class="col-3 my-3">
-                        <div class="img_pod2">
-                          <a href="./perfilExterno.html">
-                            <img class="user-post-img"
-                              src="https://lapi.com.mx/web/image/product.template/4987/image_1024?unique=a660b70"
-                              alt="random image">
-                          </a>
-                        </div>
-                      </div>
-                      <div class="col-7 my-2" style="padding: 0px 23px;">
-                        <h1 class="user-post-title">Karen Ruíz</h1>
-                        <h3 class="post-date">Hace 5 horas</h3>
-                      </div>
-                      <div class="col-2">
-                        <i class="bi bi-bookmark" style="font-size: 20px;"></i>
-                      </div>
-                    </div>
-                    <div class="container_copy">
-                      <div class="row">
-                        <div class="col-12">
-                          <p id="post-content">The position property specifies the type of positioning method used for
-                            an
-                            element (static, relative, absolute, fixed, or sticky).</p>
-                        </div>
-                      </div>
-                      <div class="row justify-content-center">
-                        <div class="col-12" style="padding: 0px;">
-                          <button type="button" class="btn btn-primary" id="btn_primary">20 respuestas</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-md-6 my-3">
-                  <div class="blog_post">
-                    <div class="row" style="padding: 10px 0px;">
-                      <div class="col-3 my-3">
-                        <div class="img_pod2">
-                          <img class="user-post-img"
-                            src="https://lapi.com.mx/web/image/product.template/4987/image_1024?unique=a660b70"
-                            alt="random image">
-                        </div>
-                      </div>
-                      <div class="col-7 my-2" style="padding: 0px 23px;">
-                        <h1 class="user-post-title">Karen Ruíz</h1>
-                        <h3 class="post-date">Hace 5 horas</h3>
-                      </div>
-                      <div class="col-2">
-                        <i class="bi bi-bookmark" style="font-size: 20px;"></i>
-                      </div>
-                    </div>
-                    <div class="container_copy">
-                      <div class="row">
-                        <div class="col-12">
-                          <p id="post-content">The position property specifies the type of positioning method used for
-                            an
-                            element (static, relative, absolute, fixed, or sticky).</p>
-                        </div>
-                      </div>
-                      <div class="row justify-content-center">
-                        <div class="col-12" style="padding: 0px;">
-                          <button type="button" class="btn btn-primary" id="btn_primary">20 respuestas</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 col-md-6 my-3">
-                  <div class="blog_post">
-                    <div class="row" style="padding: 10px 0px;">
-                      <div class="col-3 my-3">
-                        <div class="img_pod2">
-                          <img class="user-post-img"
-                            src="https://lapi.com.mx/web/image/product.template/4987/image_1024?unique=a660b70"
-                            alt="random image">
-                        </div>
-                      </div>
-                      <div class="col-7 my-2" style="padding: 0px 23px;">
-                        <h1 class="user-post-title">Karen Ruíz</h1>
-                        <h3 class="post-date">Hace 5 horas</h3>
-                      </div>
-                      <div class="col-2">
-                        <i class="bi bi-bookmark" style="font-size: 20px;"></i>
-                      </div>
-                    </div>
-                    <div class="container_copy">
-                      <div class="row">
-                        <div class="col-12">
-                          <p id="post-content">The position property specifies the type of positioning method used for
-                            an
-                            element (static, relative, absolute, fixed, or sticky).</p>
-                        </div>
-                      </div>
-                      <div class="row justify-content-center">
-                        <div class="col-12" style="padding: 0px;">
-                          <button type="button" class="btn btn-primary" id="btn_primary">20 respuestas</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-md-6 my-3">
-                  <div class="blog_post">
-                    <div class="row" style="padding: 10px 0px;">
-                      <div class="col-3 my-3">
-                        <div class="img_pod2">
-                          <img class="user-post-img"
-                            src="https://lapi.com.mx/web/image/product.template/4987/image_1024?unique=a660b70"
-                            alt="random image">
-                        </div>
-                      </div>
-                      <div class="col-7 my-2" style="padding: 0px 23px;">
-                        <h1 class="user-post-title">Karen Ruíz</h1>
-                        <h3 class="post-date">Hace 5 horas</h3>
-                      </div>
-                      <div class="col-2">
-                        <i class="bi bi-bookmark" style="font-size: 20px;"></i>
-                      </div>
-                    </div>
-                    <div class="container_copy">
-                      <div class="row">
-                        <div class="col-12">
-                          <p id="post-content">The position property specifies the type of positioning method used for
-                            an
-                            element (static, relative, absolute, fixed, or sticky).</p>
-                        </div>
-                      </div>
-                      <div class="row justify-content-center">
-                        <div class="col-12" style="padding: 0px;">
-                          <button type="button" class="btn btn-primary" id="btn_primary">20 respuestas</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <div class="row cardsRowC 1"></div>
+              <div class="row cardsRowC 2"></div>
+              <div class="row cardsRowC 3"></div>
+              <div class="row cardsRowC 4"></div>
             </div>
           </div>
         </div>

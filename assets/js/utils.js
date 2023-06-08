@@ -55,13 +55,20 @@ function saveElementsOnObject(id, prop, objectToUpdate) {
   }
 }
 
-function addPostToUserData(postData) {
+function addPostToUserData(type, postData) {
+  tempAllUsers = JSON.parse(localStorage.getItem("allUsers"));
   temporalCurrentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   postData.postHeader[0]["post-header-replies"] = postData.replyData.length;
-  temporalCurrentUser.userPosts.unshift(postData.postHeader[0]);
+  if (type === 'post') {
+    temporalCurrentUser.userPosts.unshift(postData.postHeader[0]);
+  } else {
+    tempAllUsers[postData.postHeader[0]['post-header-userEmail']].userPosts.unshift(postData.postHeader[0]);
+    temporalCurrentUser.userReplies.unshift(postData.postHeader[0]);
+  }
+
+  // temporalCurrentUser.userPosts.unshift(postData.postHeader[0]);
   sessionStorage.setItem("currentUser", JSON.stringify(temporalCurrentUser));
 
-  tempAllUsers = JSON.parse(localStorage.getItem("allUsers"));
   tempAllUsers[temporalCurrentUser.userEmail] = temporalCurrentUser;
   localStorage.setItem("allUsers", JSON.stringify(tempAllUsers));
 }
@@ -73,14 +80,14 @@ const convertStringToHTML = htmlString => {
   return html.body;
 }
 
-function generateCardPost(userName, text, date, numRespuestas) {
+function generateCardPost(userName, userPP, text, date, numRespuestas) {
   return `<div class="col-12 col-md-6 my-3 userPosts">
           <div class="blog_post">
             <div class="row" style="padding: 10px 0px;">
               <div class="col-3 my-3">
                 <div class="img_pod2">
                   <img class="user-post-img"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                    src="$${userPP}"
                     alt="random image">
                 </div>
               </div>
@@ -108,7 +115,7 @@ function generateCardPost(userName, text, date, numRespuestas) {
         </div>`
 }
 
-function placeCard(userName, text, date, numRespuestas) {
+function placeCard(userName, userPP, text, date, numRespuestas) {
   const currentPosts = document.getElementsByClassName("userPosts");
 
   const numOfCurrentPosts = currentPosts.length;
@@ -127,7 +134,12 @@ function placeCard(userName, text, date, numRespuestas) {
 
 function visualizeUserPosts() {
   if (!document.location.pathname.includes("perfilEditable")) {
-    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    let currentUser;
+    if (document.location.pathname.includes("perfilExterno")) {
+      currentUser = JSON.parse(sessionStorage.getItem("identifiedPerson"));
+    } else {
+      currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    }
     const userPosts = currentUser.userPosts;
     const approvedPostsText = [];
     const approvedPosts = [];
@@ -136,24 +148,79 @@ function visualizeUserPosts() {
       if (!approvedPostsText.includes(post["post-header-text"])) {
         approvedPostsText.push(post["post-header-text"])
         approvedPosts.push(post)
-        placeCard(post["post-header-name"], post["post-header-text"], post["post-header-date"], post["post-header-replies"])
+        placeCard(post["post-header-name"], post["post-header-pp"], post["post-header-text"], post["post-header-date"], post["post-header-replies"])
       }
       if (approvedPosts.length == 10) {
         break;
       }
     }
-    currentUser.userPosts = approvedPosts;
-    updateStorageObject('session', 'currentUser', currentUser)
-    const allUsers = JSON.parse(localStorage.getItem("allUsers"));
-    allUsers[currentUser.userEmail] = currentUser;
-    updateStorageObject('local', 'allData', allUsers)
+    if (document.location.pathname.includes("perfilExterno")) {
+      currentUser.userPosts = approvedPosts;
+      updateStorageObject('session', 'identifiedPerson', currentUser)
+      const allUsers = JSON.parse(localStorage.getItem("allUsers"));
+      allUsers[currentUser.userEmail] = currentUser;
+      updateStorageObject('local', 'allData', allUsers)
+
+    } else {
+      currentUser.userPosts = approvedPosts;
+      updateStorageObject('session', 'currentUser', currentUser)
+      const allUsers = JSON.parse(localStorage.getItem("allUsers"));
+      allUsers[currentUser.userEmail] = currentUser;
+      updateStorageObject('local', 'allData', allUsers)
+
+    }
   }
 }
+
+// exporta la función previamente declarada
+/* export { changeHtmlElementsPropById, changeHtmlElementsPropByClass, updateStorageObject, removeMessage, restoreMessage, saveElementsOnObject}; */
+
+/* Gaby */
+
+function buscarPorCorreo(userEmail) {
+  const allUsers = JSON.parse(localStorage.getItem("allUsers"));
+  const resultados = Object.values(allUsers).filter(user => user.userEmail.toLowerCase().includes(userEmail.toLowerCase()));
+  return resultados;
+}
+const buscarUsuarios = document.getElementById("buscarUsuarios");
+
+buscarUsuarios.onsubmit = function(e) {
+  e.preventDefault();
+  const searchInput = document.getElementById("searchInput");
+  const searchTerm = searchInput.value.trim();
+  console.log(searchTerm);
+  if (searchTerm !== "") {
+    const allUsers = JSON.parse(localStorage.getItem("allUsers"));
+    console.log(allUsers[searchTerm])
+    sessionStorage.setItem("identifiedPerson", JSON.stringify(allUsers[searchTerm]))
+    window.location.href = "../../sections/perfilExterno.html";
+  }
+
+  /* if (searchTerm !== "") {
+    const resultados = buscarPorCorreo(searchTerm); 
+  
+      const resultsContainer = document.getElementById("resultsContainer");
+      resultsContainer.innerHTML = ""; */
+
+  /*  
+
+   window.location.href = "../../../perfil.html" + userEmail; */
+  /*  if (resultados.length > 0) {
+   resultados.forEach(user => {
+     const userElement = document.createElement("div");
+     userElement.textContent = user.userName;
+     resultsContainer.appendChild(userElement);
+   });
+ } else {
+   const noResultsElement = document.createElement("div");
+   noResultsElement.textContent = "No se encontraron resultados.";
+   resultsContainer.appendChild(noResultsElement);
+ }  
+} */
+} 
+
 
 function getUserPP() {
   temporalCurrentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   return temporalCurrentUser.userProfilePicture
 }
-
- // exporta la función previamente declarada
-/* export { changeHtmlElementsPropById, changeHtmlElementsPropByClass, updateStorageObject, removeMessage, restoreMessage, saveElementsOnObject}; */

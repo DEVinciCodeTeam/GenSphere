@@ -249,7 +249,7 @@ addPostButton.addEventListener("click", addPost);
 
 // Add event listener for Enter keypress on the post-input field
 const postInput = document.getElementById("post-input");
-postInput.addEventListener("keypress", function (event) {
+postInput.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
     addPost();
   }
