@@ -223,4 +223,9 @@ buscarUsuarios.onsubmit = function(e) {
    resultsContainer.appendChild(noResultsElement);
  }  
 } */
-} 
+}
+
+function getUserPP() {
+  temporalCurrentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+  return temporalCurrentUser.userProfilePicture
+}
