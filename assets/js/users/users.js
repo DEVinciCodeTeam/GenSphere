@@ -94,7 +94,7 @@ signUpForm.onsubmit = function(e) {
         userReplies: []
       }
       localStorage.setItem("allUsers", JSON.stringify(allUsers))
-      const testUser  = {
+      const testUser = {
         userName: getUserName,
         userEmail: getUserEmail,
         userCohorte: getUserCohorte,
@@ -123,7 +123,7 @@ signInForm.onsubmit = function(e) {
   const getUserPassword = cyrb53(document.getElementById("userPasswordLogin").value.trim()).toString();
 
   const allUsers = JSON.parse(localStorage.getItem("allUsers"));
-  sendUserToApi(getUserEmail);
+  console.log(getUsersFromApi(getUserEmail));
   if (!allUsers[getUserEmail]) {
     restoreMessage("unregisteredEmail");
     removeMessage("wrongPassword");
