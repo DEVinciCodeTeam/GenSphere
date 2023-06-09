@@ -1,4 +1,4 @@
-const removeMessage = (elementId) => {
+/* const removeMessage = (elementId) => {
   const buttonRef = document.getElementById(elementId);
   buttonRef.style.display = "none";
 }
@@ -6,7 +6,7 @@ const restoreMessage = (elementId) => {
   const buttonRef = document.getElementById(elementId);
   buttonRef.style.display = "inline";
 }
-
+ */
 
 
 const signUpButton = document.getElementById('registrar');

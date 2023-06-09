@@ -63,7 +63,7 @@ signUpForm.onsubmit = function(e) {
   const getUserName = document.getElementById("userName").value.trim();
   const getUserEmail = document.getElementById("userEmail").value.trim();
   const getUserCohorte = document.getElementById("userCohorte").value.trim();
-  const getUserPassword = document.getElementById("userPassword").value.trim();
+  const getUserPassword = cyrb53(document.getElementById("userPassword").value.trim()).toString();
 
   if (getUserName == "" || getUserEmail == "" || getUserCohorte == "" || getUserPassword == "") {
     restoreMessage("incomplitedFields");
@@ -94,6 +94,14 @@ signUpForm.onsubmit = function(e) {
         userReplies: []
       }
       localStorage.setItem("allUsers", JSON.stringify(allUsers))
+      const testUser  = {
+        userName: getUserName,
+        userEmail: getUserEmail,
+        userCohorte: getUserCohorte,
+        userPassword: getUserPassword
+      }
+      console.log("sendUserToApi")
+      sendUserToApi(testUser);
       restoreMessage("singUpSuccesful");
       removeMessage("incomplitedFields");
       removeMessage("repeatedEmail");
@@ -112,10 +120,10 @@ const signInForm = document.getElementById("signInForm");
 signInForm.onsubmit = function(e) {
   e.preventDefault()
   const getUserEmail = document.getElementById("userEmailLogin").value.trim();
-  const getUserPassword = document.getElementById("userPasswordLogin").value.trim();
+  const getUserPassword = cyrb53(document.getElementById("userPasswordLogin").value.trim()).toString();
 
   const allUsers = JSON.parse(localStorage.getItem("allUsers"));
-
+  sendUserToApi(getUserEmail);
   if (!allUsers[getUserEmail]) {
     restoreMessage("unregisteredEmail");
     removeMessage("wrongPassword");
