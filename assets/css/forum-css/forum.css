@@ -73,6 +73,14 @@ h4 {
   visibility: visible;
 }
 
+/* Hover para carrusel */
+#allPics{
+  transition: 500ms;
+  position:relative ;
+}
+#allPics:hover{
+  transform: scale(1.5);
+}
 
 /*--------------------------- Seccion del lado derecho --------------*/
 .mask-custom {
@@ -281,12 +289,4 @@ h4 {
   padding-top: 15px;
   font-family: "Roboto", sans-serif;
   font-weight: 425;
-}
-
-#allPics{
-  transition: 500ms;
-  position:relative ;
-}
-#allPics:hover{
-  transform: scale(1.5);
 }
