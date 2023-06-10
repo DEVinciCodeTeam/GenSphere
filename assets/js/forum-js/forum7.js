@@ -2,13 +2,13 @@
 let allData = { id: "Semana7", postData: [] };
 
 function handleMouseEvents(element) {
-  element.addEventListener("mouseenter", function () {
+  element.addEventListener("mouseenter", function() {
     const temp = this.textContent;
     this.textContent = this.getAttribute("data-userEmail");
     this.setAttribute("data-userEmail", temp);
   });
 
-  element.addEventListener("mouseleave", function () {
+  element.addEventListener("mouseleave", function() {
     const temp = this.textContent;
     this.textContent = this.getAttribute("data-userEmail");
     this.setAttribute("data-userEmail", temp);
@@ -30,14 +30,67 @@ function appendObjectToLocalStorage(allData) {
 const currentUser = sessionStorage.getItem("currentUser");
 const userName = currentUser ? JSON.parse(currentUser).userName : "Anonymous";
 
-// Función para manejar el evento de clic en el botón "Agregar publicación"
-function addPost() {
+/*-------------------------Cambios Erick Inicio------------------------------------*/
+
+//----------Funcion para conectar al Usuario al Socket
+var stompClient = null;
+
+function connect() {
+  username_connect = userName
+  if (username_connect) {
+    // var socket = new SockJS('http://localhost:8080/websocket');
+    var socket = new SockJS(`${API_URL}/websocket`);
+    stompClient = Stomp.over(socket);
+
+    stompClient.connect({}, onConnected, onError);
+  }
+}
+
+function onConnected() {
+  // Subscribe to the Public Topic
+  stompClient.subscribe('/topic/public', onMessageReceived);
+
+  stompClient.subscribe('/topic/public/reply', onMessageReceived_Reply);
+
+}
+
+function onError(error) {
+  alert('No fue posible conectar con el WebSocket! Actualiza tu pagina e intenta nuevamente o entra en contacto con tu administrador.');
+}
+
+//--------------------Activar Sesion de Usuario---------------
+document.addEventListener("DOMContentLoaded", () => {
+  connect();
+});
+
+// Función para manejar el evento de clic en el botón "Publicar"
+
+function addPost(event) {
   const postInput = document.getElementById("post-input").value.trim();
 
   if (postInput === "") {
     alert("Favor de publicar algo.");
     return;
   }
+  if (postInput && stompClient) {
+    var chatMessage = {
+      sender: username_connect,
+      content: postInput,
+      type: 'CHAT'
+    };
+
+    stompClient.send('/app/chat.send', {}, JSON.stringify(chatMessage));
+
+  }
+  event.preventDefault();
+}
+
+/*-------------------------Cambios Erick Fin------------------------------------*/
+
+
+// Función para manejar el evento de clic en el botón "Agregar publicación"
+function onMessageReceived(payload) {
+  var message = JSON.parse(payload.body);
 
   // Crear un contenedor para la publicación
   const postContainer = document.createElement("div");
@@ -64,7 +117,7 @@ function addPost() {
   postImage.style.height = "60px";
 
   const nameElement = document.createElement("h3");
-  nameElement.textContent = userName;
+  nameElement.textContent = message.sender;
   nameElement.classList.add("post-name");
   nameElement.setAttribute(
     "data-userEmail",
@@ -91,7 +144,7 @@ function addPost() {
 
   // Crear un elemento para el texto de la publicación
   const postTextElement = document.createElement("p");
-  postTextElement.textContent = postInput;
+  postTextElement.textContent = message.content;
   postTextElement.classList.add("post-text");
   postTextDiv.appendChild(postTextElement);
 
@@ -132,7 +185,7 @@ function addPost() {
     postHeaderId: 1,
     "post-header-name": nameElement.textContent,
     "post-header-date": postDate.textContent,
-    "post-header-text": postInput,
+    "post-header-text": message.content,
     "post-header-pp": getUserPP(),
     userEmail: currentUser ? JSON.parse(currentUser).userEmail : "",
   };
@@ -153,14 +206,33 @@ function addPost() {
   appendObjectToLocalStorage(allData);
 }
 
+//-----------------------------------Inicio de cambios en addReply
 function addReply(event) {
-  const replyInput =
-    event.target.parentNode.querySelector("input[type='text']");
+  const replyInput = event.target.parentNode.querySelector("input[type='text']");
   const replyText = replyInput.value.trim();
+  const replyInputParent = event.target.parentNode.closest(".post-container");
+  const replyId = replyInputParent.dataset.postid;
+  console.log(replyId);
   if (replyText === "") {
     alert("Por favor comenta algo.");
     return;
   }
+
+  if (replyText && stompClient) {
+    var chatMessage = {
+      sender: username_connect,
+      content: replyText,
+      postId: replyId,
+      type: 'CHAT'
+    };
+    stompClient.send('/app/chat.reply', {}, JSON.stringify(chatMessage));
+    replyText.value = '';
+  }
+  event.preventDefault();
+}
+
+function onMessageReceived_Reply(payload) {
+  var message = JSON.parse(payload.body);
 
   // Create a containter for the reply
   const replyContainer = document.createElement("div");
@@ -179,7 +251,7 @@ function addReply(event) {
   replyImage.style.height = "60px";
 
   const nameElement = document.createElement("h3");
-  nameElement.textContent = userName;
+  nameElement.textContent = message.sender;
   nameElement.classList.add("reply-name");
   nameElement.setAttribute(
     "data-userEmail",
@@ -201,18 +273,22 @@ function addReply(event) {
   textReplyDiv.classList.add("text-reply");
 
   const replyTextElement = document.createElement("p");
-  replyTextElement.textContent = replyText;
+  replyTextElement.textContent = message.content;
   replyTextElement.classList.add("reply-text");
   textReplyDiv.appendChild(replyTextElement);
 
   replyContainer.appendChild(replyContentDiv);
   replyContainer.appendChild(textReplyDiv);
 
-  const postContainer = event.target.closest(".post-container");
-  const listOfAnswer = postContainer.querySelector(".users_reply__form");
-  listOfAnswer.appendChild(replyContainer);
+  const postContainer = document.querySelector(`.post-container[data-postid="${message.postId}"]`);
+  if (postContainer) {
+    const listOfAnswer = postContainer.querySelector(".users_reply__form");
+    listOfAnswer.appendChild(replyContainer);
+  }
 
-  replyInput.value = "";
+  const replyForm = postContainer.querySelector(".reply__form");
+  const inputElement = replyForm.querySelector("input[type='text']");
+  inputElement.value = "";
 
   const postId = parseInt(postContainer.getAttribute("data-postId")); //No mover de aquí.Trae el id del post
 
@@ -229,7 +305,7 @@ function addReply(event) {
     postHeaderId: parseInt(postContainer.getAttribute("data-postId")),
     "reply-name": nameElement.textContent,
     "reply-date": replyDate.textContent,
-    "reply-text": replyText,
+    "reply-text": message.content,
     "reply-pp": getUserPP(),
     userEmail: currentUser ? JSON.parse(currentUser).userEmail : "",
   };
@@ -243,13 +319,15 @@ function addReply(event) {
   appendObjectToLocalStorage(allData);
 }
 
+/*---------------Fin de cambios en addReply */
+
 // Add an event listener to the "Publicar" button
 const addPostButton = document.getElementById("add-post-btn");
 addPostButton.addEventListener("click", addPost);
 
 // Add event listener for Enter keypress on the post-input field
 const postInput = document.getElementById("post-input");
-postInput.addEventListener("keypress", function (event) {
+postInput.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
     addPost();
   }
@@ -317,13 +395,13 @@ document.addEventListener("DOMContentLoaded", () => {
         nameElement.setAttribute("data-userEmail", postHeader.userEmail);
         nameElement.classList.add("post-name");
 
-        nameElement.addEventListener("mouseenter", function () {
+        nameElement.addEventListener("mouseenter", function() {
           const temp = this.textContent;
           this.textContent = this.getAttribute("data-userEmail");
           this.setAttribute("data-userEmail", temp);
         });
 
-        nameElement.addEventListener("mouseleave", function () {
+        nameElement.addEventListener("mouseleave", function() {
           const temp = this.textContent;
           this.textContent = this.getAttribute("data-userEmail");
           this.setAttribute("data-userEmail", temp);
@@ -376,11 +454,11 @@ document.addEventListener("DOMContentLoaded", () => {
         nameElement.setAttribute("data-userEmail", replyData.userEmail);
         nameElement.classList.add("reply-name");
 
-        nameElement.addEventListener("mouseover", function () {
+        nameElement.addEventListener("mouseover", function() {
           this.textContent = this.getAttribute("data-userEmail");
         });
 
-        nameElement.addEventListener("mouseout", function () {
+        nameElement.addEventListener("mouseout", function() {
           this.textContent = replyData["reply-name"];
         });
 
