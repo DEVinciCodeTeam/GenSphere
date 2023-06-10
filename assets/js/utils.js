@@ -214,8 +214,6 @@ function visualizeCommentedPosts() {
 // exporta la función previamente declarada
 /* export { changeHtmlElementsPropById, changeHtmlElementsPropByClass, updateStorageObject, removeMessage, restoreMessage, saveElementsOnObject}; */
 
-/* Gaby */
-
 function buscarPorCorreo(userEmail) {
   const allUsers = JSON.parse(localStorage.getItem("allUsers"));
   const resultados = Object.values(allUsers).filter(user => user.userEmail.toLowerCase().includes(userEmail.toLowerCase()));
@@ -228,14 +226,12 @@ if (document.location.pathname.includes("perfilexterno") || document.location.pa
 
   buscarUsuarios.onsubmit = function(e) {
     e.preventDefault();
-    const searchInput = document.getElementById("searchInput");
-    const searchTerm = searchInput.value.trim();
-    if (searchTerm !== "") {
-      const allUsers = JSON.parse(localStorage.getItem("allUsers"));
-      sessionStorage.setItem("identifiedPerson", JSON.stringify(allUsers[searchTerm]))
-      window.location.href = "../../sections/perfilExterno.html";
+    const searchInput = document.getElementById("searchInput").value.trim();
+    if (searchInput !== "") {
+      getFriendProfile(searchInput);
     } else {
-      alert("El correo que incregaste no corresponde a algun usuario registrado")
+      // alert("El correo que incregaste no corresponde a algun usuario registrado")
+      alert("Ingresa un correo por favor")
     }
 
 
@@ -249,6 +245,26 @@ function getUserPP() {
 function getUserEmail() {
   temporalCurrentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   return temporalCurrentUser.userEmail
+}
+
+function transformDates(date) {
+  const dateArray = date.split("-")
+
+  const monthsToString = {
+    "01": "Enero",
+    "02": "Febrero",
+    "03": "Marzo",
+    "04": "Abril",
+    "05": "Mayo",
+    "06": "Junio",
+    "07": "Julio",
+    "08": "Agosto",
+    "09": "Septiembre",
+    "10": "Octubre",
+    "11": "Noviembre",
+    "12": "Diciembre",
+  }
+  return (monthsToString[dateArray[1]] + ", " + dateArray[0])
 }
 
 const cyrb53 = (str, seed = 0) => {
@@ -269,8 +285,14 @@ const cyrb53 = (str, seed = 0) => {
 function sendUserToApi(currentUser) {
 
   console.log("enviando objeto");
+
+  console.log(currentUser)
   $.ajax({
-    url: "https://localhost:8080/api/save",
+    // url: "http://localhost:8080/api/save",
+    url: "https://51a4-200-68-187-97.ngrok-free.app/api/save",
+    headers: {
+      'ngrok-skip-browser-warning': 'true'
+    },
     contentType: "application/json",
     type: "POST",
     data: JSON.stringify(currentUser),
@@ -278,19 +300,139 @@ function sendUserToApi(currentUser) {
     success: () => {
       console.log("Usuario registrado");
     },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log("Error enviando usuario a la api")
+    }
   });
 }
 
-function getUserFromApi(userEmail) {
+function userSignUpApi(currentUser) {
+
+  console.log("enviando objeto");
+
+  $.ajax({
+    // url: "http://localhost:8080/api/save",
+    url: "https://51a4-200-68-187-97.ngrok-free.app/api/save",
+    headers: {
+      'ngrok-skip-browser-warning': 'true'
+    },
+    contentType: "application/json",
+    type: "POST",
+    data: JSON.stringify(currentUser),
+    dataType: "json",
+    success: () => {
+      console.log("Usuario registrado");
+      restoreMessage("singUpSuccesful");
+      removeMessage("incomplitedFields");
+      removeMessage("repeatedEmail");
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log("Ya existe un registro con ese correo")
+      restoreMessage("repeatedEmail");
+      removeMessage("incomplitedFields");
+      removeMessage("singUpSuccesful");
+    }
+  });
+}
+
+
+function userSignInApi(userEmail, userPassword) {
 
   console.log("obteniendo objeto");
+
   $.ajax({
-    url: `http://localhost:8080/api/email/${userEmail}`,
+    // url: `http://localhost:8080/api/email/${userEmail}`,
+    url: `https://51a4-200-68-187-97.ngrok-free.app/api/email/${userEmail}`,
+    headers: {
+      'ngrok-skip-browser-warning': 'true'
+    },
+    type: "GET",
+    dataType: "json",
+    success: function(currentUser) {
+      if (userPassword == currentUser.userPassword) {
+        console.log("Entraste!")
+        sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+        window.location.href = "../../../index.html";
+      } else {
+        restoreMessage("wrongPassword");
+        removeMessage("unregisteredEmail");
+      }
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log("El usuario no existe")
+      sessionStorage.removeItem("currentUser")
+      restoreMessage("unregisteredEmail");
+      removeMessage("wrongPassword");
+    }
+
+  });
+}
+
+function updateUserInfoInApi(currentUser) {
+
+  console.log("Actualizando objeto");
+  console.log(currentUser)
+
+  $.ajax({
+    // url: `http://localhost:8080/api/update/${currentUser.userEmail}`,
+    url: `https://51a4-200-68-187-97.ngrok-free.app/api/update/${currentUser.userEmail}`,
+    contentType: "application/json",
+    headers: {
+      'ngrok-skip-browser-warning': 'true'
+    },
+    type: "PUT",
+    data: JSON.stringify(currentUser),
+    dataType: "json",
+    success: function(updatedCurrentUser) {
+      console.log("Objeto Actualizado")
+      sessionStorage.setItem("currentUser", JSON.stringify(updatedCurrentUser.usuarioActualizado));
+      window.location.href = "../../sections/perfilUsuario.html";
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log("No se pudo actualizar la informacion del usuario")
+    }
+
+  });
+}
+
+function getAllUsersFromApi() {
+
+  console.log("obteniendo objeto");
+
+  $.ajax({
+    url: `http://localhost:8080/api/list`,
     type: "GET",
     dataType: "json",
     success: function(res) {
-      console.log(res);
-      return JSON.parse(res);
+      // console.log(res);
+      sessionStorage.setItem("allUsers", JSON.stringify(res));
     },
+  });
+}
+
+function getFriendProfile(userEmail) {
+
+  console.log("Obteniendo perfil de amigo");
+
+  $.ajax({
+    // url: `http://localhost:8080/api/email/${userEmail}`,
+    url: `https://51a4-200-68-187-97.ngrok-free.app/api/email/${userEmail}`,
+    headers: {
+      'ngrok-skip-browser-warning': 'true'
+    },
+    type: "GET",
+    dataType: "json",
+    success: function(friendProfile) {
+      console.log("Perfil de amigo cargado!")
+      sessionStorage.setItem("friendProfile", JSON.stringify(friendProfile));
+      window.location.href = "../../sections/perfilExterno.html";
+
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log("El usuario no existe")
+      sessionStorage.removeItem("friedProfile")
+    }
+
   });
 }

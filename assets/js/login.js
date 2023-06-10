@@ -8,6 +8,7 @@ const restoreMessage = (elementId) => {
 }
  */
 
+sessionStorage.clear()
 
 const signUpButton = document.getElementById('registrar');
 const signInButton = document.getElementById('iniciar');

@@ -1,9 +1,11 @@
-visualizeUserPosts();
-visualizeCommentedPosts();
+// visualizeUserPosts();
+// visualizeCommentedPosts();
 // ------------------ Setting user's data ------------------------------
+
 let currentUser;
+
 if (document.location.pathname.includes("perfilexterno")) {
-  currentUser = JSON.parse(sessionStorage.getItem("identifiedPerson"));
+  currentUser = JSON.parse(sessionStorage.getItem("friendProfile"));
 } else {
   currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 }
@@ -21,8 +23,8 @@ changeHtmlElementsPropById("aboutUser", currentUser.aboutUser, "innerHTML", "Una
 changeHtmlElementsPropById("experienceUser", currentUser.experienceUser, "innerHTML", "Cuentanos de tu experiencia");
 changeHtmlElementsPropById("userGithub", currentUser.userGithub, "href");
 changeHtmlElementsPropById("userLinkedIn", currentUser.userLinkedIn, "href");
-if (currentUser.userOtherEmail != undefined) {
-  changeHtmlElementsPropById("userEmail", currentUser.userOtherEmail, "href");
+if (currentUser.userSecondEmail != undefined) {
+  changeHtmlElementsPropById("userEmail", currentUser.userSecondEmail, "href");
 } else {
   changeHtmlElementsPropById("userEmail", currentUser.userEmail, "href");
 }
@@ -76,32 +78,18 @@ if (editProfile !== null) {
   removeMessage("incomplitedFields")
 
   editProfile.onsubmit = function(e) {
-    console.log("entramos edit profile")
 
     e.preventDefault();
 
     const getUserName = document.getElementById("editUserNameInput").value.trim();
     const getUserCohorte = document.getElementById("editUserCohorteInput").value.trim();
 
-
     //================================================
 
     if (getUserName == "" || getUserCohorte == "") {
       restoreMessage("incomplitedFields");
     } else {
-      const allUsers = JSON.parse(localStorage.getItem("allUsers"));
       const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-      console.log("else")
-      saveElementsOnObject("editUserNameInput", "userName", allUsers[currentUser.userEmail])
-      saveElementsOnObject("userAgeInput", "userAge", allUsers[currentUser.userEmail])
-      saveElementsOnObject("userLocationInput", "userLocation", allUsers[currentUser.userEmail])
-      saveElementsOnObject("editUserCohorteInput", "userCohorte", allUsers[currentUser.userEmail])
-      saveElementsOnObject("userAboutMeInput", "aboutUser", allUsers[currentUser.userEmail])
-      saveElementsOnObject("editUserTitleInput", "userTitle", allUsers[currentUser.userEmail])
-      saveElementsOnObject("userExperienceInput", "experienceUser", allUsers[currentUser.userEmail])
-      saveElementsOnObject("userGithubLinkInput", "userGithub", allUsers[currentUser.userEmail])
-      saveElementsOnObject("userLinkedinLinkInput", "userLinkedIn", allUsers[currentUser.userEmail])
-      saveElementsOnObject("userOtherEmailInput", "userOtherEmail", allUsers[currentUser.userEmail])
 
       saveElementsOnObject("editUserNameInput", "userName", currentUser)
       saveElementsOnObject("userAgeInput", "userAge", currentUser)
@@ -112,12 +100,13 @@ if (editProfile !== null) {
       saveElementsOnObject("editUserTitleInput", "userTitle", currentUser)
       saveElementsOnObject("userGithubLinkInput", "userGithub", currentUser)
       saveElementsOnObject("userLinkedinLinkInput", "userLinkedIn", currentUser)
-      saveElementsOnObject("userOtherEmailInput", "userOtherEmail", currentUser)
+      saveElementsOnObject("userOtherEmailInput", "userSecondEmail", currentUser)
 
-      updateStorageObject('session', 'currentUser', currentUser);
-      updateStorageObject('local', 'allUsers', allUsers)
+      // updateStorageObject('session', 'currentUser', currentUser);
+      // updateStorageObject('local', 'allUsers', allUsers)
+      updateUserInfoInApi(currentUser);
 
-      window.location.href = "../../sections/perfilUsuario.html";
+      // window.location.href = "../../sections/perfilUsuario.html";
     }
   }
 }
