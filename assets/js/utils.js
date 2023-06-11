@@ -443,6 +443,7 @@ function sendProfilePicture(img) {
     type: 'POST',
     url: `${API_URL}/upload`,
     data: img,
+    enctype: 'multipart/form-data',
     cache: false,
     contentType: false,
     processData: false,
