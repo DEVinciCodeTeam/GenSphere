@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Fonts Google -->
@@ -150,90 +151,92 @@
         </div>
 
         <!------------------------------------------------ Editable -------------------------------------------------------------------->
-        
+
         <div id="container-edit" class="col-lg-8" style="background-color: #d5dff0; padding-left: 2%;">
           <form id="profileEditForm" action="#" method="GET">
-          <div class="p-3 py-5">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <div class="row">
-                <div class="col-12">
-                  <h5 class="text-right">Hola</h4>
-                </div>
-                <div class="col-12">
-                  <h4 class="text-right" id="editUserName">Miguel Ríos</h4>
-                </div>
-              </div>
-            </div>
-            <div class="row mt-2">
-              <div class="col-md-6">
-                <label class="labels" id="editUserNameLabel">Nombre</label>
-                <input type="text" class="form-control" id="editUserNameInput" placeholder="" value="">
-              </div>
-              <div class="col-md-6">
-                <label class="labels" id="editUserTitle">Tu título</label>
-                <input type="text" class="form-control" id="editUserTitleInput" placeholder="Ej: Junior Developer" value="">
-              </div>
-              <!-- <div class="col-md-6"><label class="labels">Apellidos</label><input type="text" class="form-control" -->
-              <!--     value="" placeholder=""></div> -->
-              <div class="col-md-6">
-                <label class="labels">Edad</label>
-                <input id="userAgeInput" type="number" class="form-control" placeholder="Tu edad" value="">
-              </div>
-              <div class="col-md-6"><label class="labels">Ubicación</label><input id="userLocationInput" type="text" class="form-control"
-                  value="" placeholder="Tu ubicacion"></div>
-              <div class="col-md-6">
-                <label class="labels" id="editUserCohorteLabel">Cohorte</label>
-                <input type="text" class="form-control" id="editUserCohorteInput" placeholder="" value="">
-              </div>
-              <!-- <div class="col-md-6"> -->
-              <!--   <label class="labels">Semana</label> -->
-              <!--   <input type="number" class="form-control" placeholder="5" min="1" max="12" value=""> -->
-              <!-- </div> -->
-            </div>
-            <div class="row mt-3">
-              <div class="col-md-12"><label class="labels">Acerca de mí</label><input id="userAboutMeInput" type="text" class="form-control"
-                  placeholder="Descripción" value=""></div>
-              <div class="col-md-12"><label class="labels">Experiencia</label><input id="userExperienceInput" type="text" class="form-control"
-                  placeholder="Empleos, actividades extra, practicas profesionales" value=""></div>
-              <div class="row my-5">
-                <div class="col-12 col-md-4 text-justify-align">
-                  <div class="col-md-12"><label class="labels">URL - Github</label><input id="userGithubLinkInput" type="text"
-                      class="form-control" placeholder="Perfil Github" value=""></div>
-                </div>
-                <div class="col-12 col-md-4 text-justify-align">
-                  <div class="col-md-12"><label class="labels">URL - LinkedIn</label><input id="userLinkedinLinkInput" type="text"
-                      class="form-control" placeholder="Perfil LinkedIn" value=""></div>
-                </div>
-                <div class="col-12 col-md-4 text-justify-align">
-                  <div class="col-md-12">
-                    <label class="labels" id="editUserEmailLabel">URL - correo</label>
-                    <input id="userOtherEmailInput" type="text" class="form-control" id="editUserEmailInput" placeholder="micorreo@compania.com"
-                      value="">
+            <div class="p-3 py-5">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="row">
+                  <div class="col-12">
+                    <h5 class="text-right">Hola</h4>
                   </div>
-                </div>
-                <p class="my-2" style="color: red; font-size: 12px;">*Poner un correo distinto en la casilla de "URL -
-                  correo" solo cambiara el correo asociado al boton en tu tarjeta de la derecha, pero no el correo con
-                  el que inicias sesión</p>
-              </div>
-              <div class="row" id="incomplitedFields">
-                <div class="col-sm-12">
-                  <div
-                    class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
-                    role="alert" data-brk-library="component__alert">
-                    <i class="start-icon far fa-times-circle faa-pulse animated"></i>
-  
-                    Porfavor asegurate de que Cohorte y Nombre no esten vacíos.
+                  <div class="col-12">
+                    <h4 class="text-right" id="editUserName">Miguel Ríos</h4>
                   </div>
                 </div>
               </div>
-              <div class="col-12 text-center">
-                <button type="submit" class="btn btn-outline-secondary my-3" style="width: 30%; float: right;">Guardar
-                  cambios</button>
+              <div class="row mt-2">
+                <div class="col-md-6">
+                  <label class="labels" id="editUserNameLabel">Nombre</label>
+                  <input type="text" class="form-control" id="editUserNameInput" placeholder="" value="">
+                </div>
+                <div class="col-md-6">
+                  <label class="labels" id="editUserTitle">Tu título</label>
+                  <input type="text" class="form-control" id="editUserTitleInput" placeholder="Ej: Junior Developer"
+                    value="">
+                </div>
+                <!-- <div class="col-md-6"><label class="labels">Apellidos</label><input type="text" class="form-control" -->
+                <!--     value="" placeholder=""></div> -->
+                <div class="col-md-6">
+                  <label class="labels">Edad</label>
+                  <input id="userAgeInput" type="number" class="form-control" placeholder="Tu edad" value="">
+                </div>
+                <div class="col-md-6"><label class="labels">Ubicación</label><input id="userLocationInput" type="text"
+                    class="form-control" value="" placeholder="Tu ubicacion"></div>
+                <div class="col-md-6">
+                  <label class="labels" id="editUserCohorteLabel">Cohorte</label>
+                  <input type="text" class="form-control" id="editUserCohorteInput" placeholder="" value="">
+                </div>
+                <!-- <div class="col-md-6"> -->
+                <!--   <label class="labels">Semana</label> -->
+                <!--   <input type="number" class="form-control" placeholder="5" min="1" max="12" value=""> -->
+                <!-- </div> -->
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-12"><label class="labels">Acerca de mí</label><input id="userAboutMeInput"
+                    type="text" class="form-control" placeholder="Descripción" value=""></div>
+                <div class="col-md-12"><label class="labels">Experiencia</label><input id="userExperienceInput"
+                    type="text" class="form-control" placeholder="Empleos, actividades extra, practicas profesionales"
+                    value=""></div>
+                <div class="row my-5">
+                  <div class="col-12 col-md-4 text-justify-align">
+                    <div class="col-md-12"><label class="labels">URL - Github</label><input id="userGithubLinkInput"
+                        type="text" class="form-control" placeholder="Perfil Github" value=""></div>
+                  </div>
+                  <div class="col-12 col-md-4 text-justify-align">
+                    <div class="col-md-12"><label class="labels">URL - LinkedIn</label><input id="userLinkedinLinkInput"
+                        type="text" class="form-control" placeholder="Perfil LinkedIn" value=""></div>
+                  </div>
+                  <div class="col-12 col-md-4 text-justify-align">
+                    <div class="col-md-12">
+                      <label class="labels" id="editUserEmailLabel">URL - correo</label>
+                      <input id="userOtherEmailInput" type="text" class="form-control" id="editUserEmailInput"
+                        placeholder="micorreo@compania.com" value="">
+                    </div>
+                  </div>
+                  <p class="my-2" style="color: red; font-size: 12px;">*Poner un correo distinto en la casilla de "URL -
+                    correo" solo cambiara el correo asociado al boton en tu tarjeta de la derecha, pero no el correo con
+                    el que inicias sesión</p>
+                </div>
+                <div class="row" id="incomplitedFields">
+                  <div class="col-sm-12">
+                    <div
+                      class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
+                      role="alert" data-brk-library="component__alert">
+                      <i class="start-icon far fa-times-circle faa-pulse animated"></i>
 
+                      Porfavor asegurate de que Cohorte y Nombre no esten vacíos.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn btn-outline-secondary my-3" style="width: 30%; float: right;">Guardar
+                    cambios</button>
+
+                </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
         </div>
       </div>
     </div>
@@ -245,8 +248,8 @@
   <!-- Scripts -->
   <script src="../assets/js/forms/jquery.validate.min.js"></script>
   <script src="../assets/js/forms/main.js"></script>
-  <script  src="../assets/js/utils.js"></script>
-  <script  src="../assets/js/perfiles.js"></script>
+  <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/perfiles.js"></script>
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
     integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
