@@ -1,4 +1,4 @@
-const API_URL = "https://57d7-200-68-187-97.ngrok-free.app";
+const API_URL = "https://e818-200-68-187-97.ngrok-free.app";
 
 const PERFIL_EDITABLE = API_URL.includes("localhost") ? "perfilEditable" : "perfileditable"
 const PERFIL_USUARIO = API_URL.includes("localhost") ? "perfilUsuario" : "perfilusuario"
