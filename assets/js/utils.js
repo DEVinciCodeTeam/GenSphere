@@ -447,6 +447,9 @@ function sendProfilePicture(img) {
     cache: false,
     contentType: false,
     processData: false,
+    headers: {
+      'ngrok-skip-browser-warning': 'true'
+    },
     success: function(data) {
       console.log("Profile picture loaded");
     },
