@@ -1,4 +1,5 @@
-const API_URL = "https://e818-200-68-187-97.ngrok-free.app";
+// const API_URL = "https://e818-200-68-187-97.ngrok-free.app";
+const API_URL = "http://localhost:8080";
 
 const PERFIL_EDITABLE = API_URL.includes("localhost") ? "perfilEditable" : "perfileditable"
 const PERFIL_USUARIO = API_URL.includes("localhost") ? "perfilUsuario" : "perfilusuario"
@@ -452,6 +453,7 @@ function sendProfilePicture(img) {
     },
     success: function(data) {
       console.log("Profile picture loaded");
+      window.location.href = "../../sections/perfilEditable.html";
     },
     error: function(data) {
       console.log("Error loading profile picture");

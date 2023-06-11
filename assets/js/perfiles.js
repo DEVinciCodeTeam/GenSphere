@@ -14,7 +14,7 @@ if (document.location.pathname.includes(PERFIL_EXTERNO)) {
 const allUsers = JSON.parse(localStorage.getItem("allUsers"));
 
 // ----------------------- Shared IDs ----------------------------------
-changeHtmlElementsPropById("userProfilePicture", currentUser.userProfilePicture, "src")
+changeHtmlElementsPropById("userProfilePicture", `${API_URL}/files/` + currentUser.userProfilePicture, "src")
 changeHtmlElementsPropById("userName", currentUser.userName, "innerHTML");
 changeHtmlElementsPropById("userTitle", currentUser.userTitle, "innerHTML", "Tu título");
 changeHtmlElementsPropById("userLocation", currentUser.userLocation, "innerHTML", "Tu ubicación");
@@ -49,24 +49,17 @@ changeHtmlElementsPropById("userOtherEmailInput", currentUser.userOtherEmail, "v
 // ------------- Saving the photo that the user uploads --------------
 
 if (document.location.pathname.includes(PERFIL_EDITABLE)) {
-  const img = document.querySelector('#userProfilePicture');
   const file = document.querySelector('#file');
 
   file.addEventListener('change', function() {
-    //   if (this.files[0]) {
-    //     const reader = new FileReader();
-    //     reader.addEventListener('load', function() {
-    //       img.setAttribute('src', reader.result);
-    //     });
-    //   }
+
     const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    currentUser["userProfilePicture"] = `${file.files[0].name}`;
+    updateUserInfoInApi(currentUser, false);
     let formData = new FormData();
     formData.append("file", file.files[0]);
     sendProfilePicture(formData);
-    currentUser["userProfilePicture"] = `${API_URL}/files/${file.files[0].name}`;
-    updateUserInfoInApi(currentUser, false);
-    changeHtmlElementsPropById("userProfilePicture", currentUser.userProfilePicture, "src")
-    // reader.readAsDataURL(chosenFile);
+    changeHtmlElementsPropById("userProfilePicture", `${API_URL}/files/` + currentUser.userProfilePicture, "src")
   });
 }
 // ---------------- Saving the secondary data perfil editable----------------------------
