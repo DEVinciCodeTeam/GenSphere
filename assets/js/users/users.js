@@ -32,6 +32,7 @@ signUpForm.onsubmit = function(e) {
       userProfilePicture: "../../assets/img/logo/genspherePP2.png",
     }
     userSignUpApi(testUser);
+
   }
 }
 

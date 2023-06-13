@@ -1,9 +1,9 @@
 // const API_URL = "https://e818-200-68-187-97.ngrok-free.app";
-const API_URL = "https://8705-200-68-187-97.ngrok-free.app";
+const API_URL = "http://localhost:8080";
 
-const PERFIL_EDITABLE = API_URL.includes("localhost") ? "perfilEditable" : "perfileditable"
-const PERFIL_USUARIO = API_URL.includes("localhost") ? "perfilUsuario" : "perfilusuario"
-const PERFIL_EXTERNO = API_URL.includes("localhost") ? "perfilExterno" : "perfilexterno"
+const PERFIL_EDITABLE = API_URL.includes("localhost") || API_URL.includes("azure") ? "perfilEditable" : "perfileditable"
+const PERFIL_USUARIO = API_URL.includes("localhost") || API_URL.includes("azure") ? "perfilUsuario" : "perfilusuario"
+const PERFIL_EXTERNO = API_URL.includes("localhost") || API_URL.includes("azure") ? "perfilExterno" : "perfilexterno"
 
 // In this file we grouped all the common functions used within the project
 /*-------------- Reading elements ----------------*/
@@ -330,6 +330,10 @@ function userSignUpApi(currentUser) {
       restoreMessage("singUpSuccesful");
       removeMessage("incomplitedFields");
       removeMessage("repeatedEmail");
+      document.getElementById("userName").value = "";
+      document.getElementById("userEmail").value = "";
+      document.getElementById("userCohorte").value = "";
+      document.getElementById("userPassword").value = "";
     },
     error: function(jqXHR, textStatus, errorThrown) {
       console.log("Ya existe un registro con ese correo")

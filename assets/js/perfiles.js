@@ -14,7 +14,12 @@ if (document.location.pathname.includes(PERFIL_EXTERNO)) {
 const allUsers = JSON.parse(localStorage.getItem("allUsers"));
 
 // ----------------------- Shared IDs ----------------------------------
-changeHtmlElementsPropById("userProfilePicture", `${API_URL}/files/` + currentUser.userProfilePicture, "src")
+if (currentUser.userProfilePicture === "../../assets/img/logo/genspherePP2.png") {
+  changeHtmlElementsPropById("userProfilePicture", currentUser.userProfilePicture, "src")
+} else {
+  changeHtmlElementsPropById("userProfilePicture", `${API_URL}/files/` + currentUser.userProfilePicture, "src")
+}
+
 changeHtmlElementsPropById("userName", currentUser.userName, "innerHTML");
 changeHtmlElementsPropById("userTitle", currentUser.userTitle, "innerHTML", "Tu título");
 changeHtmlElementsPropById("userLocation", currentUser.userLocation, "innerHTML", "Tu ubicación");

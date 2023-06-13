@@ -1,3 +1,5 @@
+const friendProfile = JSON.parse(sessionStorage.getItem("friendProfile"));
+changeHtmlElementsPropById("findUserWithEmail", friendProfile.userEmail, "value");
 // Get the necessary elements
 const container = document.getElementById("chatContainer");
 const sendMessageBtn = document.getElementById("sendMessageBtn");
@@ -26,9 +28,8 @@ function getActiveChatItem() {
 
 function createChatMessageHTML(message, isUserMessage) {
   const li = document.createElement("li");
-  li.className = `list-group-item d-flex justify-content-between align-items-start mb-2 ${
-    isUserMessage ? "" : "justify-content-start"
-  }`;
+  li.className = `list-group-item d-flex justify-content-between align-items-start mb-2 ${isUserMessage ? "" : "justify-content-start"
+    }`;
   li.innerHTML = `
     <div class="ms-2 ${isUserMessage ? "text-start" : "text-start"}">
       <p class="fw-bold mb-1">${message.sender}</p>
@@ -86,7 +87,7 @@ function handleSendMessage() {
 }
 
 sendMessageBtn.addEventListener("click", handleSendMessage);
-messageInput.addEventListener("keypress", function (event) {
+messageInput.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
     event.preventDefault();
     handleSendMessage();
@@ -96,7 +97,7 @@ messageInput.addEventListener("keypress", function (event) {
 chatItems.forEach((item) => {
   const chatItem = createChatItemHTML(item);
   chatList.appendChild(chatItem);
-  chatItem.addEventListener("click", function () {
+  chatItem.addEventListener("click", function() {
     document.querySelectorAll(".list-group-item.active").forEach((item) => {
       item.classList.remove("active");
     });
@@ -143,7 +144,7 @@ function initializeChatItems() {
   chatItems = storedChatItems;
 
   // Loop through the stored chat items and render them
-  storedChatItems.forEach(function (item) {
+  storedChatItems.forEach(function(item) {
     const chatItem = createChatItemHTML(item);
     chatList.appendChild(chatItem);
 
@@ -162,7 +163,8 @@ function addUser() {
   // Get the user's email and retrieve the user object from local storage
   const userEmail = getUserEmail();
   const allUsers = JSON.parse(localStorage.getItem("allUsers"));
-  const user = allUsers[userEmail];
+  // const user = allUsers[userEmail];
+  const user = JSON.parse(sessionStorage.getItem("friendProfile"));
 
   // Retrieve the current user's email from sessionStorage
   const currentUserEmail = sessionStorage.getItem("currentUser")
@@ -211,7 +213,7 @@ function addUser() {
     chatList.prepend(newChatItemElement);
 
     // Add event listener to the new chat item
-    newChatItemElement.addEventListener("click", function () {
+    newChatItemElement.addEventListener("click", function() {
       document.querySelectorAll(".list-group-item.active").forEach((item) => {
         item.classList.remove("active");
       });
