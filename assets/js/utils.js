@@ -469,22 +469,17 @@ function sendProfilePicture(img) {
 function sendJsonToApi(file) {
   // let formData = new FormData();
   // formData.append("file", file);
-  // console.log(formData)
+  // console.log(formData);
 
   $.ajax({
     type: 'POST',
+    // method: 'POST',
     url: `${API_URL}/uploadJson`,
+    enctype: 'multipart/form-data',
     data: file,
-    // enctype: 'multipart/form-data',
     contentType: false,
     processData: false,
     cache: false,
-    // cache: false,
-    // contentType: false,
-    // processData: false,
-    // headers: {
-    //   'ngrok-skip-browser-warning': 'true'
-    // },
     success: function(data) {
       console.log("JSON loaded");
     },
@@ -492,8 +487,37 @@ function sendJsonToApi(file) {
       console.log("Error loading JSON");
     }
   });
-
 }
+
+
+// function sendJsonToApi(file) {
+//   // let formData = new FormData();
+//   // formData.append("file", file);
+//   // console.log(formData)
+
+//   $.ajax({
+//     type: 'POST',
+//     url: `${API_URL}/uploadJson`,
+//     data: file,
+//     // enctype: 'multipart/form-data',
+//     contentType: false,
+//     processData: false,
+//     cache: false,
+//     // cache: false,
+//     // contentType: false,
+//     // processData: false,
+//     // headers: {
+//     //   'ngrok-skip-browser-warning': 'true'
+//     // },
+//     success: function(data) {
+//       console.log("JSON loaded");
+//     },
+//     error: function(data) {
+//       console.log("Error loading JSON");
+//     }
+//   });
+
+// }
 
 
 function download(content, fileName, contentType) {
