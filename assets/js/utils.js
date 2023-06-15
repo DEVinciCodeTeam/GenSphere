@@ -443,11 +443,17 @@ function getFriendProfile(userEmail) {
   });
 }
 
-function sendProfilePicture(img) {
+function sendProfilePicture(img, fileName) {
+  const imgBlob = img.slice(0, img.size, 'image/png');
+  newFile = new File([imgBlob], fileName, { type: 'image/png' });
+  const imgFormData = new FormData();
+  imgFormData.append("file", newFile);
+
+
   $.ajax({
     type: 'POST',
     url: `${API_URL}/upload`,
-    data: img,
+    data: imgFormData,
     enctype: 'multipart/form-data',
     cache: false,
     contentType: false,
@@ -466,20 +472,22 @@ function sendProfilePicture(img) {
 
 }
 
-function sendJsonToApi(file) {
-  // let formData = new FormData();
-  // formData.append("file", file);
-  // console.log(formData);
+function sendJsonToApi(file, filename) {
+  const blob = new Blob([file], { type: 'application/json' });
+  let formData = new FormData();
+  formData.append("file", blob, filename);
 
   $.ajax({
     type: 'POST',
-    // method: 'POST',
     url: `${API_URL}/uploadJson`,
     enctype: 'multipart/form-data',
-    data: file,
+    data: formData,
     contentType: false,
     processData: false,
     cache: false,
+    headers: {
+      'ngrok-skip-browser-warning': 'true'
+    },
     success: function(data) {
       console.log("JSON loaded");
     },
@@ -489,36 +497,32 @@ function sendJsonToApi(file) {
   });
 }
 
+function getJsonFromApi(filename) {
 
-// function sendJsonToApi(file) {
-//   // let formData = new FormData();
-//   // formData.append("file", file);
-//   // console.log(formData)
+  console.log("Obteniendo JSON");
 
-//   $.ajax({
-//     type: 'POST',
-//     url: `${API_URL}/uploadJson`,
-//     data: file,
-//     // enctype: 'multipart/form-data',
-//     contentType: false,
-//     processData: false,
-//     cache: false,
-//     // cache: false,
-//     // contentType: false,
-//     // processData: false,
-//     // headers: {
-//     //   'ngrok-skip-browser-warning': 'true'
-//     // },
-//     success: function(data) {
-//       console.log("JSON loaded");
-//     },
-//     error: function(data) {
-//       console.log("Error loading JSON");
-//     }
-//   });
+  $.ajax({
+    url: `${API_URL}/filesJson/${filename}`,
+    headers: {
+      'ngrok-skip-browser-warning': 'true'
+    },
+    type: "GET",
+    dataType: "json",
+    success: function(jsonFile) {
+      console.log("Archivo JSON cargado!")
+      sessionStorage.setItem(filename.split("."), JSON.stringify(jsonFile))
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log("El archivo no existe")
+    }
 
-// }
+  });
+}
 
+function updateForumObject(name) {
+  const forumObject = localStorage.getItem(name);
+  sendJsonToApi(forumObject, name + ".json")
+}
 
 function download(content, fileName, contentType) {
   var a = document.createElement("a");
@@ -528,25 +532,3 @@ function download(content, fileName, contentType) {
   a.click();
 }
 
-
-function sendJsonToApi2(file) {
-
-  console.log("enviando objeto");
-
-  $.ajax({
-    url: `${API_URL}/updateJson`,
-    headers: {
-      'ngrok-skip-browser-warning': 'true'
-    },
-    contentType: "application/json",
-    type: "POST",
-    data: JSON.stringify(file),
-    dataType: "json",
-    success: () => {
-      console.log("Exito");
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-      console.log("Fracaso")
-    }
-  });
-}

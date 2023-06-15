@@ -59,23 +59,12 @@ if (document.location.pathname.includes(PERFIL_EDITABLE)) {
   file.addEventListener('change', function() {
 
     const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-    currentUser["userProfilePicture"] = `${file.files[0].name}`;
+    currentUser["userProfilePicture"] = `${currentUser.userEmail}` + "." + file.files[0].name.split(".")[1];
     updateUserInfoInApi(currentUser, false);
-    let formData = new FormData();
-    formData.append("file", file.files[0]);
-    console.log(file.files[0])
-    sendProfilePicture(formData);
+    sendProfilePicture(file.files[0], currentUser.userProfilePicture);
     changeHtmlElementsPropById("userProfilePicture", `${API_URL}/files/` + currentUser.userProfilePicture, "src")
   });
 
-  const file2 = document.querySelector('#file2');
-
-  file2.addEventListener('change', function() {
-
-    let formData2 = new FormData();
-    formData2.append("file", file2.files[0]);
-    sendJsonToApi(formData2);
-  });
 }
 // ---------------- Saving the secondary data perfil editable----------------------------
 const editProfile = document.getElementById("profileEditForm");

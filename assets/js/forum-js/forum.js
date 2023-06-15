@@ -1,3 +1,4 @@
+getJsonFromApi("forum1Posts.json")
 // Objeto que almacena todos los objetos de datos creados dentro de las funciones
 let allData = { id: "Semana1", postData: [] };
 
@@ -56,7 +57,7 @@ function addPost() {
 
   // Crear un elemento de imagen para la publicación
   const postImage = document.createElement("img");
-  postImage.src = getUserPP();
+  postImage.src = API_URL + "/files/" + getUserPP();
   postImage.classList.add("rounded-circle");
   postImage.classList.add("me-3");
   postImage.classList.add("shadow-1-strong");
@@ -144,7 +145,7 @@ function addPost() {
 
   allData.postData.push(postData);
 
-  addPostToUserData('post', postData);
+  // addPostToUserData('post', postData);
 
   console.clear();
 
@@ -170,7 +171,7 @@ function addReply(event) {
   replyContentDiv.classList.add("reply-content");
 
   const replyImage = document.createElement("img");
-  replyImage.src = getUserPP();
+  replyImage.src = API_URL + "/files/" + getUserPP();
   replyImage.classList.add("rounded-circle");
   replyImage.classList.add("me-3");
   replyImage.classList.add("shadow-1-strong");
@@ -235,7 +236,7 @@ function addReply(event) {
   const postData = allData.postData.find((post) => post.postDataId === postId); //Seleccionando el postData por su id
   postData.replyData.push(replyData);
 
-  addPostToUserData('reply', postData);
+  // addPostToUserData('reply', postData);
 
   // Save the updated data to local storage
   appendObjectToLocalStorage(allData);
@@ -259,6 +260,7 @@ postInput.addEventListener("keypress", function(event) {
 function appendObjectToLocalStorage(allData) {
   const element = allData;
   localStorage.setItem("forum1Posts", JSON.stringify(element));
+  updateForumObject("forum1Posts")
 }
 
 /*------------------------Animacion de los eventos del lado izquierdo------*/
@@ -303,7 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
         postContentDiv.classList.add("post-content");
 
         const postImage = document.createElement("img");
-        postImage.src = postHeader["post-header-pp"];
+        postImage.src = API_URL + "/files/" + postHeader["post-header-pp"];
         postImage.classList.add("rounded-circle");
         postImage.classList.add("me-3");
         postImage.classList.add("shadow-1-strong");
@@ -374,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
         replyContentDiv.classList.add("reply-content");
 
         const replyImage = document.createElement("img");
-        replyImage.src = replyData["reply-pp"];
+        replyImage.src = API_URL + "/files/" + replyData["reply-pp"];
         replyImage.classList.add("rounded-circle");
         replyImage.classList.add("me-3");
         replyImage.classList.add("shadow-1-strong");
